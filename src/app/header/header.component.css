@@ -1,0 +1,83 @@
+header{
+    /* position: absolute; */
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    flex-direction: row;
+    padding: 0 7.5vw 0 7.5vw;
+}
+
+.header-load{
+    height: 15vh;
+    background-color: none;
+}
+
+.header-top{
+    background-color: none;
+    height: 15vh;
+    animation: changeHeaderTop 1s forwards;
+}    
+
+.header-scroll{
+    animation: changeHeaderScroll 1s forwards;
+    /* background-color: var(--white);
+    height: 10vh; */
+}
+
+@keyframes changeHeaderScroll {
+    from{background-color: none; height: 15vh;}
+    to{background-color: var(--white);  height: 10vh;}   
+}
+
+@keyframes changeHeaderTop {
+    from{background-color: var(--white);  height: 10vh;}
+    to{background-color: none; height: 15vh;}   
+}
+
+img{
+    height: 1.5em;
+}
+
+nav a, .cart, #logo{
+    transition: filter 0.5s;
+}
+
+.cart{
+    /* width: 3.5em; */
+    cursor: pointer;
+}
+
+#logo:hover, .cart:hover, nav a:hover{
+    filter: brightness(0);
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+nav li{
+    margin-right: 1.5em;
+}
+
+nav li:last-child{
+    margin-right: none;
+    border-bottom: 1px solid var(--pink);
+}
+
+nav a, nav a:visited{
+    text-decoration: none;
+    color: var(--pink);
+    font-weight: bold;
+}
+
+nav li:last-child:hover{
+    border-bottom: 1px solid var(--black);
+}

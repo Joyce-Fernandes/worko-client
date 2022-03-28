@@ -1,0 +1,40 @@
+.slider{
+    background-attachment: fixed;
+    z-index: -3;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/img/products/cuaderno-workoholics-abierto.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slider::after,.slider::before{
+    opacity: 0;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+/* .slider::after{
+    background-image: url("../../assets/img/products/camiseta-workoholics-diseno-pareja.jpg");
+}
+
+.slider::before{
+    background-image: url("../../assets/img/products/poster-workoholics-products.jpg");
+}  */
+
+h4{
+    color:white;
+}
