@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { SliderComponent } from './slider/slider.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     SliderComponent,
     IndexComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' })
