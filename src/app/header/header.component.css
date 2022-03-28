@@ -3,7 +3,6 @@ header{
     position: fixed;
     z-index: 1000;
     top:0;
-    height: 15vh;
     align-content: center;
     align-items: center;
     vertical-align: middle;
@@ -11,16 +10,34 @@ header{
     justify-content: space-between;
     width: 100vw;
     flex-direction: row;
+    padding: 0 7.5vw 0 7.5vw;
+}
 
+.header-load{
+    height: 15vh;
+    background-color: none;
+}
+
+.header-top{
     background-color: none;
     height: 15vh;
-    
+    animation: changeHeaderTop 1s forwards;
+}    
+
+.header-scroll{
+    animation: changeHeaderScroll 1s forwards;
     /* background-color: var(--white);
     height: 10vh; */
+}
 
-    padding: 0 7.5vw 0 7.5vw;
-    /* width: 95vw;
-    margin: 0 2.5vw; */
+@keyframes changeHeaderScroll {
+    from{background-color: none; height: 15vh;}
+    to{background-color: var(--white);  height: 10vh;}   
+}
+
+@keyframes changeHeaderTop {
+    from{background-color: var(--white);  height: 10vh;}
+    to{background-color: none; height: 15vh;}   
 }
 
 img{

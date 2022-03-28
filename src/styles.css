@@ -118,3 +118,52 @@ main h2{
     background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px;
     background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
 }
+
+/* PRODUCTS */
+
+.products{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product{
+    width: 48%;
+    margin: 4em 0;
+}
+
+.product:hover{
+    cursor: pointer;
+}
+
+.product img{
+    transition: transform 0.5s;
+    width: 100%;
+    object-fit: cover;
+}
+
+.product:hover img{
+    transform: rotate(1deg);
+}
+
+/*
+.product:nth-child(even):hover img{
+    transform: rotate(-2deg);
+}
+.product:nth-child(odd):hover img{
+    transform: rotate(2deg);
+} 
+*/
+
+.product-category{
+    display: flex;
+    align-items: center;
+}
+.product-category hr{
+    height: 0.5px;
+    width: 3em;
+    margin-right: 1em;
+    border: 0.5px solid var(--pink);
+}
