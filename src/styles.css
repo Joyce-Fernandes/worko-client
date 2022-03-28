@@ -1,1 +1,120 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@font-face {
+    font-family: "Stringer";
+    src: url("../src/assets/fonts/StingerWideRegular.ttf");
+}
+
+:root{
+    --black: #212222;
+    --pink: #FB088C;
+    --light-grey: #E2E2E2;
+    --soft-white: #E5E5E5;
+    --white: #ffffff; 
+    --primary-font: 'DM Sans', sans-serif;
+    --secondary-font: 'Stringer';
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+}
+
+::-moz-selection {
+    color: var(--white);
+    background: var(--pink);
+}
+
+::selection {
+    color: var(--white);
+    background: var(--pink);
+}
+
+body{
+    position: relative;
+    overflow-x: hidden;
+}
+
+h2{
+    margin: 1em 0;
+    font-size: 2.5em;
+    font-family: var(--secondary-font);
+}
+
+main h2{
+    text-align: center;
+}
+
+.fixed-width{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85vw;
+    margin: 0 7.5vw;
+}
+
+/* BUTTONS */
+.arrow-button{
+    text-align: left;
+    color: var(--black);
+    width: fit-content;
+    display: flex; 
+    flex-direction: row;
+    justify-content: center; 
+    margin: 3em 0;
+    
+}
+.arrow-button a, .arrow-button a:visited{
+    color: var(--black);
+    text-decoration: none;
+}
+
+.arrow-button img{
+    margin-left: 1.2em;
+    width: 1.8em;
+    transition: transform 0.5s;
+}
+
+.arrow-button span{
+    vertical-align: top;
+    line-height: 0.6em;
+    font-size: 1.4em;
+}
+
+.arrow-button:hover img{
+    transform: translate(1.1em);
+}
+
+.arrow-button:hover{
+    filter: opacity(0.75);
+}
+
+/* SQUAR BACKGROUND */
+.square-bg{
+    padding: 7em 0;
+    height: auto;
+    position: relative;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.01) 100%);
+}
+.square-bg::after{
+    height: auto;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+} 
+.square-bg::after{
+    z-index: -2;   
+    opacity: 0.2;
+    background-color:#ffffff;
+    background-image: linear-gradient(white 0px, transparent 1px),
+    linear-gradient(90deg, white 0px, transparent 1px),
+    linear-gradient(rgba(0,0,0,.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.2) 1px, transparent 1px);
+    background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px;
+    background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}

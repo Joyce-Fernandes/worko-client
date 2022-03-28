@@ -1,0 +1,7 @@
+footer{
+    width: 100vw;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--black);
+    padding: 10vh 0;
+}
