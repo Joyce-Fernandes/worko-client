@@ -18,6 +18,7 @@ export class SliderComponent implements OnInit {
 
   objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
   id?:number;
+
   randomNumber():number{
     this.id= Math.floor(Math.random() * 10) + 2;
     return this.id;
@@ -28,6 +29,4 @@ export class SliderComponent implements OnInit {
       this.objectP = data;
     })
   }
-
-
 }

@@ -11,10 +11,12 @@ import { ProductComponent } from './product/product.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'product', component: ProductComponent},
+  {path: 'login', component: LoginComponent},
   {path: '**', component: NotfoundComponent}
 ]
 
