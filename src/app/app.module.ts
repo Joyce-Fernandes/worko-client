@@ -12,6 +12,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -28,7 +29,9 @@ const routes: Routes = [
     IndexComponent,
     FooterComponent,
     ProductComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule,
