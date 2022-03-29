@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -7,6 +8,15 @@ import { SliderComponent } from './slider/slider.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductComponent } from './product/product.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+const routes: Routes = [
+  {path: '', component: IndexComponent},
+  {path: 'product', component: ProductComponent},
+  {path: '**', component: NotfoundComponent}
+]
 
 @NgModule({
   declarations: [
@@ -15,10 +25,17 @@ import { ProductComponent } from './product/product.component';
     SliderComponent,
     IndexComponent,
     FooterComponent,
-    ProductComponent
+    ProductComponent,
+    NotfoundComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' })
+    RouterModule,
+    FormsModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    HttpClientModule,
+    RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+})
   ],
   providers: [],
   bootstrap: [AppComponent]
