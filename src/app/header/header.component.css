@@ -21,11 +21,11 @@ header{
 .header-top{
     background-color: none;
     height: 15vh;
-    animation: changeHeaderTop 1s forwards;
+    animation: changeHeaderTop 0.5s forwards;
 }    
 
 .header-scroll{
-    animation: changeHeaderScroll 1s forwards;
+    animation: changeHeaderScroll 0.5s forwards;
     /* background-color: var(--white);
     height: 10vh; */
 }
