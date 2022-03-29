@@ -24,11 +24,17 @@
 ::-moz-selection {
     color: var(--white);
     background: var(--pink);
+    border: none;
 }
 
 ::selection {
     color: var(--white);
     background: var(--pink);
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }
 
 body{
@@ -36,10 +42,22 @@ body{
     overflow-x: hidden;
 }
 
+.black-bg{
+    background: var(--black);
+}
+
+.black-bg h2, .black-bg p{
+    color: var(--white);
+}
+
 h2{
     margin: 1em 0;
     font-size: 2.5em;
     font-family: var(--secondary-font);
+}
+
+main{
+    padding: 7em 0;
 }
 
 main h2{
@@ -54,7 +72,62 @@ main h2{
     margin: 0 7.5vw;
 }
 
+/* CHECKBOX */
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: var(--black) 1pt solid;
+    background-color: none;
+    margin: 0 1em 0 0;
+    width: 16px;
+    height: 16px;
+}
+
+input[type="checkbox"] {
+    display: grid;
+    place-content: center;
+}
+  
+input[type="checkbox"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+}
+  
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]::before {
+    background-color: var(--pink);
+}
+
 /* BUTTONS */
+
+button {
+    display: inline-block;
+    transition: background-color 0.5s;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0.5em 0;
+    text-decoration: none;
+    background: var(--black);
+    color: var(--white);
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover{
+    background-color: var(--pink);
+}
+
 .arrow-button{
     text-align: left;
     color: var(--black);
@@ -92,7 +165,6 @@ main h2{
 
 /* SQUAR BACKGROUND */
 .square-bg{
-    padding: 7em 0;
     height: auto;
     position: relative;
     background: rgb(255,255,255);
@@ -131,7 +203,16 @@ main h2{
 
 .product{
     width: 48%;
+    height: 100%;
     margin: 4em 0;
+}
+.product button{
+    opacity: 0;
+    transition: opacity 0.5s;
+    width: 100%;
+}
+.product:hover button{
+    opacity: 1;
 }
 
 .product:hover{
@@ -144,26 +225,31 @@ main h2{
     object-fit: cover;
 }
 
-.product:hover img{
-    transform: rotate(1deg);
-}
-
-/*
 .product:nth-child(even):hover img{
-    transform: rotate(-2deg);
+    transform: rotate(-1deg);
 }
 .product:nth-child(odd):hover img{
-    transform: rotate(2deg);
+    transform: rotate(1deg);
 } 
-*/
 
 .product-category{
+    margin: 0.5em 0;
     display: flex;
     align-items: center;
+    font-size: 0.8em;
 }
+
 .product-category hr{
     height: 0.5px;
     width: 3em;
     margin-right: 1em;
     border: 0.5px solid var(--pink);
+}
+
+.info-product{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    flex-direction: row;
 }

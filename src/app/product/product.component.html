@@ -1,0 +1,16 @@
+<main class="square-bg">
+    <section class="fixed-width">
+        <h2>Productos</h2>
+            <div class="products">
+                <div *ngFor="let product of objetcPr; let i = index" class="product">
+                    <img src="{{product.featuredPhoto}}" />
+                    <div class="product-category"><hr><p>{{ product.categoryId }}</p></div>
+                    <div class="info-product">
+                        <h3>{{ product.name }}</h3><p>{{ product.price }}€</p>
+                    </div>
+                    <button>Añadir al carrito</button>              
+                </div>
+            </div>
+    </section>
+</main>
+

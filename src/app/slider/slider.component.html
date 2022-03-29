@@ -1,6 +1,9 @@
 <div class="slider">
-    <!-- <h4>Work, sweet work</h4>
-    <hr>
-    <p>Cuaderno con ilustración hecha por Worköholics tamaño DinA5 con costura lateral.</p>
-    <button>Todos los productos</button> -->
+    <div class="product-index-details">
+        <h4>{{ objectP.name }}</h4>
+        <p>{{ objectP.description }}</p>
+        <p class="product-price-index">{{ objectP.price }}€</p>
+        <button routerLink="/product">Ver productos</button>
+    </div>
+    <img src="{{ objectP.featuredPhoto }}">
 </div>

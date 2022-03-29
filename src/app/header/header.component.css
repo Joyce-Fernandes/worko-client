@@ -1,7 +1,7 @@
 header{
     /* position: absolute; */
     position: fixed;
-    z-index: 1000;
+    z-index: 1001;
     top:0;
     align-content: center;
     align-items: center;
@@ -21,11 +21,11 @@ header{
 .header-top{
     background-color: none;
     height: 15vh;
-    animation: changeHeaderTop 1s forwards;
+    animation: changeHeaderTop 0.5s forwards;
 }    
 
 .header-scroll{
-    animation: changeHeaderScroll 1s forwards;
+    animation: changeHeaderScroll 0.5s forwards;
     /* background-color: var(--white);
     height: 10vh; */
 }
@@ -54,7 +54,7 @@ nav a, .cart, #logo{
 }
 
 #logo:hover, .cart:hover, nav a:hover{
-    filter: brightness(0);
+    filter: brightness(50%) grayscale(100%);
 }
 
 nav ul{
