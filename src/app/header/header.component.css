@@ -54,7 +54,7 @@ nav a, .cart, #logo{
 }
 
 #logo:hover, .cart:hover, nav a:hover{
-    filter: brightness(0);
+    filter: brightness(50%) grayscale(100%);
 }
 
 nav ul{

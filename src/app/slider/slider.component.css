@@ -10,31 +10,46 @@
     opacity: 1;
     width: 100vw;
     height: 100vh;
-    background-image: url("../../assets/img/products/cuaderno-workoholics-abierto.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    overflow: hidden;
 }
 
-.slider::after,.slider::before{
-    opacity: 0;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.slider img{
+    object-fit: cover;
     position: absolute;
-    background-repeat: no-repeat;
-    background-size: cover;   
+    width: 100vw;
+    height: 100vh;
 }
 
-/* .slider::after{
-    background-image: url("../../assets/img/products/camiseta-workoholics-diseno-pareja.jpg");
+.product-index-details{
+    transition: background-color 0.5s;
+    z-index: 1000;
+    display: flex;
+    width: 45vw;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1em;
 }
 
-.slider::before{
-    background-image: url("../../assets/img/products/poster-workoholics-products.jpg");
-}  */
+.product-index-details:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255,0);
+    color: var(--white);
+}
 
 h4{
-    color:white;
+    text-transform: uppercase;
+    padding: 1em;
+    font-size: 1em;
+}
+
+.product-index-details p{    
+    font-size: 0.9em;
+}
+
+.product-price-index{
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 2em;
 }
