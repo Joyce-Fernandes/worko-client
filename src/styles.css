@@ -24,11 +24,17 @@
 ::-moz-selection {
     color: var(--white);
     background: var(--pink);
+    border: none;
 }
 
 ::selection {
     color: var(--white);
     background: var(--pink);
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }
 
 body{
@@ -64,6 +70,39 @@ main h2{
     align-items: center;
     width: 85vw;
     margin: 0 7.5vw;
+}
+
+/* CHECKBOX */
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    border: var(--black) 1pt solid;
+    background-color: none;
+    margin: 0 1em 0 0;
+    width: 16px;
+    height: 16px;
+}
+
+input[type="checkbox"] {
+    display: grid;
+    place-content: center;
+}
+  
+input[type="checkbox"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+}
+  
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]::before {
+    background-color: var(--pink);
 }
 
 /* BUTTONS */
