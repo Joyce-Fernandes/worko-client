@@ -9,7 +9,6 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-<<<<<<< HEAD
 
   constructor(public ProductService:ProductService) { }
 
@@ -35,12 +34,6 @@ export class ProductComponent implements OnInit {
       this.objectP = data;
     })
   }
-=======
-  constructor() { }
-
-    ngOnInit(): void {}
->>>>>>> origin/dev
-
   
 }
 
