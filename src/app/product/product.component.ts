@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-
+import { CategoryService } from '../category.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-product',
@@ -10,11 +11,11 @@ import { ProductService } from '../product.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(public ProductService:ProductService) { }
+  constructor(public ProductService:ProductService, public CategoryService:CategoryService) { }
 
   ngOnInit(): void {
     this.getDataProducts();
-
+    this.getCategoryData();
   }
 
   objetcPr?:Product[];
@@ -23,17 +24,19 @@ export class ProductComponent implements OnInit {
     this.ProductService.getProduct().subscribe(data =>
     {
       this.objetcPr = data;
-      console.log(this.objetcPr)
     })
   }
 
-  objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
-  getDataProductId(id:number):void{
-    this.ProductService.getProductId(id).subscribe(data=>
+  objectCat?:Category[];
+  getCategoryData():void{
+    this.CategoryService.getCategory().subscribe(data =>
     {
-      this.objectP = data;
+      this.objectCat = data;
     })
   }
-  
+
+  // getProductId(id:number){
+  //   localStorage.setItem('productId', JSON.stringify(id));
+  // }
 }
 

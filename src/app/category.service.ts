@@ -16,13 +16,13 @@ export class CategoryService {
 
   getCategory(): Observable<Category[]>{
     return this.http.get<Category[]>
-    ('https://localhost:44316/api/Categorys');
+    ('https://localhost:44316/api/categories');
 
   }
 
   postCategory(Category: Category): Observable<Category> {
   return this.http.post<Category>(
-    'https://localhost:44316/api/Categorys',
+    'https://localhost:44316/api/categories',
     Category,
     this.httpOptions
     );
@@ -30,11 +30,11 @@ export class CategoryService {
 
 updateCategory(Category: Category): Observable<Category> {
     return this.http.put<Category>
-    ('https://localhost:44316/api/Categorys', 
+    ('https://localhost:44316/api/categories', 
     Category, this.httpOptions)
   }
   deleteCategory(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/Categorys'+id; 
+    const url = 'https://localhost:44316/api/categories'+id; 
     return this.http.delete(url, this.httpOptions)
      
 }

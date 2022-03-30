@@ -1,7 +1,7 @@
 header{
     /* position: absolute; */
     position: fixed;
-    z-index: 1000;
+    z-index: 1001;
     top:0;
     align-content: center;
     align-items: center;
@@ -26,8 +26,6 @@ header{
 
 .header-scroll{
     animation: changeHeaderScroll 0.5s forwards;
-    /* background-color: var(--white);
-    height: 10vh; */
 }
 
 @keyframes changeHeaderScroll {
