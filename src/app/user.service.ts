@@ -14,21 +14,26 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>('https://localhost:44316/api/Users')
+    return this.http.get<User[]>('https://localhost:44316/api/users')
   }
+  
   postUser(user: User): Observable<User> {
     return this.http.post<User>(
-      'https://localhost:44316/api/Users',
+      'https://localhost:44316/api/users',
       user,
       this.httpOptions
     );
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.http.put<User>('https://localhost:44316/api/Users', user, this.httpOptions)
+  getUserId(id:number):Observable<User>{
+    return this.http.get<User>('https://localhost:44316/api/users/' + id);
+  }
+
+  putUser(id:number, user:User): Observable<User> {
+    return this.http.put<User>('https://localhost:44316/api/users/' + id, user, this.httpOptions)
   }
   deleteUser(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/Users'+id; 
+    const url = 'https://localhost:44316/api/users'+id; 
     return this.http.delete(url, this.httpOptions)
      
 }

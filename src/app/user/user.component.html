@@ -1,0 +1,23 @@
+<main>
+    <section class="fixed-width">
+
+
+    <select #userList (change)="getId(userList.value); getUserIdData(userIdNum)">
+        <option selected>Seleccionar usuario</option>
+        <option *ngFor="let user of usr; let i = index" value="{{ user.id }}">
+        {{ user.name }}
+        </option>
+    </select>
+    
+   <div> 
+        <input type="text" [(ngModel)]="user.name" placeholder="Name" /> 
+        <input type="text" [(ngModel)]="user.surname" placeholder="SurName" />
+        <input type="text" [(ngModel)]="user.email" placeholder="Email" />
+        <input type="text" [(ngModel)]="user.password" placeholder="Password" />
+        <input type="text" [(ngModel)]="user.adress" placeholder="Address" />
+    </div>
+   
+    <button (click)="putUserData(userIdNum)">Modificar datos</button>
+
+    <section>
+    

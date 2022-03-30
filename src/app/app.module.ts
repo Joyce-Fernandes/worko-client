@@ -12,6 +12,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
+import { CouponComponent } from './coupon/coupon.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
+import { CategoryComponent } from './category/category.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component'; 
 
 const routes: Routes = [
@@ -19,6 +24,11 @@ const routes: Routes = [
   {path: 'product', component: ProductComponent},
   {path: 'product/:id', component: ProductdetailsComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'user', component: UserComponent},
+  {path: 'coupon', component: CouponComponent},
+  {path: 'cart', component: CartComponent},
+  {path: 'order', component: OrderComponent},
+  {path: 'category', component: CategoryComponent},
   {path: '**', component: NotfoundComponent}
 ]
 
@@ -31,6 +41,12 @@ const routes: Routes = [
     FooterComponent,
     ProductComponent,
     NotfoundComponent,
+    UserComponent,
+    LoginComponent,
+    CouponComponent,
+    CartComponent,
+    OrderComponent,
+    CategoryComponent,
     ProductdetailsComponent
   ],
   imports: [
