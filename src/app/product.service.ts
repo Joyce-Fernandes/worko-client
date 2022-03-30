@@ -13,9 +13,9 @@ export class ProductService {
     headers: new HttpHeaders({'Content-Type': 'applications/json'})
   } 
   getProduct():Observable<Product[]>{
-    return this.http.get<Product[]>('https://localhost:5001/api/products');
+    return this.http.get<Product[]>('https://localhost:44316/api/products');
   }
   getProductId(id:number):Observable<Product>{
-    return this.http.get<Product>('https://localhost:5001/api/products/' + id);
+    return this.http.get<Product>('https://localhost:44316/api/products/' + id);
   }
 }

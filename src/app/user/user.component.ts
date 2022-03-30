@@ -14,22 +14,35 @@ export class UserComponent implements OnInit {
   constructor(public UserService: UserService) { }
 
   ngOnInit(): void {
-
+    this.getUserData(); 
   }
-  users: User[] = [];
-  user: User = {
-    id: 0,
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      adress: '',
+  
+usr?: User[];
+user: User={
+  id:0,
+  name:"",
+  surname:"",
+  email: "",
+  password:"",
+  adress:""
+}
 
-  }
-getUsers(): void {
+
+userIdNum:number = 0;
+
+getId(userId:string){
+  this.userIdNum = parseInt(userId);
+  return this.userIdNum;
+}
+
+alerta(){
+  alert(this.userIdNum);
+}
+
+getUserData(): void {
     this.UserService.getUsers().subscribe((data) => {
-      this.users = data;
-      console.log(this.users);
+      this.usr = data;
+      console.log(this.usr);
     });
   }
 
@@ -37,13 +50,21 @@ getUsers(): void {
     this.UserService.postUser(this.user).subscribe();
   }
 
-  putUser(): void {
-    this.UserService.updateUser(this.user).subscribe((user) => {
-      this.user = user;
-      console.log(this.users);
+  getUserIdData(id:number):void{
+    this.UserService.getUserId(id).subscribe(data =>
+    {
+      this.user = data;
+    })
+  }
+
+  putUserData(id:number): void {
+      this.UserService.putUser(id, this.user).subscribe((user) => {
+        this.user = user;
+        console.log(this.user);
     });
   }
-  deleteUser(id: number): void {
+
+  deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
   }
 }

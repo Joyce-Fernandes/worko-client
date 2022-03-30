@@ -28,6 +28,4 @@ export class SliderComponent implements OnInit {
       this.objectP = data;
     })
   }
-
-
 }
