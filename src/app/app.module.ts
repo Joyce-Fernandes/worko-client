@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 <<<<<<< HEAD
 import { LoginComponent } from './login/login.component';
+<<<<<<< HEAD
 import { UserComponent } from './user/user.component';
 =======
 import { UserComponent } from './user/user.component';
@@ -22,11 +23,18 @@ import { OrderComponent } from './order/order.component';
 import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 >>>>>>> origin/dev-joyce
+=======
+import { ProductdetailsComponent } from './productdetails/productdetails.component'; 
+>>>>>>> dev-leire
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'product', component: ProductComponent},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  {path: 'product/:id', component: ProductdetailsComponent},
+>>>>>>> dev-leire
   {path: 'login', component: LoginComponent},
   {path: '**', component: NotfoundComponent}
 =======
@@ -49,6 +57,7 @@ const routes: Routes = [
     FooterComponent,
     ProductComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     NotfoundComponent,
     UserComponent,
     LoginComponent
@@ -61,6 +70,10 @@ const routes: Routes = [
     CategoryComponent,
     LoginComponent,
 >>>>>>> origin/dev-joyce
+=======
+    NotfoundComponent,
+    ProductdetailsComponent
+>>>>>>> dev-leire
   ],
   imports: [
     RouterModule,
