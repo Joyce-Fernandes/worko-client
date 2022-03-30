@@ -14,27 +14,27 @@ export class OrderService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-
-
   getOrder(): Observable<Order[]>{
-    return this.http.get<Order[]>('https://localhost:44316/api/Orders');
+    return this.http.get<Order[]>
+    ('https://localhost:44316/api/orders');
 
   }
 
   postOrder(Order: Order): Observable<Order> {
   return this.http.post<Order>(
-    'https://localhost:44316/api/Orders',
+    'https://localhost:44316/api/orders',
     Order,
     this.httpOptions
     );
   }
 
 updateOrder(Order: Order): Observable<Order> {
-    return this.http.put<Order>('https://localhost:44316/api/Orders', 
+    return this.http.put<Order>
+    ('https://localhost:44316/api/orders', 
     Order, this.httpOptions)
   }
   deleteOrder(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/Orders'+id; 
+    const url = 'https://localhost:44316/api/orders'+id; 
     return this.http.delete(url, this.httpOptions)
      
 }
