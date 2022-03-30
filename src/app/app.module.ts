@@ -11,41 +11,25 @@ import { ProductComponent } from './product/product.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
 import { LoginComponent } from './login/login.component';
-<<<<<<< HEAD
-import { UserComponent } from './user/user.component';
-=======
 import { UserComponent } from './user/user.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { CategoryComponent } from './category/category.component';
-import { LoginComponent } from './login/login.component';
->>>>>>> origin/dev-joyce
-=======
 import { ProductdetailsComponent } from './productdetails/productdetails.component'; 
->>>>>>> dev-leire
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'product', component: ProductComponent},
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   {path: 'product/:id', component: ProductdetailsComponent},
->>>>>>> dev-leire
   {path: 'login', component: LoginComponent},
-  {path: '**', component: NotfoundComponent}
-=======
   {path: 'user', component: UserComponent},
-  {path: '**', component: NotfoundComponent},
   {path: 'coupon', component: CouponComponent},
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'category', component: CategoryComponent},
-  {path: 'login', component: LoginComponent}
->>>>>>> origin/dev-joyce
+  {path: '**', component: NotfoundComponent}
 ]
 
 @NgModule({
@@ -56,24 +40,14 @@ const routes: Routes = [
     IndexComponent,
     FooterComponent,
     ProductComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
     NotfoundComponent,
     UserComponent,
-    LoginComponent
-=======
-    UserComponent,
+    LoginComponent,
     CouponComponent,
-    NotfoundComponent,
     CartComponent,
     OrderComponent,
     CategoryComponent,
-    LoginComponent,
->>>>>>> origin/dev-joyce
-=======
-    NotfoundComponent,
     ProductdetailsComponent
->>>>>>> dev-leire
   ],
   imports: [
     RouterModule,
