@@ -18,6 +18,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
     font-family: var(--primary-font);
 }
 
@@ -42,8 +43,41 @@ body{
     overflow-x: hidden;
 }
 
+.white-bg{
+    background: var(--white);
+}
+
 .black-bg{
     background: var(--black);
+}
+
+.black-bg header{
+    background-color: var(--black)!important;
+}
+
+.black-bg .header-load{
+    height: 15vh;
+    background-color: none;
+}
+
+.black-bg .header-top{
+    background-color: none;
+    height: 15vh;
+    animation: changeHeaderTopBlack 0.5s forwards!important;
+}    
+
+.black-bg .header-scroll{
+    animation: changeHeaderScrollBlack 0.5s forwards!important;
+}
+
+@keyframes changeHeaderScrollBlack {
+    from{height: 15vh;}
+    to{height: 10vh;}   
+}
+
+@keyframes changeHeaderTopBlack {
+    from{height: 10vh;}
+    to{height: 15vh;}   
 }
 
 .black-bg h2, .black-bg p{
@@ -129,6 +163,7 @@ button:hover{
 }
 
 .arrow-button{
+    overflow-x:visible;
     text-align: left;
     color: var(--black);
     width: fit-content;
@@ -141,6 +176,7 @@ button:hover{
 .arrow-button a, .arrow-button a:visited{
     color: var(--black);
     text-decoration: none;
+    overflow-x:visible;
 }
 
 .arrow-button img{
@@ -219,10 +255,20 @@ button:hover{
     cursor: pointer;
 }
 
+
+/* .slider img{
+    object-fit: cover;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+} */
+
+
 .product img{
     transition: transform 0.5s;
     width: 100%;
-    object-fit: cover;
+    height: auto;
+    /* object-fit: cover; */
 }
 
 .product:nth-child(even):hover img{

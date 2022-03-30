@@ -12,10 +12,12 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component'; 
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'product', component: ProductComponent},
+  {path: 'product/:id', component: ProductdetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: NotfoundComponent}
 ]
@@ -28,7 +30,8 @@ const routes: Routes = [
     IndexComponent,
     FooterComponent,
     ProductComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ProductdetailsComponent
   ],
   imports: [
     RouterModule,

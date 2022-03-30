@@ -26,8 +26,6 @@ header{
 
 .header-scroll{
     animation: changeHeaderScroll 0.5s forwards;
-    /* background-color: var(--white);
-    height: 10vh; */
 }
 
 @keyframes changeHeaderScroll {
