@@ -16,5 +16,5 @@ export class LoginService {
   
   getLogin(): Observable<User[]>{
     return this.http.get<User[]>('https://localhost:44316/api/Users')
-}
+  };
 }
