@@ -26,6 +26,7 @@ const routes: Routes = [
     HeaderComponent,
     SliderComponent,
     IndexComponent,
+    LoginComponent,
     FooterComponent,
     ProductComponent,
     NotfoundComponent
