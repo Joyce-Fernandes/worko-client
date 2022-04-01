@@ -16,27 +16,26 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '',
     adress: '',
-    token: '',
     rol: ''
   };
  
   
 
-  constructor(public user: UserService) { };
+  constructor(public UserService: UserService) { };
 
   ngOnInit(): void {
     //localStorage.clear;   
 
   }
   Login(): void {
-       var myHeaders = new Headers();
+    var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let raw = JSON.stringify(this.tokenUser);
     var requestOptions: RequestInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
     };
 
     fetch("https://localhost:44316/api/login", requestOptions)
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
         let aux = localStorage.getItem('a'); //recupera dato con comillas
         let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
         let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas
-        this.tokenUser.token = vari.token;
+        
         if (this.tokenUser.email =="Admin@Admin") {
           this.tokenUser.rol="Admin"
         } else {
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
         };
         
         localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
-        localStorage.setItem('token', this.tokenUser.token);
+        localStorage.setItem('token', vari.token);
         localStorage.setItem('email', this.tokenUser.email);
 
         if (vari.status == '401') {
@@ -67,5 +66,7 @@ export class LoginComponent implements OnInit {
       })
       .catch(error => console.log('error', error));
       //mandar el usuario a la BBDD
+      this.UserService.putUser(this.tokenUser.id, this.tokenUser)
   };
 };
+

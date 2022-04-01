@@ -36,12 +36,24 @@ export class UserComponent implements OnInit {
     this.userIdNum = parseInt(userId);
     return this.userIdNum;
   }
+<<<<<<< HEAD
 
   getUserData(): void {
       this.UserService.getUsers().subscribe((data) => {
         this.usr = data;
         console.log(this.usr);
       });
+=======
+  users: User[] = [];
+  user: User = {
+    id:-1,
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    adress: '',
+    rol: ''
+>>>>>>> 693dda130b871c241bf48af2274209b6f65ed2a4
   }
 
   showDefault(){
@@ -105,8 +117,11 @@ export class UserComponent implements OnInit {
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
   }
+<<<<<<< HEAD
 
   refresh(){
     window.location.reload();
   }
+=======
+>>>>>>> 693dda130b871c241bf48af2274209b6f65ed2a4
 }

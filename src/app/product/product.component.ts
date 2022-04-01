@@ -58,5 +58,21 @@ export class ProductComponent implements OnInit {
       this.objectCat = data;
     })
   }
-}
-
+  objectP: Product={
+    id:0, name:"",
+      price:0,
+      stock:0,
+      description:"",
+      color:"",
+      size:"",
+      categoryId:0,
+      featuredPhoto:""
+    };
+    
+    getDataProductId(id:number):void{
+      this.ProductService.getProductId(id).subscribe(data=>
+      {
+        this.objectP = data;
+      });
+    };
+    };
