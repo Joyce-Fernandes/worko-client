@@ -24,7 +24,6 @@ export class UserComponent implements OnInit {
     email: '',
     password: '',
     adress: '',
-    token: '',
     rol: ''
   }
 getUsers(): void {
@@ -48,5 +47,3 @@ getUsers(): void {
     this.UserService.deleteUser(id).subscribe();
   }
 }
-
-

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { Login } from '../login';
 
 
 @Component({
@@ -53,7 +52,17 @@ export class ProductComponent implements OnInit {
       });
     };
 
-    objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
+    objectP:Product={
+      id:0, name:"",
+      price:0,
+      stock:0,
+      description:"",
+      color:"",
+      size:"",
+      categoryId:0,
+      featuredPhoto:""
+    };
+    
     getDataProductId(id:number):void{
       this.ProductService.getProductId(id).subscribe(data=>
       {
