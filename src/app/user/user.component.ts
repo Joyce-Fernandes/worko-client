@@ -24,7 +24,9 @@ export class UserComponent implements OnInit {
     surname:"",
     email: "",
     password:"",
-    adress:""
+    adress:"",
+    token:"",
+    rol: ""
   }
 
 
