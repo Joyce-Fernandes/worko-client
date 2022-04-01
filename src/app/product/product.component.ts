@@ -19,30 +19,26 @@ export class ProductComponent implements OnInit {
     this.getCategoryData();
   }
 
-    objetcPr?:Product[];
-    tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token')));    
-        
-    getProduct() {
+  objetcPr?: Product[];
+
+  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
+
+  getProduct() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);
-    console.log(this.tokenUser);
-    let tokenObject=this.tokenUser.token;
-    console.log(tokenObject);
-    console.log('myHeaders');
-    console.log(myHeaders);
-  
+    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);//añade token al header
+
     var requestOptions: RequestInit = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
     };
-  
+
     fetch("https://localhost:44316/api/Products", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    };
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
 
 
   getDataProducts():void{
