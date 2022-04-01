@@ -18,13 +18,14 @@ export class UserComponent implements OnInit {
   }
   users: User[] = [];
   user: User = {
-    id: 0,
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      adress: '',
-
+    id:-1,
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    adress: '',
+    token: '',
+    rol: ''
   }
 getUsers(): void {
     this.UserService.getUsers().subscribe((data) => {
