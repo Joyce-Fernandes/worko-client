@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
-import { Login } from '../login';
 
 @Component({
   selector: 'app-login',
@@ -10,19 +9,18 @@ import { Login } from '../login';
 })
 export class LoginComponent implements OnInit {
 
-  tokenUser: Login = {
-    email: '',
-    password: '',
-    token: ''
-  };
-  userLogin: User = {
-    email: this.tokenUser.email,
-    password: this.tokenUser.password,
-    id: -1,
+  tokenUser: User = { 
+    id:-1,
     name: '',
     surname: '',
-    adress: ''
+    email: '',
+    password: '',
+    adress: '',
+    token: '',
+    rol: ''
   };
+ 
+  
 
   constructor(public user: UserService) { };
 
@@ -31,11 +29,9 @@ export class LoginComponent implements OnInit {
 
   }
   Login(): void {
-    this.userLogin.email = this.tokenUser.email;
-    this.userLogin.password = this.tokenUser.password;
-    var myHeaders = new Headers();
+       var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    let raw = JSON.stringify(this.userLogin);
+    let raw = JSON.stringify(this.tokenUser);
     var requestOptions: RequestInit = {
       method: 'POST',
       headers: myHeaders,
@@ -47,26 +43,29 @@ export class LoginComponent implements OnInit {
       .then(response => response.text())
       .then(result => {
         localStorage.setItem("a", result)
-        let aux = localStorage.getItem('a');
-        let auxTxt = JSON.parse(JSON.stringify(aux));
-        let vari = JSON.parse(auxTxt);
-        var token = vari.token;
-        console.log(this.tokenUser);
-        this.tokenUser.token=token;
-        console.log(this.tokenUser);
+        let aux = localStorage.getItem('a'); //recupera dato con comillas
+        let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+        let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas
+        this.tokenUser.token = vari.token;
+        if (this.tokenUser.email =="Admin@Admin") {
+          this.tokenUser.rol="Admin"
+        } else {
+          this.tokenUser.rol="User"
+        };
+        
+        localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
+        localStorage.setItem('token', this.tokenUser.token);
+        localStorage.setItem('email', this.tokenUser.email);
 
-        // console.log(aux);
-        // console.log(auxTxt);
-        // console.log(vari);
-        // console.log(vari.status)
-        // console.log(token);
         if (vari.status == '401') {
           alert('Error al logear');
+          this.tokenUser.rol="Error";
         } else {
           alert('Bienvenido');
         }
+        console.log(this.tokenUser);
       })
       .catch(error => console.log('error', error));
-
+      //mandar el usuario a la BBDD
   };
 };

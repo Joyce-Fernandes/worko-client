@@ -16,18 +16,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.getUserData(); 
   }
-  
-usr?: User[];
-user: User={
-  id:0,
-  name:"",
-  surname:"",
-  email: "",
-  password:"",
-  adress:""
-}
-
-
 userIdNum:number = 0;
 
 getId(userId:string){
@@ -39,7 +27,19 @@ alerta(){
   alert(this.userIdNum);
 }
 
-getUserData(): void {
+
+  usr?: User[];
+  user: User = {
+    id:-1,
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    adress: '',
+    token: '',
+    rol: ''
+  }
+  getUserData(): void {
     this.UserService.getUsers().subscribe((data) => {
       this.usr = data;
       console.log(this.usr);

@@ -14,9 +14,9 @@ export class ProductService {
   } 
   getProduct():Observable<Product[]>{
     return this.http.get<Product[]>('https://localhost:44316/api/products');
-  } 
+  };
 
   getProductId(id:number):Observable<Product>{
     return this.http.get<Product>('https://localhost:44316/api/products/' + id);
-  }
-}
+  };
+};
