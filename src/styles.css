@@ -109,12 +109,14 @@ main h2{
 /* CHECKBOX */
 
 input[type="checkbox"] {
+    -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     border: var(--black) 1pt solid;
     background-color: none;
     margin: 0 1em 0 0;
     width: 16px;
+    cursor: pointer;
     height: 16px;
 }
 
@@ -139,6 +141,65 @@ input[type="checkbox"]::before {
     background-color: var(--pink);
 }
 
+/* FORMS */
+
+
+.form{
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-self: center;
+    align-content: center;
+}
+
+select{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    padding: 0.5em;
+    border: 1px solid var(--black);
+    border-radius: 0px;
+    font-size: 1.2em;
+    width: 45%;
+    font-size: 1.5em;
+    margin: 0 0 1em 0;
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"],
+.form input[type="email"]{
+    color: var(--black);
+    font-size: 1.5em;
+    padding: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
+    border-radius: none;
+    border-bottom: 1px solid var(--black);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.privacy-policy{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+.privacy-policy a, .privacy-policy a:hover, .privacy-policy a:active{
+    color: var(--black);
+}
+
+
+.form input::placeholder{
+    color: var(--black);
+    /* font-size: 1.8em; */
+}
+
 /* BUTTONS */
 
 button {
@@ -156,6 +217,7 @@ button {
     text-align: center;
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
 }
 
 button:hover{
@@ -298,4 +360,40 @@ button:hover{
     display: flex;
     font-weight: bold;
     flex-direction: row;
+}
+
+/* TABLES */
+
+table{
+    width: 60%;
+    text-align: left;
+    border-top:1px solid var(--black);
+    border-collapse: collapse; 
+}
+
+tr{
+    height: 3em;
+    border-bottom: 1px solid var(--black);
+}
+
+table img{
+    width: 8em;
+    margin-top: 0.2em;
+}
+.cerrar img{
+    display: block;
+    margin: 0 auto;
+    width: 2em;
+    cursor: pointer;
+}
+
+.button-row{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    justify-content: space-between;
+}
+
+.button-row button:first-child{
+    margin-right: 1em;
 }
