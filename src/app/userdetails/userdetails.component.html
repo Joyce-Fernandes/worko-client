@@ -1,22 +1,5 @@
 <main>
     <section class="fixed-width">
 
-
-    <select >
-        <option selected>Seleccionar usuario</option>
-        <option *ngFor="let userdetails of usrdetails; let i = index" value="{{ userdetails.id }}">
-        {{ userdetails.name }}
-        </option>
-    </select>
-    
-   <div> 
-        <input type="text" [(ngModel)]="userdetails.name" placeholder="Name" /> 
-        <input type="text" [(ngModel)]="userdetails.surname" placeholder="SurName" />
-        <input type="text" [(ngModel)]="userdetails.email" placeholder="Email" />
-        <input type="text" [(ngModel)]="userdetails.password" placeholder="Password" />
-        <input type="text" [(ngModel)]="userdetails.adress" placeholder="Address" />
-    </div>
-   
-    <button (click)="putUserdetailsData(userdetails.id)">Modificar datos</button>
-
-    <section>
+    </section>
+</main>

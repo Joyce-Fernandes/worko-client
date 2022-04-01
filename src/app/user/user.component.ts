@@ -25,10 +25,8 @@ export class UserComponent implements OnInit {
     email: "",
     password:"",
     adress:"",
-    token:"",
-    rol: ""
+    rol: "User"
   }
-
 
   userIdNum:number = 0;
 
@@ -86,6 +84,7 @@ export class UserComponent implements OnInit {
 
   postUser(): void {
     this.UserService.postUser(this.user).subscribe();
+    alert("¡Usuarix añadido con éxito!");
   }
 
   getUserIdData(id:number):void{
@@ -100,10 +99,12 @@ export class UserComponent implements OnInit {
         this.user = user;
         console.log(this.user);
     });
+    alert("¡Usuarix modificado con éxito!");
   }
 
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
+    alert("¡Usuarix eliminado con éxito!");
   }
 
   refresh(){
