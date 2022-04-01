@@ -18,3 +18,21 @@ article img{
     display: flex;
     flex-direction: column;
 }
+
+.breadcrumbs a{
+    color: var(--black);
+    text-decoration: none;
+}
+
+.breadcrumbs ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.breadcrumbs ul li{
+   margin-right: 0.5em;
+}
+
+.breadcrumbs ul li:first-child{
+    font-weight: bold;
+ }

@@ -7,7 +7,7 @@ import { Category } from '../category';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  //styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
 
@@ -34,9 +34,5 @@ export class ProductComponent implements OnInit {
       this.objectCat = data;
     })
   }
-
-  // getProductId(id:number){
-  //   localStorage.setItem('productId', JSON.stringify(id));
-  // }
 }
 

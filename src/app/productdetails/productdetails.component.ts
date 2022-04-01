@@ -40,4 +40,20 @@ export class ProductdetailsComponent implements OnInit {
       this.objectCat = data;
     })
   }
+
+  calculateStock(){
+  
+  }
+
+  addToCart(id:string, img:string, name:string, price:string, size:string, quant:string){
+    let lclStg = {
+      id: id,
+      img: img,
+      name: name,
+      price: price,
+      size: size,
+      quant: quant}
+    localStorage.setItem("Producto" + id, JSON.stringify(lclStg));
+    alert("Producto/s añadido/s al carrito.");
+  }
 }
