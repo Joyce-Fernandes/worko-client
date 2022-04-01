@@ -17,7 +17,10 @@ import { CouponComponent } from './coupon/coupon.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { CategoryComponent } from './category/category.component';
-import { ProductdetailsComponent } from './productdetails/productdetails.component'; 
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { ContactComponent } from './contact/contact.component'; 
+import { AboutComponent } from './about/about.component';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -29,6 +32,9 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'category', component: CategoryComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'userdetails', component: UserdetailsComponent},
   {path: '**', component: NotfoundComponent}
 ]
 
@@ -47,7 +53,11 @@ const routes: Routes = [
     CartComponent,
     OrderComponent,
     CategoryComponent,
-    ProductdetailsComponent
+    ProductdetailsComponent,
+    AboutComponent,
+    ContactComponent,
+    UserdetailsComponent,
+
   ],
   imports: [
     RouterModule,

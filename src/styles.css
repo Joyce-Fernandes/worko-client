@@ -199,6 +199,56 @@ button:hover{
     filter: opacity(0.75);
 }
 
+/* FORM */
+
+.login-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form{
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"],
+.form input[type="email"]{
+    color: var(--black);
+    font-size: 1.5em;
+    padding: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
+    border-radius: none;
+    border-bottom: 1px solid var(--black);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.privacy-policy{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+.privacy-policy a, .privacy-policy a:hover, .privacy-policy a:active{
+    color: var(--black);
+}
+
+.form input::placeholder{
+    color: var(--black);
+    /* font-size: 1.8em; */
+}
+textarea{
+    border: 1px solid var(--black);
+}
+
 /* SQUAR BACKGROUND */
 .square-bg{
     height: auto;
