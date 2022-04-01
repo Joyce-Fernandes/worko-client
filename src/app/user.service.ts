@@ -32,10 +32,8 @@ export class UserService {
   putUser(id:number, user:User): Observable<User> {
     return this.http.put<User>('https://localhost:44316/api/users/' + id, user, this.httpOptions)
   }
-  deleteUser(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/users'+id; 
-    return this.http.delete(url, this.httpOptions)
-     
-}
+  deleteUser(id: number): Observable<User> {
+    return this.http.delete<User>('https://localhost:44316/api/users/' + id);  
+  }
 }
 

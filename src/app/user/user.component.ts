@@ -17,33 +17,71 @@ export class UserComponent implements OnInit {
     this.getUserData(); 
   }
   
-usr?: User[];
-user: User={
-  id:0,
-  name:"",
-  surname:"",
-  email: "",
-  password:"",
-  adress:""
-}
+  usr?: User[];
+  user: User={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    token:"",
+    rol: ""
+  }
 
 
-userIdNum:number = 0;
+  userIdNum:number = 0;
 
-getId(userId:string){
-  this.userIdNum = parseInt(userId);
-  return this.userIdNum;
-}
+  getId(userId:string){
+    this.userIdNum = parseInt(userId);
+    return this.userIdNum;
+  }
 
-alerta(){
-  alert(this.userIdNum);
-}
+  getUserData(): void {
+      this.UserService.getUsers().subscribe((data) => {
+        this.usr = data;
+        console.log(this.usr);
+      });
+  }
 
-getUserData(): void {
-    this.UserService.getUsers().subscribe((data) => {
-      this.usr = data;
-      console.log(this.usr);
-    });
+  showDefault(){
+    const adminInit = document.getElementById('admin-init');
+    const adminUser = document.getElementById('admin-user');
+    const adminNewUser = document.getElementById('admin-newuser');
+
+    adminUser?.classList.remove('show');
+    adminUser?.classList.add('hide');
+    adminInit?.classList.remove('hide');
+    adminInit?.classList.add('show');
+    adminNewUser?.classList.remove('show');
+    adminNewUser?.classList.add('hide');
+    
+  }
+
+  showAdminNewUser(){
+    const adminInit = document.getElementById('admin-init');
+    const adminUser = document.getElementById('admin-user');
+    const adminNewUser = document.getElementById('admin-newuser');
+
+    adminUser?.classList.add('hide');
+    adminUser?.classList.remove('show');
+    adminInit?.classList.remove('show');
+    adminInit?.classList.add('hide');
+    adminNewUser?.classList.remove('hide');
+    adminNewUser?.classList.add('show');
+  }
+  
+  showAdminUser(){
+    const adminInit = document.getElementById('admin-init');
+    const adminUser = document.getElementById('admin-user');
+    const adminNewUser = document.getElementById('admin-newuser');
+
+    adminUser?.classList.add('show');
+    adminUser?.classList.remove('hide');
+    adminInit?.classList.remove('show');
+    adminInit?.classList.add('hide');
+    adminNewUser?.classList.remove('show');
+    adminNewUser?.classList.add('hide');
   }
 
   postUser(): void {
@@ -67,6 +105,8 @@ getUserData(): void {
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
   }
+
+  refresh(){
+    window.location.reload();
+  }
 }
-
-
