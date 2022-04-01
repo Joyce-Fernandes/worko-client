@@ -10,64 +10,59 @@ import { ProductService } from '../product.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(public ProductService:ProductService) { 
-    
+  constructor(public ProductService: ProductService) {
+
   }
 
-    ngOnInit(): void {
-      //this.getDataProducts();
-      this.getProduct();
-      
-    }
+  ngOnInit(): void {
+    this.getDataProducts();
+    this.getProduct();
 
-    objetcPr?:Product[];
-    tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token')));    
-        
-    getProduct() {
+  }
+
+  objetcPr?: Product[];
+
+  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
+
+  getProduct() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);
-    console.log(this.tokenUser);
-    let tokenObject=this.tokenUser.token;
-    console.log(tokenObject);
-    console.log('myHeaders');
-    console.log(myHeaders);
-  
+    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);//añade token al header
+
     var requestOptions: RequestInit = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
     };
-  
+
     fetch("https://localhost:44316/api/Products", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    };
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
 
-    getDataProducts():void{
-      this.ProductService.getProduct().subscribe(data =>{
-        this.objetcPr = data;
-        console.log(this.objetcPr)
-      });
-    };
+  getDataProducts(): void {
+    this.ProductService.getProduct().subscribe(data => {
+      this.objetcPr = data;
+      console.log(this.objetcPr)
+    });
+  };
 
-    objectP:Product={
-      id:0, name:"",
-      price:0,
-      stock:0,
-      description:"",
-      color:"",
-      size:"",
-      categoryId:0,
-      featuredPhoto:""
-    };
-    
-    getDataProductId(id:number):void{
-      this.ProductService.getProductId(id).subscribe(data=>
-      {
-        this.objectP = data;
-      });
-    };
+  objectP: Product = {
+    id: 0, name: "",
+    price: 0,
+    stock: 0,
+    description: "",
+    color: "",
+    size: "",
+    categoryId: 0,
+    featuredPhoto: ""
+  };
+
+  getDataProductId(id: number): void {
+    this.ProductService.getProductId(id).subscribe(data => {
+      this.objectP = data;
+    });
+  };
 
 };

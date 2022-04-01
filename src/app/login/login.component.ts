@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
         let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas
         
-        if (this.tokenUser.email =="Admin@Admin") {
+        if (this.tokenUser.email =="admin@workoholic.es") {
           this.tokenUser.rol="Admin"
         } else {
           this.tokenUser.rol="User"
