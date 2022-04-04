@@ -73,6 +73,6 @@ export class ProductdetailsComponent implements OnInit {
       size: size,
       quant: quant}
     localStorage.setItem("Producto" + id, JSON.stringify(lclStg));
-    // alert("Producto/s añadido/s al carrito.");
+    alert("Producto/s añadido/s al carrito.");
   }
 }

@@ -17,6 +17,7 @@ export class AnadirComponent implements OnInit {
   objectsPrList: Product[] = [];
 
   objectPr: Product = {
+    id:0,
     name: '',
     price: 0,
     stock: 0,
