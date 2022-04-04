@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  Observable } from 'rxjs';
+import { ProductService } from '../product.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Product } from '../product';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public UserService: UserService) { }
+  constructor(public UserService: UserService, public ProductService: ProductService) { }
 
   ngOnInit(): void {
     this.getUserData(); 
@@ -40,8 +42,8 @@ export class UserComponent implements OnInit {
         this.usr = data;
         console.log(this.usr);
       });
-  }
 
+  }
   showDefault(){
     const adminInit = document.getElementById('admin-init');
     const adminUser = document.getElementById('admin-user');
@@ -82,9 +84,8 @@ export class UserComponent implements OnInit {
   }
 
   postUser(): void {
-    this.UserService.postUser(this.user).subscribe(data => {
-      this.refresh()
-    });
+    this.UserService.postUser(this.user).subscribe();
+    alert("¡Usuarix añadido con éxito!");
   }
 
   getUserIdData(id:number):void{
@@ -99,10 +100,12 @@ export class UserComponent implements OnInit {
         this.user = user;
         console.log(this.user);
     });
+    alert("¡Usuarix modificado con éxito!");
   }
 
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
+    alert("¡Usuarix eliminado con éxito!");
   }
 
   refresh(){

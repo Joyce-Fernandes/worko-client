@@ -7,12 +7,16 @@ import { Product } from './product';
   providedIn: 'root'
 })
 export class ProductService {
-
+  
   constructor(public http: HttpClient) { }
   httpOptions: Object = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  } 
+    headers: new HttpHeaders({'Content-Type': 'applications/json'})
+  };
+  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
+
   getProduct():Observable<Product[]>{
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);//añade token al header
     return this.http.get<Product[]>('https://localhost:44316/api/products');
   };
 
