@@ -1,4 +1,15 @@
 <main>
+    <div class="popup hideP">
+        <div>
+            <div><p>¡Producto/s añadido/s con éxito!</p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/product" (click)="popup()">Continuar comprando</button>
+                <button routerLink="/cart" (click)="popup()">Ir al carrito</button>
+            </div>
+        </div>
+    </div>
+
     <section class="fixed-width">
         <nav class="breadcrumbs">
             <ul>
@@ -21,7 +32,7 @@
                 <select #stock id="stock-select">
                 </select>
                 </div>
-        <button (click)="addToCart(objectP.id.toString(), objectP.featuredPhoto, objectP.name, objectP.price.toString(), objectP.size, stock.value)">Añadir al carrito</button> 
+        <button (click)="addToCart(objectP.id.toString(), objectP.featuredPhoto, objectP.name, objectP.price.toString(), objectP.size, stock.value); popup()">Añadir al carrito</button> 
     </div>
     </article>
     </section>
