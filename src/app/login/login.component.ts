@@ -51,25 +51,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
         localStorage.setItem('token', vari.token);
         localStorage.setItem('email', this.tokenUser.email);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a7469d02b37d648d12e2e7d18fa7b9bbba2ec1e6
+
         //REGOGER LA VARIABLE ROL
         localStorage.setItem('rol', this.tokenUser.rol);
 
         let auxrol = localStorage.getItem('rol'); //recupera dato con comillas
         let rolTxt = JSON.parse(JSON.stringify(auxrol)); //para que no de problemas de tipo
         let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
-<<<<<<< HEAD
         console.log(varirol);
-=======
-        localStorage.setItem('rol', this.tokenUser.rol);
->>>>>>> origin/dev-leire
-=======
-        localStorage.setItem('rol', this.tokenUser.rol);
->>>>>>> a7469d02b37d648d12e2e7d18fa7b9bbba2ec1e6
-
+   
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";
