@@ -2,45 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 
-
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  objetos: Category[] = [];
-  objeto: Category=  {
-
-    id: 0,
-    name: '',
-
-  }
 
   constructor(public CategoryService: CategoryService,) { }
 
   ngOnInit(): void {
+    this.getCategoryData();
   }
 
+  objectCat?:Category[];
+  ca: Category=  { id: 0, name: ''}
 
-  getCategory(): void {
-    this.CategoryService.getCategory().subscribe(
-      (Category) => {
-    this.objetos = Category;
-    console.log(this.objetos);
-    });
+  getCategoryData():void{
+    this.CategoryService.getCategory().subscribe(data =>
+    {
+      this.objectCat = data;
+      console.log(this.objectCat);
+    })
   }
 
-  postCategory(): void {
-    console.log(this.objeto);
-    this.CategoryService.postCategory(this.objeto).subscribe();
+  postCategoryData(): void {
+    console.log(this.ca);
+    this.CategoryService.postCategory(this.ca).subscribe();
   }
 
   putCategory(): void {
-    this.CategoryService.updateCategory(this.objeto).subscribe(
+    this.CategoryService.updateCategory(this.ca).subscribe(
       (Category) => {
-    this.objeto = Category;
-    console.log(this.objetos);
+    this.ca = Category;
+    console.log(this.ca);
     });
   }
 
@@ -48,6 +43,3 @@ export class CategoryComponent implements OnInit {
     this.CategoryService.deleteCategory(id).subscribe();
   }
 }
-
-
-

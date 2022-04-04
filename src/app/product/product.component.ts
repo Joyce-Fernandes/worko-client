@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { CategoryService } from '../category.service';
+import { Category } from '../category';
 
 
 @Component({
@@ -10,14 +12,11 @@ import { ProductService } from '../product.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(public ProductService: ProductService) {
-
-  }
+  constructor(public ProductService:ProductService, public CategoryService:CategoryService) { }
 
   ngOnInit(): void {
     this.getDataProducts();
-    this.getProduct();
-
+    this.getCategoryData();
   }
 
   objetcPr?: Product[];
@@ -41,28 +40,35 @@ export class ProductComponent implements OnInit {
       .catch(error => console.log('error', error));
   };
 
-  getDataProducts(): void {
-    this.ProductService.getProduct().subscribe(data => {
+
+  getDataProducts():void{
+    this.ProductService.getProduct().subscribe(data =>{
       this.objetcPr = data;
-      console.log(this.objetcPr)
-    });
-  };
+    })
+  }
 
-  objectP: Product = {
-    id: 0, name: "",
-    price: 0,
-    stock: 0,
-    description: "",
-    color: "",
-    size: "",
-    categoryId: 0,
-    featuredPhoto: ""
-  };
-
-  getDataProductId(id: number): void {
-    this.ProductService.getProductId(id).subscribe(data => {
-      this.objectP = data;
-    });
-  };
-
-};
+  objectCat?:Category[];
+  getCategoryData():void{
+    this.CategoryService.getCategory().subscribe(data =>
+    {
+      this.objectCat = data;
+    })
+  }
+  objectP: Product={
+    id:0, name:"",
+      price:0,
+      stock:0,
+      description:"",
+      color:"",
+      size:"",
+      categoryId:0,
+      featuredPhoto:""
+    };
+    
+    getDataProductId(id:number):void{
+      this.ProductService.getProductId(id).subscribe(data=>
+      {
+        this.objectP = data;
+      });
+    };
+    };

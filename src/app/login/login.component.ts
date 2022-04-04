@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
       })
       .catch(error => console.log('error', error));
       //mandar el usuario a la BBDD
-      this.UserService.updateUser(this.tokenUser)
+      this.UserService.putUser(this.tokenUser.id, this.tokenUser)
   };
 };
 

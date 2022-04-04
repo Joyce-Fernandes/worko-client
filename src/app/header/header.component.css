@@ -13,6 +13,10 @@ header{
     padding: 0 7.5vw 0 7.5vw;
 }
 
+.user-details{
+    margin-right: 1em;
+}
+
 .header-load{
     height: 15vh;
     background-color: none;
@@ -26,8 +30,6 @@ header{
 
 .header-scroll{
     animation: changeHeaderScroll 0.5s forwards;
-    /* background-color: var(--white);
-    height: 10vh; */
 }
 
 @keyframes changeHeaderScroll {
@@ -44,16 +46,22 @@ img{
     height: 1.5em;
 }
 
-nav a, .cart, #logo{
+nav a, .cart, #logo, .user-details{
     transition: filter 0.5s;
 }
 
+.icons-header{
+    display: flex;
+    flex-direction: row;   
+}
+
+.user-details,
 .cart{
-    /* width: 3.5em; */
     cursor: pointer;
 }
 
-#logo:hover, .cart:hover, nav a:hover{
+
+#logo:hover, .cart:hover, nav a:hover, .user-details:hover{
     filter: brightness(50%) grayscale(100%);
 }
 
@@ -69,15 +77,10 @@ nav li{
 
 nav li:last-child{
     margin-right: none;
-    border-bottom: 1px solid var(--pink);
 }
 
 nav a, nav a:visited{
     text-decoration: none;
     color: var(--pink);
     font-weight: bold;
-}
-
-nav li:last-child:hover{
-    border-bottom: 1px solid var(--black);
 }

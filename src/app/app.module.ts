@@ -12,11 +12,29 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
+import { CouponComponent } from './coupon/coupon.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
+import { CategoryComponent } from './category/category.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { ContactComponent } from './contact/contact.component'; 
+import { AboutComponent } from './about/about.component';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'product', component: ProductComponent},
+  {path: 'product/:id', component: ProductdetailsComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'admin', component: UserComponent},
+  {path: 'coupon', component: CouponComponent},
+  {path: 'cart', component: CartComponent},
+  {path: 'order', component: OrderComponent},
+  {path: 'category', component: CategoryComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'userdetails', component: UserdetailsComponent},
   {path: '**', component: NotfoundComponent}
 ]
 
@@ -29,7 +47,18 @@ const routes: Routes = [
     LoginComponent,
     FooterComponent,
     ProductComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    UserComponent,
+    LoginComponent,
+    CouponComponent,
+    CartComponent,
+    OrderComponent,
+    CategoryComponent,
+    ProductdetailsComponent,
+    AboutComponent,
+    ContactComponent,
+    UserdetailsComponent,
+
   ],
   imports: [
     RouterModule,

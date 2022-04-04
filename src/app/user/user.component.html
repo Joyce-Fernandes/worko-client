@@ -1,0 +1,57 @@
+<main>
+    <section class="fixed-width">
+ 
+    <div class="admin-nav">
+        <h2>Gestión de Ecommerce</h2>
+        <button (click)="showAdminNewUser()">Añadir usuario</button>
+        <button (click)="showAdminUser()">Gestionar usuarios</button>
+        <button>Gestionar pedidos</button>
+    </div>
+
+    <div class="admin-space">
+            <div id="admin-init" class="show">
+                <img src="../../assets/img/admin-workoshop.svg" alt="">
+            </div>            
+
+            <div class="admin-form hide" id="admin-newuser">
+                <div class="form">
+                <div class="user-admin-header">
+                    <h3>Registro</h3> <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+                </div>
+                <div class="form">
+                    <input placeholder="Nombre*" [(ngModel)]="user.name" type="text" >
+                    <input placeholder="Apellido*" [(ngModel)]="user.surname" type="text">
+                    <input placeholder="Email*" [(ngModel)]="user.email" type="email">
+                    <input placeholder="Dirección*" [(ngModel)]="user.adress" type="text">
+                    <input placeholder="Contraseña*" [(ngModel)]="user.password" type="password">
+                    <div id="privacy-subscribe" class="privacy-policy">
+                        <input type="checkbox"> <label>Acepta la <a href="">política de privacidad</a>.</label>
+                    </div>
+                    <button (click)="postUser(); refresh()">Registrar usuario</button>
+                </div>
+            </div></div>
+
+            <div class="admin-form hide" id="admin-user">
+            <div class="form">
+            <div class="user-admin-header">
+                <select #userList (change)="getId(userList.value); getUserIdData(userIdNum)">
+                    <option selected>Seleccionar usuario</option>
+                    <option *ngFor="let user of usr; let i = index" value="{{ user.id }}">
+                    {{ user.name }}
+                    </option>
+                </select>
+                <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+            </div>
+                <input type="text" [(ngModel)]="user.name" placeholder="Nombre" /> 
+                <input type="text" [(ngModel)]="user.surname" placeholder="Apellido" />
+                <input type="email" [(ngModel)]="user.email" placeholder="Email" />
+                <input type="password" [(ngModel)]="user.password" placeholder="Contraseña" />
+                <input type="text" [(ngModel)]="user.adress" placeholder="Dirección" />
+                <button (click)="putUserData(userIdNum); refresh()">Modificar datos</button>
+                <button (click)="deleteUserData(userIdNum); refresh()">Eliminar usuario</button>
+            </div>
+        </div>
+        
+    </div>
+ 
+<section>

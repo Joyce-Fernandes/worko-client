@@ -1,0 +1,67 @@
+.admin-form{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form{
+    width: 100%;
+}
+
+.admin-space{
+    margin: 3em 0;
+    width: 45%;
+}
+
+#admin-user{
+    width: 100%;
+}
+
+.show{
+    display: flex;
+}
+.hide{
+    display: none;
+}
+
+img{
+    width: 45vw;
+}
+
+.fixed-width{
+    display: flex;
+    vertical-align: top;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.admin-nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-admin-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+select{
+    cursor: pointer;
+}
+
+#close-user img{
+    width: 2.5em;
+    cursor: pointer;
+}
+
+h3{
+    font-size: 2em;
+    font-family: var(--secondary-font);
+}
+
+#admin-newuser .user-admin-header{
+    margin-bottom: 1em;
+}
