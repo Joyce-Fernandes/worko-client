@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
         let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
         console.log(varirol);
    
+        localStorage.setItem('rol', this.tokenUser.rol);
+
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";
