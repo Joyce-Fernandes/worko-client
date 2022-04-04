@@ -46,7 +46,6 @@ export class ProductdetailsComponent implements OnInit {
 
   calculateStock(stock:number){
     for (var i = 1; i <= stock; i++) {
-      console.log(i);
       let option = document.getElementById('stock-select') as HTMLTableElement;
         option.innerHTML += `
         <option value="${i}">${i}</option>

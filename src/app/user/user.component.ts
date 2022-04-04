@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  Observable } from 'rxjs';
+import { ProductService } from '../product.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Product } from '../product';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public UserService: UserService) { }
+  constructor(public UserService: UserService, public ProductService: ProductService) { }
 
   ngOnInit(): void {
     this.getUserData(); 
@@ -34,26 +36,14 @@ export class UserComponent implements OnInit {
     this.userIdNum = parseInt(userId);
     return this.userIdNum;
   }
-<<<<<<< HEAD
 
   getUserData(): void {
       this.UserService.getUsers().subscribe((data) => {
         this.usr = data;
         console.log(this.usr);
       });
-=======
-  users: User[] = [];
-  user: User = {
-    id:-1,
-    name: '',
-    surname: '',
-    email: '',
-    password: '',
-    adress: '',
-    rol: ''
->>>>>>> 693dda130b871c241bf48af2274209b6f65ed2a4
-  }
 
+  }
   showDefault(){
     const adminInit = document.getElementById('admin-init');
     const adminUser = document.getElementById('admin-user');
@@ -118,11 +108,8 @@ export class UserComponent implements OnInit {
     this.UserService.deleteUser(id).subscribe();
     alert("¡Usuarix eliminado con éxito!");
   }
-<<<<<<< HEAD
 
   refresh(){
     window.location.reload();
   }
-=======
->>>>>>> 693dda130b871c241bf48af2274209b6f65ed2a4
 }
