@@ -9,18 +9,20 @@
         <img src="{{objectP.featuredPhoto}}">
         <div class="product-info">
             <h3>{{objectP.name}}</h3>
-            <p>{{objectP.description}}</p>
-            <p>{{objectP.price}}€</p>
-            
             <div *ngFor="let category of objectCat; let i = index">
-            <div *ngIf="category.id === objectP.categoryId" class="product-category">
-                <p>{{ category.name }}</p>
-            </div>
-            <div class="">{{ objectP.stock }}</div>
-
-        </div>
+                <div *ngIf="category.id === objectP.categoryId" class="product-category">
+                    <p>{{ category.name }}</p>
+            </div></div>
+            <b><p>{{objectP.price}}€</p></b>
+            <hr>    
+            <div class="product-description"><p><b>Detalles de producto:</b> {{objectP.description}}</p></div>
+            <div class="product-stock">
+                <p>Cantidad:</p>
+                <select #stock id="stock-select">
+                </select>
+                </div>
         <button (click)="addToCart(objectP.id.toString(), objectP.featuredPhoto, objectP.name, objectP.price.toString(), objectP.size, '1')">Añadir al carrito</button> 
-        </div>
+    </div>
     </article>
     </section>
 </main>

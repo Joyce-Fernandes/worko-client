@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
 
@@ -14,6 +13,62 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void{
     this.onWindowScroll();
+    this.userRol();
+  }
+
+  rolUser = JSON.parse(JSON.stringify(localStorage.getItem('rol')));
+  userRol(){
+    const userAdmin = document.querySelector('#admin');
+    const userBasic = document.querySelector('#basic');
+    const userLogout = document.querySelector('#logout');
+    const userLogoutMov = document.querySelector('#logout-mov');
+    const userLogged = document.querySelector('#logged');
+    if(this.rolUser === 'User'){
+      userAdmin?.classList.add('hide');
+      userBasic?.classList.add('hide');
+      userLogged?.classList.add('show');
+      userLogout?.classList.add('show-desktop');
+      userLogoutMov?.classList.add('show');
+      userAdmin?.classList.remove('show');
+      userBasic?.classList.remove('show');
+      userLogged?.classList.remove('hide');
+      userLogout?.classList.remove('hide-desktop');
+      userLogoutMov?.classList.remove('hide-desktop');
+    }else if(this.rolUser === 'Admin'){
+      userAdmin?.classList.add('show');
+      userBasic?.classList.add('hide');
+      userLogged?.classList.add('hide');
+      userLogout?.classList.add('show-desktop');
+      userLogoutMov?.classList.add('show');
+      userAdmin?.classList.remove('hide');
+      userBasic?.classList.remove('show');
+      userLogged?.classList.remove('show');
+      userLogout?.classList.remove('hide-desktop');
+      userLogoutMov?.classList.remove('hide-desktop');
+    }else{
+      userAdmin?.classList.add('hide');
+      userBasic?.classList.add('show');
+      userLogged?.classList.add('hide');
+      userLogout?.classList.add('hide-desktop');
+      userLogoutMov?.classList.add('hide-desktop');
+      userAdmin?.classList.remove('show');
+      userBasic?.classList.remove('hide');
+      userLogged?.classList.remove('show');
+      userLogout?.classList.remove('show-desktop');
+      userLogoutMov?.classList.remove('show-desktop');
+      userLogoutMov?.classList.remove('show');
+    }
+  }
+
+  responsiveMenu(){
+    const menu = document.querySelector('.responsive-menu');
+    if(menu?.classList.contains('hide')){
+      menu?.classList.add('show');
+      menu?.classList.remove('hide');
+    }else if(menu?.classList.contains('show')){
+      menu?.classList.add('hide');
+      menu?.classList.remove('show');
+    }
   }
 
   @HostListener('window:scroll', [])

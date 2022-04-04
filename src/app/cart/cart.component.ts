@@ -62,15 +62,14 @@ export class CartComponent implements OnInit {
   }
 
   takeCartItems(){
-    var values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
-    
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
-        values.push(localStorage.getItem(keys[index]));
-        let aux = JSON.parse(JSON.stringify(values[index]));
+        let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
+        console.log(aux);
         let product = JSON.parse(aux);
+        console.log(product);
         let table = document.getElementById('cart-table') as HTMLTableElement;
         table.innerHTML += `
         <tr>
