@@ -65,3 +65,28 @@ hr{
 .product-description p{
     font-size: 0.8em;
 }
+
+@media (max-width: 834px) {
+    article{
+        /* padding: 4em 0;
+        display: flex;
+        justify-content: space-between; */
+        flex-direction: column;
+    }
+    
+    article img{ 
+        margin-bottom: 2em;
+        width: 100%;
+    }
+    
+    /* .breadcrumbs{
+        align-self: flex-start;
+    }
+     */
+
+    .product-info{
+        width: 100%;
+        /* display: flex;
+        flex-direction: column; */
+    }
+}

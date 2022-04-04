@@ -24,6 +24,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  refresh(){
+    window.location.reload();
+  }
+
+  user: User={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "User"
+  }
+
+  postUser(): void {
+    this.UserService.postUser(this.user).subscribe(data =>{
+      alert("¡Usuarix añadido con éxito!");
+      this.refresh();
+    });
+  }
+
   Login(): void {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -46,7 +68,19 @@ export class LoginComponent implements OnInit {
           this.tokenUser.rol="Admin"
         } else {
           this.tokenUser.rol="User"
-        }
+        };
+        
+        localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
+        localStorage.setItem('token', vari.token);
+        localStorage.setItem('email', this.tokenUser.email);
+        //REGOGER LA VARIABLE ROL
+        localStorage.setItem('rol', this.tokenUser.rol);
+
+        // let auxrol = localStorage.getItem('rol'); //recupera dato con comillas
+        // let rolTxt = JSON.parse(JSON.stringify(auxrol)); //para que no de problemas de tipo
+        // let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
+        // console.log(varirol);
+
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";

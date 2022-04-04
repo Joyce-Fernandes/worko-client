@@ -1,4 +1,13 @@
 <main>
+    <div class="popup hideP">
+        <div>
+            <div><p id="popup-info"></p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/admin" (click)="popup()">Vale</button>
+            </div>
+        </div>
+    </div>
     <section class="fixed-width">
  
     <div class="admin-nav">
@@ -27,7 +36,7 @@
                     <div id="privacy-subscribe" class="privacy-policy">
                         <input type="checkbox"> <label>Acepta la <a href="">política de privacidad</a>.</label>
                     </div>
-                    <button (click)="postUser(); refresh()">Registrar usuario</button>
+                    <button (click)="postUser()">Registrar usuario</button>
                 </div>
             </div></div>
 
@@ -42,13 +51,13 @@
                 </select>
                 <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
             </div>
-                <input type="text" [(ngModel)]="user.name" placeholder="Nombre" /> 
-                <input type="text" [(ngModel)]="user.surname" placeholder="Apellido" />
-                <input type="email" [(ngModel)]="user.email" placeholder="Email" />
-                <input type="password" [(ngModel)]="user.password" placeholder="Contraseña" />
-                <input type="text" [(ngModel)]="user.adress" placeholder="Dirección" />
-                <button (click)="putUserData(userIdNum); refresh()">Modificar datos</button>
-                <button (click)="deleteUserData(userIdNum); refresh()">Eliminar usuario</button>
+                <input type="text" [(ngModel)]="us.name" placeholder="Nombre" /> 
+                <input type="text" [(ngModel)]="us.surname" placeholder="Apellido" />
+                <input type="email" [(ngModel)]="us.email" placeholder="Email" />
+                <input type="password" [(ngModel)]="us.password" placeholder="Contraseña" />
+                <input type="text" [(ngModel)]="us.adress" placeholder="Dirección" />
+                <button (click)="putUserData(userIdNum)">Modificar datos</button>
+                <button (click)="deleteUserData(userIdNum)">Eliminar usuario</button>
             </div>
         </div>
         

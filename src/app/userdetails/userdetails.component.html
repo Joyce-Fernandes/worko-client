@@ -1,5 +1,19 @@
 <main>
     <section class="fixed-width">
 
+        <h2>Usuario</h2>
+
+        
+
+            <div class="form">
+                <input placeholder="Nombre*" [(ngModel)]="user.name" type="text"/>
+                <input placeholder="Apellido*"[(ngModel)]="user.surname" type="text" />
+                <input placeholder="Email*"[(ngModel)]="user.email" type="text"/>
+                <input placeholder="Password*"[(ngModel)]="user.password" type="password"/>
+                <input placeholder="Address*"[(ngModel)]="user.adress" type="text"/>
+            </div>
+        
+        <button (click)="putUserData(user.id); refresh();">Modificar datos</button>
+
     </section>
 </main>

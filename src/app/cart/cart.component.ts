@@ -89,14 +89,15 @@ export class CartComponent implements OnInit {
   }
 
   removeCart(){
-    var values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
+    // var values = [],
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
         localStorage.removeItem(keys[index]);
+        let table = document.getElementById('cart-table') as HTMLTableElement;
+        table.innerHTML = "";
       }
-      window.location.reload();
     }
   }
 
