@@ -1,0 +1,10 @@
+@media (max-width: 834px) {
+    .login-form{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    
+    .form{
+        width: 100%;
+    }    
+}

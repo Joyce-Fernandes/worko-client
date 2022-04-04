@@ -19,13 +19,9 @@ export class LoginComponent implements OnInit {
     rol: ''
   };
  
-  
-
   constructor(public UserService: UserService) { };
 
   ngOnInit(): void {
-    //localStorage.clear;   
-
   }
   Login(): void {
     var myHeaders = new Headers();
@@ -46,7 +42,7 @@ export class LoginComponent implements OnInit {
         let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
         let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas
         
-        if (this.tokenUser.email =="admin@workoholic.es") {
+        if (this.tokenUser.email === "admin@workoshop.es") {
           this.tokenUser.rol="Admin"
         } else {
           this.tokenUser.rol="User"
@@ -61,7 +57,7 @@ export class LoginComponent implements OnInit {
         let auxrol = localStorage.getItem('rol'); //recupera dato con comillas
         let rolTxt = JSON.parse(JSON.stringify(auxrol)); //para que no de problemas de tipo
         let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
-        console.log(varirol);
+        localStorage.setItem('rol', this.tokenUser.rol);
 
         if (vari.status == '401') {
           alert('Error al logear');
@@ -74,6 +70,7 @@ export class LoginComponent implements OnInit {
       .catch(error => console.log('error', error));
       //mandar el usuario a la BBDD
       this.UserService.putUser(this.tokenUser.id, this.tokenUser)
+      
   };
 };
 

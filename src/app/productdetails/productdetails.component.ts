@@ -25,11 +25,14 @@ export class ProductdetailsComponent implements OnInit {
     this.getCategoryData();
   }
 
+  productStock?:number;
   objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
   getDataProductId(id:number):void{
     this.ProductService.getProductId(id).subscribe(data=>
     {
       this.objectP = data;
+      this.productStock = this.objectP.stock;
+      this.calculateStock(this.productStock);
     })
   }
 
@@ -41,8 +44,14 @@ export class ProductdetailsComponent implements OnInit {
     })
   }
 
-  calculateStock(){
-  
+  calculateStock(stock:number){
+    for (var i = 1; i <= stock; i++) {
+      let option = document.getElementById('stock-select') as HTMLTableElement;
+        option.innerHTML += `
+        <option value="${i}">${i}</option>
+        `;
+    }
+
   }
 
   addToCart(id:string, img:string, name:string, price:string, size:string, quant:string){
