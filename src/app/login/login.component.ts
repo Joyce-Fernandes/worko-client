@@ -75,13 +75,13 @@ export class LoginComponent implements OnInit {
           this.tokenUser.rol="Error";
         } else {
           alert('Bienvenido');
+          window.location.reload();
         }
         console.log(this.tokenUser);
       })
       .catch(error => console.log('error', error));
       //mandar el usuario a la BBDD
-      this.UserService.putUser(this.tokenUser.id, this.tokenUser)
-      
+      this.UserService.putUser(this.tokenUser.id, this.tokenUser);
   };
 };
 
