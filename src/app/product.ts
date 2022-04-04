@@ -1,5 +1,5 @@
 export interface Product {
-    id:number,
+    id?:number,
     name:string,
     price:number,
     stock:number,
@@ -7,5 +7,5 @@ export interface Product {
     color:string,
     size:string,
     categoryId:number,
-    featuredPhoto:string
+    featuredPhoto:string    
 }

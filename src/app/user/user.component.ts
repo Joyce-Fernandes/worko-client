@@ -25,10 +25,8 @@ export class UserComponent implements OnInit {
     email: "",
     password:"",
     adress:"",
-    token:"",
-    rol: ""
+    rol: "User"
   }
-
 
   userIdNum:number = 0;
 
@@ -55,7 +53,6 @@ export class UserComponent implements OnInit {
     adminInit?.classList.add('show');
     adminNewUser?.classList.remove('show');
     adminNewUser?.classList.add('hide');
-    
   }
 
   showAdminNewUser(){
@@ -85,7 +82,9 @@ export class UserComponent implements OnInit {
   }
 
   postUser(): void {
-    this.UserService.postUser(this.user).subscribe();
+    this.UserService.postUser(this.user).subscribe(data => {
+      this.refresh()
+    });
   }
 
   getUserIdData(id:number):void{

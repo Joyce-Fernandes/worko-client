@@ -1,7 +1,70 @@
+
 footer{
-    width: 100vw;
     text-align: center;
     color: var(--white);
-    background-color: var(--black);
-    padding: 10vh 0;
-}
+    background-color: var(--black); 
+
+  }
+  footer .main {
+    width: 100%;
+    padding: 30px 10px;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .footer-company,
+  .footer-contact,
+  .footer-social {
+    color: var(--white);
+    height: 100%;
+    min-height: 100px;
+
+  }
+  .main .footer-social img {
+    width: 32px;
+    height: 32px;
+
+  }
+  footer .last {
+    height: 50px;
+    color: var(--white);
+
+  }h4 { 
+  color: var(--white);
+  font-weight: bold;
+  }
+
+  a{
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+
+  }
+  #logo {
+    height: 1.3em;
+    filter: brightness(200);
+
+  }  
+  #arrow-button img{
+      margin-left: 1.2em;
+      width: 1.3em;
+      transition: transform 0.5s;
+
+  }
+  #arrow-button:hover img{
+      transform: translate(1.1em);
+      
+  } 
+  #arrow-button:hover{
+      filter: opacity(0.75);
+  }
+ 
+  
+     
+  
+  
+  

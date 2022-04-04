@@ -19,7 +19,7 @@
             <div class="">{{ objectP.stock }}</div>
 
         </div>
-        <button (click)="addToCart(objectP.id.toString(), objectP.featuredPhoto, objectP.name, objectP.price.toString(), objectP.size, '1')">Añadir al carrito</button> 
+        <button *ngIf="objectP.id" (click)="addToCart(objectP.id.toString(), objectP.featuredPhoto, objectP.name, objectP.price.toString(), objectP.size, '1')">Añadir al carrito</button> 
         </div>
     </article>
     </section>

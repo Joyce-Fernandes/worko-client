@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { observable } from 'rxjs';
-import { Userdetails } from '../userdetails';
-import { UserdetailsService } from '../userdetails.service';
+import { User } from '../user';
+import { UserService } from '../user.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-userdetails',
@@ -9,44 +10,42 @@ import { UserdetailsService } from '../userdetails.service';
   styleUrls: ['./userdetails.component.css'],
 })
 export class UserdetailsComponent implements OnInit {
-  constructor(public UserdetailsService: UserdetailsService) {}
+  constructor(public UserService: UserService, public route: ActivatedRoute) { }
+
+  public routeSub?:Subscription;
 
   ngOnInit(): void {
-    this.getUserdetailsData();
+    this.routeSub = this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.getUserIdData(id);
+    })
   }
-  usrdetails?: Userdetails[];
-  userdetails: Userdetails={
-
+  user: User={
     id:0,
     name:"",
     surname:"",
     email: "",
     password:"",
     adress:"",
+    rol: ""
+  }
 
+  getUserIdData(id:number):void{
+    this.UserService.getUserId(id).subscribe(data =>
+    {
+      this.user = data;
+    })
   }
   
-
-getUserdetailsData(): void {
-    this.UserdetailsService.getUserdetails().subscribe((data) => {
-      this.usrdetails = data;
-      console.log(this.usrdetails);
+  /* Necesitamos la localstorage con el rol para hacer el PUT */
+  putUserData(id:number): void {
+    this.UserService.putUser(id, this.user).subscribe((user) => {
+      this.user = user;
     });
   }
-
-  postUserdetails(): void {
-    this.UserdetailsService.postUserdetails(this.userdetails).subscribe();
- 
-  }
-
-  putUserdetailsData(id:number): void {
-      this.UserdetailsService.putUserdetails(id, this.userdetails).subscribe((userdetails) => {
-        this.userdetails = userdetails;
-        console.log(this.userdetails);
-    });
-  }
-
-  deleteUserdetailsData(id: number): void {
-    this.UserdetailsService.deleteUserdetails(id).subscribe();
+  
+  refresh(){
+    window.location.reload();
+    alert("Usuarix modificado con éxito.");
   }
 }
