@@ -51,7 +51,17 @@ export class ProductdetailsComponent implements OnInit {
         <option value="${i}">${i}</option>
         `;
     }
+  }
 
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
   }
 
   addToCart(id:string, img:string, name:string, price:string, size:string, quant:string){
@@ -63,6 +73,6 @@ export class ProductdetailsComponent implements OnInit {
       size: size,
       quant: quant}
     localStorage.setItem("Producto" + id, JSON.stringify(lclStg));
-    alert("Producto/s añadido/s al carrito.");
+    // alert("Producto/s añadido/s al carrito.");
   }
 }

@@ -30,6 +30,16 @@ export class UserComponent implements OnInit {
     rol: "User"
   }
 
+  us: User={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "User"
+  }
+
   userIdNum:number = 0;
 
   getId(userId:string){
@@ -84,28 +94,44 @@ export class UserComponent implements OnInit {
   }
 
   postUser(): void {
-    this.UserService.postUser(this.user).subscribe();
-    alert("¡Usuarix añadido con éxito!");
+    this.UserService.postUser(this.user).subscribe(data =>{
+      // alert("¡Usuarix añadido con éxito!");
+      let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+      infoPopup.innerHTML = "¡Usuario/a registrado/a con éxito!"
+      this.refresh();
+    });
   }
 
   getUserIdData(id:number):void{
     this.UserService.getUserId(id).subscribe(data =>
     {
-      this.user = data;
+      this.us = data;
     })
   }
 
   putUserData(id:number): void {
-      this.UserService.putUser(id, this.user).subscribe((user) => {
-        this.user = user;
-        console.log(this.user);
+      this.UserService.putUser(id, this.us).subscribe((us) => {
+        this.us = us;
+        console.log(this.us);
     });
     alert("¡Usuarix modificado con éxito!");
   }
 
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
+  }
+
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
-    alert("¡Usuarix eliminado con éxito!");
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Usuario/a eliminado/a con éxito!"
   }
 
   refresh(){
