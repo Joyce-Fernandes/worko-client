@@ -71,6 +71,15 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  logOut(){
+    localStorage.removeItem('a');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenUser');
+    window.location.reload();
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
       const scrollOffset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;

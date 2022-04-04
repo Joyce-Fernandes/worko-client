@@ -59,7 +59,7 @@ export class ProductdetailsComponent implements OnInit {
       id: id,
       img: img,
       name: name,
-      price: price,
+      price: parseInt(price)*parseInt(quant),
       size: size,
       quant: quant}
     localStorage.setItem("Producto" + id, JSON.stringify(lclStg));

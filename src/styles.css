@@ -530,15 +530,15 @@ table img{
         animation: none!important;
     }  
 
-    .black-bg .responsive-menu{
+    /* .black-bg .responsive-menu{
         background-color: var(--white)!important;
     }
     .black-bg .responsive-menu img{
         filter: brightness(0)!important;
+    } */
+    .black-bg .responsive-menu ul a, .black-bg #logout-mov{
+        color: var(--black)!important;
     }
-    .black-bg .responsive-menu ul a{
-        color: var(--color);
-    } 
 
     /*
     .product:hover button{
