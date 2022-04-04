@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   constructor(public UserService: UserService, public ProductService: ProductService) { }
 
   ngOnInit(): void {
-    this.getUserData(); 
+    this.getUserData();
   }
   
   usr?: User[];
@@ -95,6 +95,8 @@ export class UserComponent implements OnInit {
       this.user = data;
     })
   }
+
+  
 
   putUserData(id:number): void {
       this.UserService.putUser(id, this.user).subscribe((user) => {

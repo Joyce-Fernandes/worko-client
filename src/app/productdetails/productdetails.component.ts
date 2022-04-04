@@ -19,7 +19,7 @@ export class ProductdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id'];
-      console.log(id);
+      //console.log(id);
       this.getDataProductId(id);
     })
     this.getCategoryData();
@@ -56,7 +56,7 @@ export class ProductdetailsComponent implements OnInit {
 
   addToCart(id:string, img:string, name:string, price:string, size:string, quant:string){
     let lclStg = {
-      id: id,
+      id: id,//idProduct
       img: img,
       name: name,
       price: parseInt(price)*parseInt(quant),
