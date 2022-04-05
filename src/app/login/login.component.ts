@@ -86,6 +86,7 @@ export class LoginComponent implements OnInit {
           this.tokenUser.rol="Error";
         } else {
           alert('Bienvenido');
+          window.location.href=('http://localhost:4200');
          // window.location.reload();
         };
         let loggedUser=this.getUserMail(this.tokenUser.email);       
