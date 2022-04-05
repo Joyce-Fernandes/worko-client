@@ -7,5 +7,5 @@ export interface Product {
     color:string,
     size:string,
     categoryId:number,
-    featuredPhoto:string
+    featuredPhoto:string    
 }

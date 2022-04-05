@@ -14,7 +14,7 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>('https://localhost:44316/api/users')
+    return this.http.get<User[]>('https://localhost:44316/api/Users')
   }
   
   postUser(user: User): Observable<User> {
@@ -27,6 +27,9 @@ export class UserService {
 
   getUserId(id:number):Observable<User>{
     return this.http.get<User>('https://localhost:44316/api/users/' + id);
+  }
+  getUserMail(email:string):Observable<User>{
+    return this.http.get<User>('https://localhost:44316/api/Users/mail/' + email);
   }
 
   putUser(id:number, user:User): Observable<User> {

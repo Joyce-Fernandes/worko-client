@@ -16,27 +16,45 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '',
     adress: '',
-    token: '',
     rol: ''
   };
  
-  
-
-  constructor(public user: UserService) { };
+  constructor(public UserService: UserService) { };
 
   ngOnInit(): void {
-    //localStorage.clear;   
-
+    
   }
+
+  refresh(){
+    window.location.reload();
+  }
+
+  user: User={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "User"
+  }
+
+  postUser(): void {
+    this.UserService.postUser(this.user).subscribe(data =>{
+      alert("¡Usuarix añadido con éxito!");
+      this.refresh();
+    });
+  }
+
   Login(): void {
-       var myHeaders = new Headers();
+    var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     let raw = JSON.stringify(this.tokenUser);
     var requestOptions: RequestInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
     };
 
     fetch("https://localhost:44316/api/login", requestOptions)
@@ -45,27 +63,48 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("a", result)
         let aux = localStorage.getItem('a'); //recupera dato con comillas
         let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
-        let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas
-        this.tokenUser.token = vari.token;
-        if (this.tokenUser.email =="Admin@Admin") {
+        let vari = JSON.parse(auxTxt);//crea un objeto, quitando las comillas            
+        if (this.tokenUser.email === "admin@workoshop.es") {
           this.tokenUser.rol="Admin"
         } else {
           this.tokenUser.rol="User"
         };
         
         localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
-        localStorage.setItem('token', this.tokenUser.token);
+        localStorage.setItem('token', vari.token);
         localStorage.setItem('email', this.tokenUser.email);
+        //REGOGER LA VARIABLE ROL
+        localStorage.setItem('rol', this.tokenUser.rol);
+
+        // let auxrol = localStorage.getItem('rol'); //recupera dato con comillas
+        // let rolTxt = JSON.parse(JSON.stringify(auxrol)); //para que no de problemas de tipo
+        // let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
+        // console.log(varirol);
 
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";
         } else {
           alert('Bienvenido');
-        }
-        console.log(this.tokenUser);
+         // window.location.reload();
+        };
+        let loggedUser=this.getUserMail(this.tokenUser.email);       
+        //console.log(loggedUser);              
+        
+        //localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
+        localStorage.setItem('token', vari.token);
+        
       })
-      .catch(error => console.log('error', error));
-      //mandar el usuario a la BBDD
+      .catch(error => console.log('error', error))
   };
+  getUserMail(email:string):void{
+    this.UserService.getUserMail(email).subscribe(data =>
+    {
+      this.tokenUser = data;
+      //localStorage.setItem('loggedUser', JSON.stringify(data));
+      localStorage.setItem('id', JSON.stringify(data.id));
+      localStorage.setItem('rol', JSON.stringify(data.rol));
+    })
+  }   
 };
+

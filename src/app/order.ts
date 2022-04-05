@@ -1,5 +1,4 @@
 export interface Order {
-
      id: number,
      date: Date,
      shippingDate: Date,
@@ -7,6 +6,5 @@ export interface Order {
      totalPrice: number,
      paymentState: number,
      userId: number,
-     couponId: number, 
-   
+     couponId: number   
 }

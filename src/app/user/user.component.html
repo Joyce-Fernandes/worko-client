@@ -1,14 +1,26 @@
 <main>
+    <div class="popup hideP">
+        <div>
+            <div><p id="popup-info"></p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/admin" (click)="popup()">Vale</button>
+            </div>
+        </div>
+    </div>
     <section class="fixed-width">
  
     <div class="admin-nav">
         <h2>Gestión de Ecommerce</h2>
         <button (click)="showAdminNewUser()">Añadir usuario</button>
         <button (click)="showAdminUser()">Gestionar usuarios</button>
+        <button (click)="showAdminNewProduct()">Añadir productos</button>
+        <button (click)="showAdminProducts()">Gestionar productos</button>
         <button>Gestionar pedidos</button>
     </div>
 
     <div class="admin-space">
+           
             <div id="admin-init" class="show">
                 <img src="../../assets/img/admin-workoshop.svg" alt="">
             </div>            
@@ -27,7 +39,7 @@
                     <div id="privacy-subscribe" class="privacy-policy">
                         <input type="checkbox"> <label>Acepta la <a href="">política de privacidad</a>.</label>
                     </div>
-                    <button (click)="postUser(); refresh()">Registrar usuario</button>
+                    <button (click)="postUser()">Registrar usuario</button>
                 </div>
             </div></div>
 
@@ -42,16 +54,47 @@
                 </select>
                 <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
             </div>
-                <input type="text" [(ngModel)]="user.name" placeholder="Nombre" /> 
-                <input type="text" [(ngModel)]="user.surname" placeholder="Apellido" />
-                <input type="email" [(ngModel)]="user.email" placeholder="Email" />
-                <input type="password" [(ngModel)]="user.password" placeholder="Contraseña" />
-                <input type="text" [(ngModel)]="user.adress" placeholder="Dirección" />
-                <button (click)="putUserData(userIdNum); refresh()">Modificar datos</button>
-                <button (click)="deleteUserData(userIdNum); refresh()">Eliminar usuario</button>
+                <input type="text" [(ngModel)]="us.name" placeholder="Nombre" /> 
+                <input type="text" [(ngModel)]="us.surname" placeholder="Apellido" />
+                <input type="email" [(ngModel)]="us.email" placeholder="Email" />
+                <input type="password" [(ngModel)]="us.password" placeholder="Contraseña" />
+                <input type="text" [(ngModel)]="us.adress" placeholder="Dirección" />
+                <button (click)="putUserData(userIdNum)">Modificar datos</button>
+                <button (click)="deleteUserData(userIdNum)">Eliminar usuario</button>
             </div>
-        </div>
-        
+            </div>
+
+            <div class="admin-form hide" id="admin-newproduct">
+            :)
+            </div>
+
+            <div class="admin-form hide" id="admin-product">
+                <div class="product-admin-header">
+                <select #productList (change)="getIdPr(productList.value); getDataProductId(productIdNum)">
+                    <option selected>Seleccionar producto</option>
+                    <option *ngFor="let product of  objectsPrList; let i = index" value="{{ product.id }}">
+                        {{product.name }}
+                    </option>
+                    </select>
+                    <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+                </div>
+                 <div class="form">
+                    <label>Nombre de producto:</label>
+                    <input placeholder="Nombre del Producto" [(ngModel)]="objectPr.name" type="text" >
+                    <label>Precio (€):</label>
+                    <input placeholder="Precio" [(ngModel)]="objectPr.price" type="text">
+                    <label>Stock:</label>
+                    <input placeholder="Stock" [(ngModel)]="objectPr.stock" type="text">
+                    <label>Color:</label>
+                    <input placeholder="Color" [(ngModel)]="objectPr.color" type="text">
+                    <label>Talla, medida:</label>
+                    <input placeholder="Talla" [(ngModel)]="objectPr.size" type="text">
+                    <label>Descripción:</label>
+                    <textarea [(ngModel)]="objectPr.description"></textarea>
+                    <button (click)="putProduct(productIdNum)">Modificar Producto</button>
+                    <button (click)="deleteProduct(productIdNum)">Eliminar Producto</button>
+                </div>
+            </div>
     </div>
  
 <section>

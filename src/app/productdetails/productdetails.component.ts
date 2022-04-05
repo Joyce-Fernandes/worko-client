@@ -19,17 +19,20 @@ export class ProductdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id'];
-      console.log(id);
+      //console.log(id);
       this.getDataProductId(id);
     })
     this.getCategoryData();
   }
 
+  productStock?:number;
   objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
   getDataProductId(id:number):void{
     this.ProductService.getProductId(id).subscribe(data=>
     {
       this.objectP = data;
+      this.productStock = this.objectP.stock;
+      this.calculateStock(this.productStock);
     })
   }
 
@@ -41,16 +44,32 @@ export class ProductdetailsComponent implements OnInit {
     })
   }
 
-  calculateStock(){
-  
+  calculateStock(stock:number){
+    for (var i = 1; i <= stock; i++) {
+      let option = document.getElementById('stock-select') as HTMLTableElement;
+        option.innerHTML += `
+        <option value="${i}">${i}</option>
+        `;
+    }
+  }
+
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
   }
 
   addToCart(id:string, img:string, name:string, price:string, size:string, quant:string){
     let lclStg = {
-      id: id,
+      id: id,//idProduct
       img: img,
       name: name,
-      price: price,
+      price: parseInt(price)*parseInt(quant),
       size: size,
       quant: quant}
     localStorage.setItem("Producto" + id, JSON.stringify(lclStg));

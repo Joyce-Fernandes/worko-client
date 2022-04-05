@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../cart';
 import { CartService } from '../cart.service';
+import { Order } from '../order';
+import { OrderService } from '../order.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
@@ -62,15 +64,14 @@ export class CartComponent implements OnInit {
   }
 
   takeCartItems(){
-    var values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
-    
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
-        values.push(localStorage.getItem(keys[index]));
-        let aux = JSON.parse(JSON.stringify(values[index]));
+        let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
+        console.log(aux);
         let product = JSON.parse(aux);
+        console.log(product);
         let table = document.getElementById('cart-table') as HTMLTableElement;
         table.innerHTML += `
         <tr>
@@ -88,14 +89,50 @@ export class CartComponent implements OnInit {
   }
 
   removeCart(){
-    var values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
+    // var values = [],
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
         localStorage.removeItem(keys[index]);
+        let table = document.getElementById('cart-table') as HTMLTableElement;
+        table.innerHTML = "";
       }
-      window.location.reload();
     }
   }
+
+  // purchase(){
+  //   let order: Order={
+  //     id: 0,
+  //     date: new Date(Date.now ()),
+  //     shippingDate: new Date(Date.now ()+1),
+  //     orderFinishDate: new Date(Date.now ()+3),
+  //     totalPrice: 0,
+  //     paymentState: 0,
+  //     userId: 0,
+  //     couponId: 0 };
+
+  //   let keys = Object.keys(localStorage);
+  //   let i = keys.length;
+  //   for (let index = 0; index < keys.length; index++) {
+  //     if (keys[index].includes("Producto")){
+  //       let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
+  //       console.log(aux);
+  //       let product = JSON.parse(aux);
+  //       console.log(product);
+  //       let table = document.getElementById('cart-table') as HTMLTableElement;
+  //       table.innerHTML += `
+  //       <tr>
+  //         <td><img src=${product.img}></td>
+  //         <td>${product.name}</td>
+  //         <td>${product.quant} ud.</td>
+  //         <td>${product.price}€</td>
+  //         <td>${product.size}</td>
+  //         <td></td>
+  //         <td class="cerrar"><img onclick="localStorage.removeItem('${keys[index]}'); window.location.reload();" src="../../assets/img/cerrar.svg"></td>
+  //       </tr>
+  //       `;
+  //     }
+  //   }
+  // }
 }
