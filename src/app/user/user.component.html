@@ -12,15 +12,15 @@
  
     <div class="admin-nav">
         <h2>Gestión de Ecommerce</h2>
-        <button (click)="showAdminNewUser()">Añadir usuario</button>
-        <button (click)="showAdminUser()">Gestionar usuarios</button>
-        <button (click)="showAdminNewProduct()">Añadir productos</button>
+        <button (click)="showAdminNewUser()">Añadir usuarix</button>
+        <button (click)="showAdminUser()">Gestionar usuarixs</button>
+        <button (click)="showAdminNewProduct()">Añadir producto</button>
         <button (click)="showAdminProducts()">Gestionar productos</button>
         <button>Gestionar pedidos</button>
     </div>
 
     <div class="admin-space">
-           
+
             <div id="admin-init" class="show">
                 <img src="../../assets/img/admin-workoshop.svg" alt="">
             </div>            
@@ -28,7 +28,7 @@
             <div class="admin-form hide" id="admin-newuser">
                 <div class="form">
                 <div class="user-admin-header">
-                    <h3>Registro</h3> <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+                    <h3>Añadir usuarix</h3> <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
                 </div>
                 <div class="form">
                     <input placeholder="Nombre*" [(ngModel)]="user.name" type="text" >
@@ -47,7 +47,7 @@
             <div class="form">
             <div class="user-admin-header">
                 <select #userList (change)="getId(userList.value); getUserIdData(userIdNum)">
-                    <option selected>Seleccionar usuario</option>
+                    <option selected>Seleccionar usuarix</option>
                     <option *ngFor="let user of usr; let i = index" value="{{ user.id }}">
                     {{ user.name }}
                     </option>
@@ -62,10 +62,6 @@
                 <button (click)="putUserData(userIdNum)">Modificar datos</button>
                 <button (click)="deleteUserData(userIdNum)">Eliminar usuario</button>
             </div>
-            </div>
-
-            <div class="admin-form hide" id="admin-newproduct">
-            :)
             </div>
 
             <div class="admin-form hide" id="admin-product">
@@ -94,6 +90,36 @@
                     <button (click)="putProduct(productIdNum)">Modificar Producto</button>
                     <button (click)="deleteProduct(productIdNum)">Eliminar Producto</button>
                 </div>
+            </div>
+
+            <div class="admin-form hide" id="admin-newproduct">
+                <div class="user-admin-header">
+                    <h3>Añadir producto</h3> <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+                </div>
+                <div class="form">
+                        <label>Nombre de producto:</label>
+                        <input placeholder="Nombre del Producto" [(ngModel)]="objectPr.name" type="text" >
+                        <label>Categoría:</label>
+                        <input placeholder="Categoría" [(ngModel)]="objectPr.categoryId" type="text" >
+                        <label>Precio (€):</label>
+                        <input placeholder="Precio" [(ngModel)]="pr.price" type="text">
+                        <label>Stock:</label>
+                        <input placeholder="Stock" [(ngModel)]="pr.stock" type="text">
+                        <label>Color:</label>
+                        <input placeholder="Color" [(ngModel)]="pr.color" type="text">
+                        <label>Talla, medida:</label>
+                        <input placeholder="Talla" [(ngModel)]="pr.size" type="text">
+                        <label>Foto de producto:</label>
+
+                        <div class="foto-product">
+                            <input id="foto" placeholder="Foto" [(ngModel)]="pr.featuredPhoto" type="text">
+                            <input id="file-name" (change)="getImageRoute()" type="file" accept="image/*">
+                        </div>
+                        
+                        <label>Descripción:</label>
+                        <textarea [(ngModel)]="objectPr.description"></textarea>
+                        <button (click)="postProduct()">Añadir Producto</button>
+                    </div>
             </div>
     </div>
  

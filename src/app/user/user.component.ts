@@ -67,6 +67,17 @@ export class UserComponent implements OnInit {
     categoryId: 1,
     featuredPhoto: '',
   };
+  pr: Product = {
+    id:0,
+    name: '',
+    price: 0,
+    stock: 0,
+    description: '',
+    color: '',
+    size: '',
+    categoryId: 0,
+    featuredPhoto: '',
+  };
 
   getDataProducts(): void {
     this.ProductService.getProduct().subscribe((data) => {
@@ -76,6 +87,20 @@ export class UserComponent implements OnInit {
 
   productIdNum:number = 0;
 
+  getImageRoute(){
+    //var fullPath = document.getElementById('upload').value;
+    let file = document.getElementById('file-name') as HTMLInputElement;
+    let fullPath = file.value;
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+            filename = filename.substring(1);
+        }
+        let foto = document.getElementById('foto') as HTMLInputElement;
+        foto.value= `../../assets/img/products/${filename}`;
+    }
+  }
   getDataProductId(id: number): void {
     this.ProductService.getProductId(id).subscribe((data) => {
       this.objectPr = data;
@@ -225,7 +250,7 @@ export class UserComponent implements OnInit {
   }
 
   postProduct(): void {
-    this.ProductService.postProduct(this.objectPr).subscribe();
+    this.ProductService.postProduct(this.pr).subscribe();
   }
 
   putProduct(id: number): void {
