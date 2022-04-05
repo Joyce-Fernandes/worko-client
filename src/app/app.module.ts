@@ -21,6 +21,7 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { ContactComponent } from './contact/contact.component'; 
 import { AboutComponent } from './about/about.component';
 import { UserdetailsComponent } from './userdetails/userdetails.component';
+import { AnadirComponent } from './anadir/anadir.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
@@ -28,13 +29,14 @@ const routes: Routes = [
   {path: 'product/:id', component: ProductdetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: UserComponent},
+  {path: 'user/:id', component: UserdetailsComponent},
   {path: 'coupon', component: CouponComponent},
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
   {path: 'category', component: CategoryComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'userdetails', component: UserdetailsComponent},
+  {path: 'anadir', component: AnadirComponent},
   {path: '**', component: NotfoundComponent}
 ]
 
@@ -58,6 +60,7 @@ const routes: Routes = [
     AboutComponent,
     ContactComponent,
     UserdetailsComponent,
+    AnadirComponent
 
   ],
   imports: [

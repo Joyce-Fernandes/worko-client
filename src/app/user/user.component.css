@@ -43,6 +43,7 @@ img{
     flex-direction: column;
 }
 
+.product-admin-header,
 .user-admin-header{
     display: flex;
     flex-direction: row;

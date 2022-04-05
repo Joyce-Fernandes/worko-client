@@ -14,10 +14,13 @@
         <h2>Gestión de Ecommerce</h2>
         <button (click)="showAdminNewUser()">Añadir usuario</button>
         <button (click)="showAdminUser()">Gestionar usuarios</button>
+        <button (click)="showAdminNewProduct()">Añadir productos</button>
+        <button (click)="showAdminProducts()">Gestionar productos</button>
         <button>Gestionar pedidos</button>
     </div>
 
     <div class="admin-space">
+           
             <div id="admin-init" class="show">
                 <img src="../../assets/img/admin-workoshop.svg" alt="">
             </div>            
@@ -59,8 +62,39 @@
                 <button (click)="putUserData(userIdNum)">Modificar datos</button>
                 <button (click)="deleteUserData(userIdNum)">Eliminar usuario</button>
             </div>
-        </div>
-        
+            </div>
+
+            <div class="admin-form hide" id="admin-newproduct">
+            :)
+            </div>
+
+            <div class="admin-form hide" id="admin-product">
+                <div class="product-admin-header">
+                <select #productList (change)="getIdPr(productList.value); getDataProductId(productIdNum)">
+                    <option selected>Seleccionar producto</option>
+                    <option *ngFor="let product of  objectsPrList; let i = index" value="{{ product.id }}">
+                        {{product.name }}
+                    </option>
+                    </select>
+                    <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
+                </div>
+                 <div class="form">
+                    <label>Nombre de producto:</label>
+                    <input placeholder="Nombre del Producto" [(ngModel)]="objectPr.name" type="text" >
+                    <label>Precio (€):</label>
+                    <input placeholder="Precio" [(ngModel)]="objectPr.price" type="text">
+                    <label>Stock:</label>
+                    <input placeholder="Stock" [(ngModel)]="objectPr.stock" type="text">
+                    <label>Color:</label>
+                    <input placeholder="Color" [(ngModel)]="objectPr.color" type="text">
+                    <label>Talla, medida:</label>
+                    <input placeholder="Talla" [(ngModel)]="objectPr.size" type="text">
+                    <label>Descripción:</label>
+                    <textarea [(ngModel)]="objectPr.description"></textarea>
+                    <button (click)="putProduct(productIdNum)">Modificar Producto</button>
+                    <button (click)="deleteProduct(productIdNum)">Eliminar Producto</button>
+                </div>
+            </div>
     </div>
  
 <section>

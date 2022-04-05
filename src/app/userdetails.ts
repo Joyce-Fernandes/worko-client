@@ -5,4 +5,5 @@ export interface Userdetails {
     email: string,
     password:string,
     adress:string,
+    rol: string
 }
