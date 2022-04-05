@@ -73,6 +73,10 @@ h3{
     flex-direction: row;
 }
 
+.full-width-select{
+    width: 100%;
+}
+
 .foto-product input[type="text"]{
     margin-right: 1em;
 }

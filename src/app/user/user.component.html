@@ -79,6 +79,12 @@
                     <input placeholder="Nombre del Producto" [(ngModel)]="objectPr.name" type="text" >
                     <label>Precio (€):</label>
                     <input placeholder="Precio" [(ngModel)]="objectPr.price" type="text">
+                    <label>Categoría:</label>
+                    <select #categoryList class="full-width-select"[(ngModel)]="objectPr.categoryId">
+                        <option *ngFor="let category of objectsCatList; let i = index" value="{{ category.id }}">
+                            {{category.name }}
+                        </option>
+                    </select>
                     <label>Stock:</label>
                     <input placeholder="Stock" [(ngModel)]="objectPr.stock" type="text">
                     <label>Color:</label>
@@ -96,11 +102,18 @@
                 <div class="user-admin-header">
                     <h3>Añadir producto</h3> <div id="close-user" (click)="showDefault()"><img src="../../assets/img/cerrar.svg"></div>
                 </div>
+
+
                 <div class="form">
                         <label>Nombre de producto:</label>
-                        <input placeholder="Nombre del Producto" [(ngModel)]="objectPr.name" type="text" >
+                        <input placeholder="Nombre del Producto" [(ngModel)]="pr.name" type="text" >
                         <label>Categoría:</label>
-                        <input placeholder="Categoría" [(ngModel)]="objectPr.categoryId" type="text" >
+                            <select #categoryList class="full-width-select"[(ngModel)]="pr.categoryId">
+                                <option selected>Seleccionar categoría</option>
+                                <option *ngFor="let category of objectsCatList; let i = index" value="{{ category.id }}">
+                                    {{category.name }}
+                                </option>
+                            </select>
                         <label>Precio (€):</label>
                         <input placeholder="Precio" [(ngModel)]="pr.price" type="text">
                         <label>Stock:</label>
@@ -112,13 +125,13 @@
                         <label>Foto de producto:</label>
 
                         <div class="foto-product">
-                            <input id="foto" placeholder="Foto" [(ngModel)]="pr.featuredPhoto" type="text">
+                            <input id="foto" type="text" [(ngModel)]="pr.featuredPhoto" >
                             <input id="file-name" (change)="getImageRoute()" type="file" accept="image/*">
                         </div>
-                        
+
                         <label>Descripción:</label>
-                        <textarea [(ngModel)]="objectPr.description"></textarea>
-                        <button (click)="postProduct()">Añadir Producto</button>
+                        <textarea [(ngModel)]="pr.description"></textarea>
+                        <button (click)="postProductData()">Añadir Producto</button>
                     </div>
             </div>
     </div>

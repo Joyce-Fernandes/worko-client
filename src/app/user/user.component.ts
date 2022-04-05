@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductService } from '../product.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Product } from '../product';
+import { ImageService } from '../image.service';
+import { CategoryService } from '../category.service';
+import { Category } from '../category';
 
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-user',
@@ -13,11 +19,15 @@ import { Product } from '../product';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public UserService: UserService, public ProductService: ProductService) { }
+  
+  selectedFile: ImageSnippet | undefined;
+
+  constructor(public UserService: UserService, public ProductService: ProductService, public CategoryService:CategoryService, public ImageService:ImageService) { }
 
   ngOnInit(): void {
     this.getUserData(); 
     this.getDataProducts();
+    this.getDataCategories();
   }
   
   usr?: User[];
@@ -56,18 +66,9 @@ export class UserComponent implements OnInit {
   }
 
   objectsPrList?: Product[];
+  photo: string = "";
+
   objectPr: Product = {
-    id:0,
-    name: '',
-    price: 0,
-    stock: 0,
-    description: '',
-    color: '',
-    size: '',
-    categoryId: 1,
-    featuredPhoto: '',
-  };
-  pr: Product = {
     id:0,
     name: '',
     price: 0,
@@ -79,16 +80,41 @@ export class UserComponent implements OnInit {
     featuredPhoto: '',
   };
 
+  pr: Product = {
+    id:0,
+    name: '',
+    price: 0,
+    stock: 0,
+    description: '',
+    color: '',
+    size: '',
+    categoryId: 1,
+    featuredPhoto: '',
+  };
+
+  objectsCatList?: Category[];
+
+  objectCat: Category = {
+    id:0,
+    name: ''
+  };
+
   getDataProducts(): void {
     this.ProductService.getProduct().subscribe((data) => {
       this.objectsPrList = data;
     });
   }
 
+  getDataCategories(): void {
+    this.CategoryService.getCategory().subscribe((data) => {
+      this.objectsCatList = data;
+    });
+  }
+
   productIdNum:number = 0;
+  categoryIdNum:number = 0;
 
   getImageRoute(){
-    //var fullPath = document.getElementById('upload').value;
     let file = document.getElementById('file-name') as HTMLInputElement;
     let fullPath = file.value;
     if (fullPath) {
@@ -98,18 +124,51 @@ export class UserComponent implements OnInit {
             filename = filename.substring(1);
         }
         let foto = document.getElementById('foto') as HTMLInputElement;
-        foto.value= `../../assets/img/products/${filename}`;
+        foto.value = `../../assets/img/products/${filename}`;
+        this.photo = `../../assets/img/products/${filename}`;
     }
   }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.ImageService.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+        
+        },
+        (err) => {
+        
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
+
   getDataProductId(id: number): void {
     this.ProductService.getProductId(id).subscribe((data) => {
       this.objectPr = data;
     });
   }
 
+  getDataCategoryId(id: number): void {
+    this.CategoryService.getCategoryId(id).subscribe((data) => {
+      this.objectCat = data;
+    });
+  }
+
   getIdPr(productId:string){
     this.productIdNum = parseInt(productId);
     return this.productIdNum;
+  }
+
+  getCatId(categoryId:string){
+    this.categoryIdNum = parseInt(categoryId);
+    return this.categoryIdNum;
   }
 
   showDefault(){
@@ -232,24 +291,14 @@ export class UserComponent implements OnInit {
     alert("¡Usuarix modificado con éxito!");
   }
 
-  popup() {
-    const popup = document.querySelector(".popup"); 
-    if(popup?.classList.contains("hideP")){
-      popup?.classList.add("showP");
-      popup?.classList.remove("hideP");
-    }else{
-      popup?.classList.add("hideP");
-      popup?.classList.remove("showP");
-    }
-  }
-
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
     let infoPopup = document.querySelector("#popup-info") as HTMLElement;
     infoPopup.innerHTML = "¡Usuario/a eliminado/a con éxito!"
   }
 
-  postProduct(): void {
+  postProductData(): void {
+    this.pr.featuredPhoto = this.photo;
     this.ProductService.postProduct(this.pr).subscribe();
   }
 
@@ -259,8 +308,20 @@ export class UserComponent implements OnInit {
     });
 
   }
+
   deleteProduct(id: number): void {
     this.ProductService.deleteProduct(id).subscribe();
+  }
+
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
   }
 
   refresh(){
