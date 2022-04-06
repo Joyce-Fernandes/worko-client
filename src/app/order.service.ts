@@ -31,13 +31,15 @@ export class OrderService {
     );
   }
 
-  updateOrder(Order: Order): Observable<Order> {
+  updateOrder(id:number, Order: Order): Observable<Order> {
     return this.http.put<Order>
-    ('https://localhost:44316/api/orders', 
-    Order, this.httpOptions)
+    ('https://localhost:44316/api/orders/'+id, Order, this.httpOptions)
   }
+
+  
+
   deleteOrder(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/orders'+id; 
+    const url = 'https://localhost:44316/api/orders/'+id; 
     return this.http.delete(url, this.httpOptions)
   }
 }
