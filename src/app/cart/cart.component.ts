@@ -77,7 +77,7 @@ export class CartComponent implements OnInit {
   }
 
   takeCartItems(){
-    let totalPrice: number =0;
+    let totalPrice = 0;
     let keys = Object.keys(localStorage);
     let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
@@ -99,9 +99,7 @@ export class CartComponent implements OnInit {
         `;
         totalPrice += product.price
         let price = document.getElementById('total-price') as HTMLElement;
-        price.innerHTML += `
-          ${totalPrice}
-        `;
+        price.innerHTML = `<p>PVP total del pedido: ${totalPrice} </p>`;
       }
     }
   }
