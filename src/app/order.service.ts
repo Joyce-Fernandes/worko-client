@@ -19,7 +19,10 @@ export class OrderService {
     ('https://localhost:44316/api/orders');
 
   }
-
+  getOrderUserDate(id:number, date:string):Observable<Order>{
+    return this.http.get<Order>(`https://localhost:44316/api/orders/date/${id}?Date=${date}`);
+  };
+  
   postOrder(Order: Order): Observable<Order> {
   return this.http.post<Order>(
     'https://localhost:44316/api/orders',
@@ -28,15 +31,15 @@ export class OrderService {
     );
   }
 
-updateOrder(Order: Order): Observable<Order> {
+  updateOrder(id:number, Order: Order): Observable<Order> {
     return this.http.put<Order>
-    ('https://localhost:44316/api/orders', 
-    Order, this.httpOptions)
+    ('https://localhost:44316/api/orders/'+id, Order, this.httpOptions)
   }
-  deleteOrder(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/orders'+id; 
-    return this.http.delete(url, this.httpOptions)
-     
-}
-}
 
+  
+
+  deleteOrder(id: number): Observable<unknown> {
+    const url = 'https://localhost:44316/api/orders/'+id; 
+    return this.http.delete(url, this.httpOptions)
+  }
+}

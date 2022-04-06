@@ -61,7 +61,7 @@ export class UserComponent implements OnInit {
   getUserData(): void {
       this.UserService.getUsers().subscribe((data) => {
         this.usr = data;
-        console.log(this.usr);
+        //console.log(this.usr);
       });
   }
 
@@ -248,7 +248,6 @@ export class UserComponent implements OnInit {
 
   postUser(): void {
     this.UserService.postUser(this.user).subscribe(data =>{
-      // alert("¡Usuarix añadido con éxito!");
       let infoPopup = document.querySelector("#popup-info") as HTMLElement;
       infoPopup.innerHTML = "¡Usuario/a registrado/a con éxito!"
       this.refresh();
@@ -306,4 +305,5 @@ export class UserComponent implements OnInit {
   refresh(){
     window.location.reload();
   }
+   
 }
