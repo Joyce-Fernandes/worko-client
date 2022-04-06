@@ -129,26 +129,6 @@ export class UserComponent implements OnInit {
     }
   }
 
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', (event: any) => {
-
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-
-      this.ImageService.uploadImage(this.selectedFile.file).subscribe(
-        (res) => {
-        
-        },
-        (err) => {
-        
-        })
-    });
-
-    reader.readAsDataURL(file);
-  }
-
   getDataProductId(id: number): void {
     this.ProductService.getProductId(id).subscribe((data) => {
       this.objectPr = data;
@@ -229,7 +209,6 @@ export class UserComponent implements OnInit {
   }
 
   showAdminNewUser(){
-    
     const adminInit = document.getElementById('admin-init');
     const adminUser = document.getElementById('admin-user');
     const adminNewUser = document.getElementById('admin-newuser');

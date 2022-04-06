@@ -14,4 +14,8 @@ export class ImageService {
     formData.append('image', image);
     return this.http.post('/../../assets/img/products/', formData);
   }
+
+  wannaMyPhoto(selectedFile:File): Observable<any> {
+    return this.http.post('/src/assets/img/products', selectedFile);
+  }
 }
