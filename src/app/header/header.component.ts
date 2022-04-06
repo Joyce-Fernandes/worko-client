@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
     this.userRol();
   }
 
+  userId = JSON.parse(JSON.stringify(localStorage.getItem('userId')));
   rolUser = JSON.parse(JSON.stringify(localStorage.getItem('rol')));
   userRol(){
     const userAdmin = document.querySelector('#admin');
