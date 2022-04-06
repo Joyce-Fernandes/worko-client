@@ -1,19 +1,46 @@
 <main>
+    <!-- <div class="popup hideP">
+        <div>
+            <div><p id="popup-info"></p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/" (click)="popup()">Ir al inicio</button>
+            </div>
+        </div>
+    </div> -->
+
     <section class="fixed-width">
 
-        <h2>Usuario</h2>
+        <div class="user-nav">
+            <h2>¡Hola {{ user.name }}!</h2>
+            <button (click)="showUserProfile()">Mi perfil</button>
+            <button (click)="showUserOrder()">Mis pedidos</button>
+        </div>
 
-        
-
-            <div class="form">
-                <input placeholder="Nombre*" [(ngModel)]="user.name" type="text"/>
-                <input placeholder="Apellido*"[(ngModel)]="user.surname" type="text" />
-                <input placeholder="Email*"[(ngModel)]="user.email" type="text"/>
-                <input placeholder="Password*"[(ngModel)]="user.password" type="password"/>
-                <input placeholder="Address*"[(ngModel)]="user.adress" type="text"/>
+        <div class="user-space">
+            <div class="user-form" id="user-details">
+                <h2>Mi perfil</h2>
+                    <div class="form">
+                        <input placeholder="Nombre*" [(ngModel)]="user.name" type="text"/>
+                        <input placeholder="Apellido*"[(ngModel)]="user.surname" type="text" />
+                        <input placeholder="Email*"[(ngModel)]="user.email" type="text"/>
+                        <input placeholder="Password*"[(ngModel)]="user.password" type="password"/>
+                        <input placeholder="Address*"[(ngModel)]="user.adress" type="text"/>
+                    </div>
+                <button (click)="putUserData(user.id); refresh();">Modificar datos</button>
+                <button (click)="deleteUserData(user.id);">Borrar cuenta</button>
             </div>
-        
-        <button (click)="putUserData(user.id); refresh();">Modificar datos</button>
-
+            <div class="user-form hide" id="user-orders">
+                <h2>Mis pedidos</h2>
+                    <div *ngFor="let order of userinfo.orders; let i = index">
+                        <h3>Pedido #WS{{order.id}}</h3>
+                        <p>Fecha de pedido: {{order.date}}</p>
+                        <p>Fecha de envío: {{order.shippingDate}}</p>
+                        <p *ngIf="order.orderFinishDate">Fin de pedido: {{order.orderFinishDate}}</p>
+                        <p>Precio total: {{order.totalPrice}}€</p>
+                        <br>
+                    </div>
+             </div>
+        </div>
     </section>
 </main>

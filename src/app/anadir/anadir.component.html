@@ -1,10 +1,13 @@
 <main>    
 <section class="fixed-width">
 
+    <input style="display: none" type="file" (change)="onFileUpload($event)" #selectFile>
+    <button (click)="selectFile.click()">Select File</button>
+    <button (click)="postPhoto()">Upload</button>
 
    <div>
         <select #productList (change)="getId(productList.value); getDataProductId(productIdNum)">
-            <option selected>Seleccionar producto</option>
+            <option selected>Seleccionar producto</option>s
             <option *ngFor="let product of  objectsPrList; let i = index" value="{{ product.id }}">
             {{product.name }}
             </option>
@@ -22,8 +25,8 @@
         <button (click)="deleteProduct(productIdNum)">Eliminar Producto</button>
     </div> 
 
-
-<!-- <div class="admin-form hide" id="admin-user">
+<!-- 
+<div class="admin-form hide" id="admin-user">
     <div class="form">
     <div class="user-admin-header">
         <select #userList (change)="getId(userList.value); getUserIdData(userIdNum)">

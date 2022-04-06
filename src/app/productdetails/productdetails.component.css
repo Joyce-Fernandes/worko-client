@@ -47,11 +47,10 @@ article img{
 }
 
 select{
-    padding: 0 0.8em 0 1em;
+    padding: 0 0.7em 0 1em;
     font-size: 0.9em;
     width: auto;
 }
-
 hr{
     width: 4em;
     margin: 1em 0;
