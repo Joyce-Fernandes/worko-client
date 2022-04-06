@@ -10,7 +10,7 @@ export class ProductService {
   
   constructor(public http: HttpClient) { }
   httpOptions: Object = {
-    headers: new HttpHeaders({'Content-Type': 'applications/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
 

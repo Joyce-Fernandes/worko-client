@@ -90,9 +90,34 @@ hr{
 }
 
 @media (max-width: 834px) {
+
+.footer-contact{
+  margin-top: 0.5em;
+  width: 100%;
   
 }
+footer{ 
+  text-align: center;
+  flex-direction: row;
+  width: 100%; 
+ 
+}
+.footer-links {
+  display:inline-block;
+  
+}
+.arrow-button-contact{
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 2em;
+  width: 100%;
+  margin-right: 5.5em;
+  
 
+}
 @media (max-width: 500px) {
+
+}
+
 
 }
