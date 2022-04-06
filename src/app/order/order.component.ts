@@ -45,12 +45,10 @@ export class OrderComponent implements OnInit {
     this.OrderService.postOrder(this.objeto).subscribe();
   }
 
-  putOrder(): void {
-    this.OrderService.updateOrder(this.objeto).subscribe((Order) => {
-    this.objeto = Order;
-    console.log(this.objetos);
-    });
-  }
+  putOrder(orderId: number, order: Order): void {
+    this.OrderService.updateOrder(orderId, order).subscribe();
+}
+
 
   deleteOrder(id:number): void {
     this.OrderService.deleteOrder(id).subscribe();

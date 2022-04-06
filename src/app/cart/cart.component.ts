@@ -41,12 +41,10 @@ export class CartComponent implements OnInit {
     this.CartService.getCart().subscribe(
       (Cart) => {
     this.objetos = Cart;
-    console.log(this.objetos);
     });
   }
 
   postCart(): void {
-    console.log(this.objeto);
     this.CartService.postCart(this.objeto).subscribe();
   }
 
@@ -54,7 +52,6 @@ export class CartComponent implements OnInit {
     this.CartService.updateCart(this.objeto).subscribe(
       (Cart) => {
     this.objeto = Cart;
-    console.log(this.objetos);
     });
   }
 
@@ -118,7 +115,7 @@ export class CartComponent implements OnInit {
   }
 
   purchase(){
-    //debugger
+  
     let userId=JSON.parse(JSON.stringify(localStorage.getItem("userId")));
     let dateOrder= this.order.date.toISOString();
     let keepDate =dateOrder;
@@ -126,63 +123,48 @@ export class CartComponent implements OnInit {
     //console.log(this.order.date);
     //crear un pedido con userID y Date, y mandarlo a la bbdd
     this.postOrder(userId, keepDate); //envía el pedido a la BBDD y recoge ese mismo con el id adjudicado por la BBDD
-    //console.log(this.order);
     
-    let keys = Object.keys(localStorage);
-    let i = keys.length;
-    for (let index = 0; index < keys.length; index++) {
-      if (keys[index].includes("Producto")){
-        let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
-        console.log(aux);
-        let product = JSON.parse(aux);
-        console.log(product);
-        console.log(product.id);
-
-        let auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
-        //console.log(auxOrder);
-        let order = JSON.parse(auxOrder);
-        //console.log(order);
-        //console.log(order.id);
-        
-        //para cada producto crear un CART, y mandarlo a la bbdd
-        this.objeto ={
-          id: 0,
-          orderId: order.id,
-          productId:product.id};
-
-        // y sumar el precio de cada producto al pedido
-        auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
-        //console.log(auxOrder);
-        order = JSON.parse(auxOrder);
-        order.totalPrice += product.price;
-        localStorage.setItem('order', JSON.stringify(order))
-        this.putOrder() 
-
-        //console.log(this.objeto)
-          this.postCart()
-      }
-    }
-    
-    console.log(this.order);
-    
-      
   }
     postOrder(usId: number, keepDate: string): void {
       //console.log(this.order);
+      
       this.OrderService.postOrder(this.order).subscribe(data =>{
         this.getOrderUserDate(usId, keepDate);
       });
     }
+
     getOrderUserDate(userId:number, date: string):void{
       this.OrderService.getOrderUserDate(userId, date).subscribe(data=>
       {
         this.order = data;
-        localStorage.setItem('order', JSON.stringify(data));        
+        localStorage.setItem('order', JSON.stringify(data));
+        let keys = Object.keys(localStorage);
+        let i = keys.length;
+        for (let index = 0; index < keys.length; index++) {
+          if (keys[index].includes("Producto")){
+            let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
+            let product = JSON.parse(aux);
+            let auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
+            let order = JSON.parse(auxOrder);
+            //para cada producto crear un CART, y mandarlo a la bbdd
+            this.objeto ={
+              id: 0,
+              orderId: order.id,
+              productId:product.id};
+              // y sumar el precio de cada producto al pedido
+            auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
+            order = JSON.parse(auxOrder);
+            order.totalPrice += product.price;
+            localStorage.setItem('order', JSON.stringify(order))
+            this.putOrder(order.id, order)
+              this.postCart();
+              localStorage.removeItem("order")
+              localStorage.removeItem("Product*")
+          }
+        }        
       });
     };
-    putOrder(): void {
-      this.OrderService.updateOrder(this.order).subscribe((Order) => {
-      this.order = Order;
-      });
+    putOrder(orderId: number, order: Order): void {
+            this.OrderService.updateOrder(orderId, order).subscribe();
     }
   }
