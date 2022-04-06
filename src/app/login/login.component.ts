@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
       this.user = data;
       //localStorage.setItem('loggedUser', JSON.stringify(data));
       localStorage.setItem('userId', JSON.stringify(data.id));
-      localStorage.setItem('rol', JSON.stringify(data.rol));
+      // localStorage.setItem('rol', JSON.stringify(data.rol));
     })
   } 
 };
