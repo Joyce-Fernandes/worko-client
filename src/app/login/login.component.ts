@@ -76,24 +76,22 @@ export class LoginComponent implements OnInit {
         //REGOGER LA VARIABLE ROL
         localStorage.setItem('rol', this.tokenUser.rol);
 
-        // let auxrol = localStorage.getItem('rol'); //recupera dato con comillas
-        // let rolTxt = JSON.parse(JSON.stringify(auxrol)); //para que no de problemas de tipo
-        // let varirol = JSON.parse(rolTxt);//crea un objeto, quitando las comillas
-        // console.log(varirol);
-
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";
+          localStorage.removeItem('tokenUser');    
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
         } else {
           alert('Bienvenido');
           window.location.href=('http://localhost:4200');
          // window.location.reload();
         };
-        let loggedUser=this.getUserMail(this.tokenUser.email);       
-        //console.log(loggedUser);              
-        
-        //localStorage.setItem('tokenUser', JSON.stringify(this.tokenUser));    
+        let loggedUser= this.getUserMail(this.tokenUser.email);       
+          
         localStorage.setItem('token', vari.token);
+        localStorage.removeItem('tokenUser');
+        localStorage.removeItem('a');
         
       })
       .catch(error => console.log('error', error))
@@ -101,11 +99,11 @@ export class LoginComponent implements OnInit {
   getUserMail(email:string):void{
     this.UserService.getUserMail(email).subscribe(data =>
     {
-      this.tokenUser = data;
+      this.user = data;
       //localStorage.setItem('loggedUser', JSON.stringify(data));
-      localStorage.setItem('id', JSON.stringify(data.id));
+      localStorage.setItem('userId', JSON.stringify(data.id));
       localStorage.setItem('rol', JSON.stringify(data.rol));
     })
-  }   
+  } 
 };
 
