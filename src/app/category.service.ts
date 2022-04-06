@@ -28,7 +28,11 @@ export class CategoryService {
     );
   }
 
-updateCategory(Category: Category): Observable<Category> {
+  getCategoryId(id:number):Observable<Category>{
+    return this.http.get<Category>('https://localhost:44316/api/categories/' + id);
+  };
+
+  putCategory(Category: Category): Observable<Category> {
     return this.http.put<Category>
     ('https://localhost:44316/api/categories', 
     Category, this.httpOptions)

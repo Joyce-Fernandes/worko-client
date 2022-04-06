@@ -33,7 +33,6 @@ export class UserdetailsService {
   deleteUserdetails(id: number): Observable<unknown> {
     const url = 'https://localhost:44316/api/users'+id; 
     return this.http.delete(url, this.httpOptions)
-     
 }
 }
 

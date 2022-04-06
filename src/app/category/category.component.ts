@@ -32,7 +32,7 @@ export class CategoryComponent implements OnInit {
   }
 
   putCategory(): void {
-    this.CategoryService.updateCategory(this.ca).subscribe(
+    this.CategoryService.putCategory(this.ca).subscribe(
       (Category) => {
     this.ca = Category;
     console.log(this.ca);

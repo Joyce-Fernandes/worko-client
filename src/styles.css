@@ -215,7 +215,8 @@ textarea {
 }
 
 /* BUTTONS */
-
+input[type="file"]::file-selector-button,
+input[type="button"],
 button {
     display: inline-block;
     transition: background-color 0.5s;

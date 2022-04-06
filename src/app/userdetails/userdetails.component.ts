@@ -3,6 +3,9 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { UserinfoService } from '../userinfo.service';
+import { Userdetails } from '../userdetails';
+import { Userinfo } from '../userinfo';
 
 @Component({
   selector: 'app-userdetails',
@@ -10,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./userdetails.component.css'],
 })
 export class UserdetailsComponent implements OnInit {
-  constructor(public UserService: UserService, public route: ActivatedRoute) { }
+  constructor(public UserService: UserService, public route: ActivatedRoute, public UserinfoService: UserinfoService) { }
 
   public routeSub?:Subscription;
 
@@ -18,6 +21,7 @@ export class UserdetailsComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id'];
       this.getUserIdData(id);
+      this.getUserIdInfo(id);
     })
   }
   user: User={
@@ -30,14 +34,35 @@ export class UserdetailsComponent implements OnInit {
     rol: ""
   }
 
+  userinfo: Userinfo={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "",
+    orders:[]
+  }
+
+  order:[] = [];
+
   getUserIdData(id:number):void{
     this.UserService.getUserId(id).subscribe(data =>
     {
       this.user = data;
     })
   }
-  
-  /* Necesitamos la localstorage con el rol para hacer el PUT */
+  getUserIdInfo(id:number):void{
+    this.UserinfoService.getUserId(id).subscribe(data =>
+    {
+      this.userinfo = data;
+      console.log(this.userinfo);
+      // this.order = this.userinfo.order;
+      // console.log(this.order);
+    })
+  }
+
   putUserData(id:number): void {
     this.UserService.putUser(id, this.user).subscribe((user) => {
       this.user = user;
@@ -47,5 +72,45 @@ export class UserdetailsComponent implements OnInit {
   refresh(){
     window.location.reload();
     alert("Usuarix modificado con éxito.");
+  }
+
+  showUserOrder(){   
+    const userProfile= document.getElementById('user-details');
+    const userOrders = document.getElementById('user-orders');
+    userProfile?.classList.add('hide');
+    userProfile?.classList.remove('show');
+    userOrders?.classList.add('show');
+    userOrders?.classList.remove('hide');
+  }
+
+  deleteUserData(id: number): void {
+    this.UserService.deleteUser(id).subscribe();
+    alert("¡Agur! Te echaremos de menos :(");
+    localStorage.removeItem('a');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenUser');
+    window.location.href=('http://localhost:4200');
+  }
+
+  // popup() {
+  //   const popup = document.querySelector(".popup"); 
+  //   if(popup?.classList.contains("hideP")){
+  //     popup?.classList.add("showP");
+  //     popup?.classList.remove("hideP");
+  //   }else{
+  //     popup?.classList.add("hideP");
+  //     popup?.classList.remove("showP");
+  //   }
+  // }
+
+  showUserProfile(){   
+    const userProfile= document.getElementById('user-details');
+    const userOrders = document.getElementById('user-orders');
+    userProfile?.classList.add('show');
+    userProfile?.classList.remove('hide');
+    userOrders?.classList.add('hide');
+    userOrders?.classList.remove('show');
   }
 }
