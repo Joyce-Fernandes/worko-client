@@ -107,4 +107,7 @@ export class LoginComponent implements OnInit {
     })
   } 
 };
-
+//! Critical comment
+//* Highlighted comment
+// TODO: TODO Comment
+// normal comment

@@ -77,7 +77,7 @@ export class CartComponent implements OnInit {
   }
 
   takeCartItems(){
-   
+    let totalPrice: number =0;
     let keys = Object.keys(localStorage);
     let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
@@ -96,6 +96,11 @@ export class CartComponent implements OnInit {
           <td></td>
           <td class="cerrar"><img onclick="localStorage.removeItem('${keys[index]}'); window.location.reload();" src="../../assets/img/cerrar.svg"></td>
         </tr>
+        `;
+        totalPrice += product.price
+        let price = document.getElementById('total-price') as HTMLElement;
+        price.innerHTML += `
+          ${totalPrice}
         `;
       }
     }
@@ -158,8 +163,8 @@ export class CartComponent implements OnInit {
             localStorage.setItem('order', JSON.stringify(order))
             this.putOrder(order.id, order)
               this.postCart();
-              localStorage.removeItem("order")
-              localStorage.removeItem("Product*")
+              localStorage.removeItem("order");
+              this.removeCart();
           }
         }        
       });
