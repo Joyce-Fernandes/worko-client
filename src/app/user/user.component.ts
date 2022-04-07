@@ -7,6 +7,8 @@ import { Product } from '../product';
 import { ImageService } from '../image.service';
 import { CategoryService } from '../category.service';
 import { Category } from '../category';
+import { CouponService } from '../coupon.service';
+import { Coupon } from '../coupon';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -22,12 +24,13 @@ export class UserComponent implements OnInit {
   
   selectedFile: ImageSnippet | undefined;
 
-  constructor(public UserService: UserService, public ProductService: ProductService, public CategoryService:CategoryService, public ImageService:ImageService) { }
+  constructor(public UserService: UserService, public ProductService: ProductService, public CategoryService:CategoryService, public ImageService:ImageService, public CouponService:CouponService) { }
 
   ngOnInit(): void {
     this.getUserData(); 
     this.getDataProducts();
     this.getDataCategories();
+    this.getCoupon();
   }
   
   usr?: User[];
@@ -157,7 +160,10 @@ export class UserComponent implements OnInit {
     const adminNewUser = document.getElementById('admin-newuser');
     const adminProduct = document.getElementById('admin-product');
     const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
 
+    adminCoupon?.classList.add('hide');
+    adminCoupon?.classList.remove('show');
     adminProduct?.classList.add('hide');
     adminProduct?.classList.remove('show');
     adminUser?.classList.remove('show');
@@ -170,13 +176,38 @@ export class UserComponent implements OnInit {
     adminNewProduct?.classList.add('hide');
   }
 
+  showAdminCoupon(){
+    const adminInit = document.getElementById('admin-init');
+    const adminUser = document.getElementById('admin-user');
+    const adminNewUser = document.getElementById('admin-newuser');
+    const adminProduct = document.getElementById('admin-product');
+    const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
+
+    adminCoupon?.classList.add('show');
+    adminCoupon?.classList.remove('hide');
+    adminProduct?.classList.add('hide');
+    adminProduct?.classList.remove('show');
+    adminUser?.classList.add('hide');
+    adminUser?.classList.remove('show');
+    adminInit?.classList.remove('show');
+    adminInit?.classList.add('hide');
+    adminNewUser?.classList.remove('show');
+    adminNewUser?.classList.add('hide');
+    adminNewProduct?.classList.remove('show');
+    adminNewProduct?.classList.add('hide');
+  }
+
   showAdminNewProduct(){
     const adminInit = document.getElementById('admin-init');
     const adminUser = document.getElementById('admin-user');
     const adminNewUser = document.getElementById('admin-newuser');
     const adminProduct = document.getElementById('admin-product');
     const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
 
+    adminCoupon?.classList.add('hide');
+    adminCoupon?.classList.remove('show');
     adminProduct?.classList.add('hide');
     adminProduct?.classList.remove('show');
     adminUser?.classList.add('hide');
@@ -195,7 +226,10 @@ export class UserComponent implements OnInit {
     const adminNewUser = document.getElementById('admin-newuser');
     const adminProduct = document.getElementById('admin-product');
     const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
 
+    adminCoupon?.classList.add('hide');
+    adminCoupon?.classList.remove('show');
     adminProduct?.classList.add('show');
     adminProduct?.classList.remove('hide');
     adminUser?.classList.add('hide');
@@ -214,7 +248,10 @@ export class UserComponent implements OnInit {
     const adminNewUser = document.getElementById('admin-newuser');
     const adminProduct = document.getElementById('admin-product');
     const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
 
+    adminCoupon?.classList.add('hide');
+    adminCoupon?.classList.remove('show');
     adminProduct?.classList.add('hide');
     adminProduct?.classList.remove('show');
     adminUser?.classList.add('hide');
@@ -233,7 +270,10 @@ export class UserComponent implements OnInit {
     const adminNewUser = document.getElementById('admin-newuser');
     const adminProduct = document.getElementById('admin-product');
     const adminNewProduct = document.getElementById('admin-newproduct');
+    const adminCoupon = document.getElementById('admin-coupon');
 
+    adminCoupon?.classList.add('hide');
+    adminCoupon?.classList.remove('show');
     adminProduct?.classList.add('hide');
     adminProduct?.classList.remove('show');
     adminUser?.classList.add('show');
@@ -289,6 +329,53 @@ export class UserComponent implements OnInit {
 
   deleteProduct(id: number): void {
     this.ProductService.deleteProduct(id).subscribe();
+  }
+  objects: Coupon[] = [];
+  object: Coupon=  {
+
+    id: 0,
+    name: '',
+    startDate: new Date(Date.now ()),
+    endDate: new Date(Date.now ()),
+    discount:2,
+
+  }
+  couponIdNum:number = 0;
+
+  getDataCouponId(id: number): void {
+    this.CouponService.getCouponId(id).subscribe((data) => {
+      this.object = data;
+    });
+  }
+
+  getCouponId(couponId:string){
+    this.couponIdNum = parseInt(couponId);
+    return this.couponIdNum;
+  }
+
+  getCoupon(): void {
+    this.CouponService.getCoupon().subscribe(
+      (Coupon) => {
+    this.objects = Coupon;
+    console.log(this.objects);
+    });
+  }
+
+  postCoupon(): void {
+    console.log(this.object);
+    this.CouponService.postCoupon(this.object).subscribe();
+  }
+
+  putCoupon(): void {
+    this.CouponService.putCoupon(this.object).subscribe(
+      (Coupon) => {
+    this.object = Coupon;
+    console.log(this.objects);
+    });
+  }
+
+  deleteCoupon(id:number): void {
+    this.CouponService.deleteCoupon(id).subscribe();
   }
 
   popup() {

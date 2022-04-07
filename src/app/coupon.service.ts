@@ -17,7 +17,6 @@ export class CouponService {
   getCoupon(): Observable<Coupon[]>{
     return this.http.get<Coupon[]>
     ('https://localhost:44316/api/Coupons');
-
   }
   
   getCouponId(id:number):Observable<Coupon>{

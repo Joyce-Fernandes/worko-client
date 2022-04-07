@@ -5,6 +5,8 @@ import { Order } from '../order';
 import { OrderService } from '../order.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { CouponService } from '../coupon.service';
+import { Coupon } from '../coupon';
 
 @Component({
   selector: 'app-cart',
@@ -32,16 +34,42 @@ export class CartComponent implements OnInit {
     userId: JSON.parse(JSON.stringify(localStorage.getItem("userId"))),
     couponId: 1 };
  
-  constructor(public CartService: CartService, public ProductService: ProductService, public OrderService: OrderService) { }
+  constructor(public CartService: CartService, public ProductService: ProductService, public OrderService: OrderService, public CouponService:CouponService) { }
 
   ngOnInit(): void {
     this.takeCartItems();
+    this.getCoupon();
   }
   getCart(): void {
     this.CartService.getCart().subscribe(
       (Cart) => {
     this.objetos = Cart;
     });
+  }
+
+  objectCou: Coupon[] = [];
+
+  getCoupon(): void {
+    this.CouponService.getCoupon().subscribe(
+      (Coupon) => {
+    this.objectCou = Coupon;
+    });
+  }
+
+  couponDiscount:number = 0;
+  verifyCoupon():void{
+    let couponName = document.getElementById('coupon-name') as HTMLInputElement;
+    let coupon = couponName.value;
+    this.objectCou.forEach(element => {
+      if(coupon === element.name){
+        this.couponDiscount = element.discount;
+        localStorage.setItem('discount', JSON.stringify(this.couponDiscount));
+        window.location.reload();
+      }
+    })
+    if(localStorage.getItem("discount") === null){
+      alert("Cupón no válido :(");
+    }
   }
 
   postCart(): void {
@@ -69,6 +97,7 @@ export class CartComponent implements OnInit {
     categoryId:0,
     featuredPhoto:""
   };
+
   getDataProductId(id:number):void{
     this.ProductService.getProductId(id).subscribe(data=>
     {
@@ -76,14 +105,29 @@ export class CartComponent implements OnInit {
     })
   }
 
+  totalPrice:number = 0;
+  couponDis:number = 0;
   takeCartItems(){
-    let totalPrice = 0;
     let keys = Object.keys(localStorage);
     let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
         let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
-        
+
+        let coupon = document.getElementById('coupon-display') as HTMLElement;
+        let emptyCart = document.getElementById('empty-cart') as HTMLElement;
+        let cartEmpty = document.getElementById('cart-empty') as HTMLElement;
+        let cartFull = document.getElementById('cart-full') as HTMLElement;
+
+        coupon.classList.add('show');
+        coupon.classList.remove('hide');
+        emptyCart.classList.add('hide');
+        emptyCart.classList.remove('show');
+        cartFull.classList.add('show');
+        cartFull.classList.remove('hide');
+        cartEmpty.classList.add('hide');
+        cartEmpty.classList.remove('show');
+
         let product = JSON.parse(aux);
         let table = document.getElementById('cart-table') as HTMLTableElement;
         table.innerHTML += `
@@ -97,28 +141,48 @@ export class CartComponent implements OnInit {
           <td class="cerrar"><img onclick="localStorage.removeItem('${keys[index]}'); window.location.reload();" src="../../assets/img/cerrar.svg"></td>
         </tr>
         `;
-        totalPrice += product.price
+        this.totalPrice += product.price;
         let price = document.getElementById('total-price') as HTMLElement;
-        price.innerHTML = `<p>PVP total del pedido: ${totalPrice} </p>`;
+        price.innerHTML = `<p>Precio total: ${this.totalPrice} €</p>`;
       }
+    }
+    if(localStorage.getItem("discount") !== null){
+      let price = document.getElementById('total-price') as HTMLElement;
+      let checked =  document.getElementById('checked') as HTMLElement;
+      checked.style.backgroundColor = 'var(--pink)';
+      this.couponDis = JSON.parse(JSON.stringify(localStorage.getItem('discount')));
+      this.totalPrice -= this.couponDis;
+      console.log(this.couponDis);
+      price.innerHTML = `<div><p style="color: var(--pink); font-size: 0.6em;" class="discount">Descuento -${this.couponDis}€</p><p>Precio total: ${this.totalPrice} €</p></div>`;
     }
   }
 
   removeCart(){
-    // var values = [],
+    if(localStorage.getItem("discount") !== null){
+      localStorage.removeItem("discount"); 
+    }
     let keys = Object.keys(localStorage);
     let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
         localStorage.removeItem(keys[index]);
-        let table = document.getElementById('cart-table') as HTMLTableElement;
-        table.innerHTML = "";
       }
+    }
+    window.location.reload();
+  }
+
+  cartCheckboxEvent(){
+    let couponArea = document.querySelector('#coupon-area');
+    if(couponArea?.classList.contains('hide')){
+      couponArea?.classList.add('show');
+      couponArea?.classList.remove('hide');
+    }else{
+      couponArea?.classList.add('hide');
+      couponArea?.classList.remove('show');
     }
   }
 
   purchase(){
-  
     let userId=JSON.parse(JSON.stringify(localStorage.getItem("userId")));
     let dateOrder= this.order.date.toISOString();
     let keepDate =dateOrder;
@@ -133,6 +197,9 @@ export class CartComponent implements OnInit {
       
       this.OrderService.postOrder(this.order).subscribe(data =>{
         this.getOrderUserDate(usId, keepDate);
+        if(localStorage.getItem("discount") !== null){
+          localStorage.removeItem("discount"); 
+        }
       });
     }
 

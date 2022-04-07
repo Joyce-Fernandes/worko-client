@@ -20,7 +20,7 @@ export class SliderComponent implements OnInit {
   id?:number;
 
   randomNumber():number{
-    this.id= Math.floor(Math.random() * 10) + 2;
+    this.id= Math.floor(Math.random() * 5) + 2;
     return this.id;
   }
   getDataProductId(id:number):void{
