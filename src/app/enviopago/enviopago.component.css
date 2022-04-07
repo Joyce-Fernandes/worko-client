@@ -1,0 +1,45 @@
+.metodos{
+    width: 100%; 
+    flex-direction: row;  
+    display: flex;
+    justify-content: space-between;
+}
+
+.metodos div{
+    width: 45%;
+}
+
+table{
+    border: none;
+}
+
+.privacy-policy label,
+.condiciones,
+textarea,
+table{
+    width: 100%;
+}
+
+.condiciones,
+.margin-label{
+    margin-top: 2em;
+}
+
+input[type="radio"]{
+    margin-right: 0.8em;
+}
+
+textarea{
+    margin-bottom: 2em;
+}
+
+h3{
+    font-family: var(--secondary-font);
+    margin: 1em 0;
+}
+
+
+@media (max-width: 834px) {
+ 
+
+}
