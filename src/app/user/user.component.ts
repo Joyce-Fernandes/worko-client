@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from '../product.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Product } from '../product';
-import { ImageService } from '../image.service';
 import { CategoryService } from '../category.service';
 import { Category } from '../category';
 import { CouponService } from '../coupon.service';
 import { Coupon } from '../coupon';
+import { HttpEventType, HttpClient } from '@angular/common/http';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -19,12 +19,20 @@ class ImageSnippet {
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+  
+
 export class UserComponent implements OnInit {
 
-  
+  // COSAS DE UN MÉTODO PARA SUBIR FOTOS
+  public progress: number = 0;
+  public message?: string;
+
+  @Output() public onUploadFinished = new EventEmitter();
+
+  // MÁS COSAS DE LO DE LA FOTO
   selectedFile: ImageSnippet | undefined;
 
-  constructor(public UserService: UserService, public ProductService: ProductService, public CategoryService:CategoryService, public ImageService:ImageService, public CouponService:CouponService) { }
+  constructor(public http: HttpClient, public UserService: UserService, public ProductService: ProductService, public CategoryService:CategoryService, public CouponService:CouponService) { }
 
   ngOnInit(): void {
     this.getUserData(); 
@@ -33,6 +41,23 @@ export class UserComponent implements OnInit {
     this.getCoupon();
   }
   
+  public uploadFile = (files: FileList|null) => {
+    if(files!==null){
+    if (files.length === 0) {
+      return;
+    }
+    debugger
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    this.http.post('https://localhost:44316/api/upload', formData, {reportProgress: true, observe: 'events'})
+      .subscribe(event => {
+        console.log(event);
+      });
+  }
+}
+
+
   usr?: User[];
   user: User={
     id:0,
@@ -116,7 +141,7 @@ export class UserComponent implements OnInit {
   productIdNum:number = 0;
   categoryIdNum:number = 0;
 
-  getImageRoute(){
+  getImageRoute():void{
     let file = document.getElementById('file-name') as HTMLInputElement;
     let fullPath = file.value;
     if (fullPath) {
@@ -126,8 +151,8 @@ export class UserComponent implements OnInit {
             filename = filename.substring(1);
         }
         let foto = document.getElementById('foto') as HTMLInputElement;
-        foto.value = `../../assets/img/products/${filename}`;
-        this.photo = `../../assets/img/products/${filename}`;
+        foto.value = `https://localhost:44316/resources/images/${filename}`;
+        this.photo = `https://localhost:44316/resources/images/${filename}`;
     }
   }
 
@@ -289,7 +314,8 @@ export class UserComponent implements OnInit {
     this.UserService.postUser(this.user).subscribe(data =>{
       let infoPopup = document.querySelector("#popup-info") as HTMLElement;
       infoPopup.innerHTML = "¡Usuario/a registrado/a con éxito!"
-      this.refresh();
+      this.popup();
+      // this.refresh();
     });
   }
 
@@ -304,28 +330,40 @@ export class UserComponent implements OnInit {
       this.UserService.putUser(id, this.us).subscribe((us) => {
         this.us = us;
     });
-    alert("¡Usuarix modificado con éxito!");
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Usuario/a modificado/a con éxito!"
+    this.popup();
   }
 
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
     let infoPopup = document.querySelector("#popup-info") as HTMLElement;
-    infoPopup.innerHTML = "¡Usuario/a eliminado/a con éxito!"
+    infoPopup.innerHTML = "¡Usuario/a eliminado/a con éxito!";
+    this.popup();
   }
 
   postProductData(): void {
     this.pr.featuredPhoto = this.photo;
     this.ProductService.postProduct(this.pr).subscribe();
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Producto añadido con éxito!";
+    this.popup();
   }
 
   putProduct(id: number): void {
     this.ProductService.putProduct(id, this.objectPr).subscribe((product) => {
+      
     });
-
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Producto modificado con éxito!";
+    this.popup();
   }
 
   deleteProduct(id: number): void {
     this.ProductService.deleteProduct(id).subscribe();
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Producto eliminado con éxito!";
+    this.popup();
   }
   objects: Coupon[] = [];
   object: Coupon=  {
@@ -359,6 +397,9 @@ export class UserComponent implements OnInit {
 
   postCoupon(): void {
     this.CouponService.postCoupon(this.object).subscribe();
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Cupón añadido con éxito!";
+    this.popup();
   }
 
   putCoupon(): void {
@@ -366,10 +407,16 @@ export class UserComponent implements OnInit {
       (Coupon) => {
     this.object = Coupon;
     });
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Cupón modificado con éxito!";
+    this.popup();
   }
 
   deleteCoupon(id:number): void {
     this.CouponService.deleteCoupon(id).subscribe();
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    infoPopup.innerHTML = "¡Cupón eliminado con éxito!";
+    this.popup();
   }
 
   popup() {
@@ -386,5 +433,4 @@ export class UserComponent implements OnInit {
   refresh(){
     window.location.reload();
   }
-   
 }

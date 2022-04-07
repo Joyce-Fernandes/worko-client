@@ -526,7 +526,11 @@ table img{
 }
 
 .popup img{
-    width: 8em;
+    width: 5em;
+}
+
+.popup-smiley img{
+    width: 4em;
 }
 
 .popup .buttons{
