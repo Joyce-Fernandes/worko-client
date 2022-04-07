@@ -629,6 +629,10 @@ table img{
     table{
         width: 100%;
     }
+    .popup div{
+        width: 80vw;
+        height: 30vh;
+    }
     
 }
 
@@ -637,7 +641,9 @@ table img{
         width: 95vw;
         margin: 0 2.5vw;
     }
-
+    main{
+        padding: 3em 0;
+    }
     table img{
         width: 4em;
         margin-top: 0.2em;
@@ -652,5 +658,9 @@ table img{
         width: 100%;
         justify-content: center;
         margin: none;
+    }
+    .popup div{
+        width: 100vw;
+        height: 50vw;
     }
 }

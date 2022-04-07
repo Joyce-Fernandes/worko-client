@@ -27,7 +27,7 @@
 
         <div class="button-row">
             <button routerLink="/product" class="show" id="cart-empty">Ir de compras</button> 
-            <button (click)="purchase()" class="hide" id="cart-full">Realizar compra</button> 
+            <button (click)="purchase()" routerLink="/enviopago" class="hide" id="cart-full">Realizar compra</button> 
             <button (click)="removeCart()">Vaciar carrito</button>
         </div>
     </section>
