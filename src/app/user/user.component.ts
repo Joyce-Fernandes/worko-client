@@ -64,7 +64,6 @@ export class UserComponent implements OnInit {
   getUserData(): void {
       this.UserService.getUsers().subscribe((data) => {
         this.usr = data;
-        //console.log(this.usr);
       });
   }
 
@@ -304,7 +303,6 @@ export class UserComponent implements OnInit {
   putUserData(id:number): void {
       this.UserService.putUser(id, this.us).subscribe((us) => {
         this.us = us;
-        console.log(this.us);
     });
     alert("¡Usuarix modificado con éxito!");
   }
@@ -322,7 +320,6 @@ export class UserComponent implements OnInit {
 
   putProduct(id: number): void {
     this.ProductService.putProduct(id, this.objectPr).subscribe((product) => {
-      console.log(this.objectPr);
     });
 
   }
@@ -357,12 +354,10 @@ export class UserComponent implements OnInit {
     this.CouponService.getCoupon().subscribe(
       (Coupon) => {
     this.objects = Coupon;
-    console.log(this.objects);
     });
   }
 
   postCoupon(): void {
-    console.log(this.object);
     this.CouponService.postCoupon(this.object).subscribe();
   }
 
@@ -370,7 +365,6 @@ export class UserComponent implements OnInit {
     this.CouponService.putCoupon(this.object).subscribe(
       (Coupon) => {
     this.object = Coupon;
-    console.log(this.objects);
     });
   }
 
