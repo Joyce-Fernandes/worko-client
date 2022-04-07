@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
+#popup-info{
+    font-size: 1.2em;
+}
+
 .form{
     width: 100%;
 }
@@ -41,6 +45,10 @@ img{
 .admin-nav{
     display: flex;
     flex-direction: column;
+}
+
+.popup .buttons button:last-child{
+    margin-left: 0;
 }
 
 .product-admin-header,
