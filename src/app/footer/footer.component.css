@@ -93,8 +93,7 @@ hr{
 
 .footer-contact{
   margin-top: 0.5em;
-  width: 100%;
-  
+  width: 80vw;
 }
 footer{ 
   text-align: center;
@@ -107,7 +106,7 @@ footer{
   
 }
 .arrow-button-contact{
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
   margin-bottom: 2em;
   width: 100%;
@@ -115,9 +114,16 @@ footer{
   
 
 }
-@media (max-width: 500px) {
-
-}
-
-
+  @media (max-width: 500px) {
+    .footer-elements{
+      display: flex;
+      flex-direction: column;
+    }
+    .arrow-up-button{
+      display: none;
+    }
+    .arrow-up-button:first-child{
+      display: flex;
+    }
+  }
 }

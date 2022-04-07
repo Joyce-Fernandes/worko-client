@@ -1,5 +1,3 @@
-import { DeclarationListEmitMode } from "@angular/compiler";
-
 export interface Coupon {
     id: number,
     name: string,

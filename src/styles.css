@@ -51,11 +51,11 @@ body{
     background: var(--black);
 }
 
-.black-bg #logo, .black-bg .cart, .black-bg nav a, .black-bg .user-details, .black-bg .menu-icon{
+.black-bg #logo, .black-bg #logout, .black-bg .cart, .black-bg nav a, .black-bg .user-details, .black-bg .menu-icon{
     filter: brightness(0%) invert(1)!important;
 }
 
-.black-bg #logo:hover, .black-bg .cart:hover, .black-bg nav a:hover, .black-bg .user-details:hover, .black-bg .menu-icon:hover{
+.black-bg #logo:hover, .black-bg #logout:hover, .black-bg .cart:hover, .black-bg nav a:hover, .black-bg .user-details:hover, .black-bg .menu-icon:hover{
     filter: none!important;
 }
 
@@ -174,7 +174,7 @@ select{
     font-size: 1.5em;
     margin: 0 0 1em 0;
 }
-
+.form input[type="date"],
 .form input[type="text"],
 .form input[type="number"],
 .form input[type="password"],
@@ -491,8 +491,12 @@ table img{
     justify-content: space-between;
 }
 
-.button-row button:first-child{
+.button-row button{
     margin-right: 1em;
+}
+
+.button-row button:last-child{
+    margin-right: none;
 }
 
 /* POPUP */
@@ -621,11 +625,32 @@ table img{
     .black-bg .responsive-menu ul a, .black-bg #logout-mov{
         color: var(--black)!important;
     }
+
+    table{
+        width: 100%;
+    }
+    
 }
 
 @media (max-width: 500px) {
     .fixed-width{
         width: 95vw;
         margin: 0 2.5vw;
+    }
+
+    table img{
+        width: 4em;
+        margin-top: 0.2em;
+    }
+
+    .button-row{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .button-row button{
+        width: 100%;
+        justify-content: center;
+        margin: none;
     }
 }

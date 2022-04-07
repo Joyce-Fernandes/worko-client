@@ -76,6 +76,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('a');
     localStorage.removeItem('rol');
     localStorage.removeItem('email');
+    localStorage.removeItem('userId');
     localStorage.removeItem('token');
     localStorage.removeItem('tokenUser');
     window.location.reload();

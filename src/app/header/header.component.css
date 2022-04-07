@@ -53,7 +53,7 @@ img{
     height: 1.5em;
 }
 
-nav a, .cart, #logo, .user-details{
+nav a, .cart, #logo, #logout, .user-details{
     transition: filter 0.5s;
 }
 

@@ -1,0 +1,85 @@
+#total-price{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h3{
+    opacity: 0.4;
+}
+
+#coupon-area{
+    flex-direction: row;
+    font-size: 1em;
+}
+
+#coupon-area label{
+    margin-right: 1em;
+}
+
+.show{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+
+.price-discount{
+    display: flex;
+    flex-direction: row;
+}
+
+.coupon-row{
+    margin-top: 2em;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.coupon-row button{
+    padding: 0em 1em 0em 1em!important;
+    margin: 0 0 1em 0;
+    height: 2.8em;
+    border-radius: none;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"]{
+    color: var(--black);
+    padding-left: 1em;
+    width: 9em;
+    padding: 0 0 0.5em 0em;
+    margin: 0 0 1em 0;
+    border-radius: none;
+    font-size: 1em;
+    border: 1px solid var(--black);
+}
+
+.coupon{
+    display: flex;
+    flex-direction: column;
+}
+
+.coupon-check{
+    width: auto;
+    flex-direction: row;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+@media (max-width: 834px) {
+    .coupon-row{
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .coupon-row{
+        margin-top: 3em;
+        width: 100%;
+        flex-direction: column;
+    }  
+}

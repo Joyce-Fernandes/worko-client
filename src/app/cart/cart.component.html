@@ -1,15 +1,33 @@
 <main>
     <section class="fixed-width">
 
-        <h2>Carrito de la compra</h2>
+        <h2>Carrito</h2>
+
+        <h3 id="empty-cart" class="show">Ups, tu carrito está vacío :(</h3>
 
         <table id="cart-table">
-
         </table>
-        <div id="total-price"> </div>
+    
+        <div class="coupon-row">
+
+            <div class="coupon">
+                <div id="coupon-area" class="hide">
+                    <input type="text" id="coupon-name">
+                    <button (click)="verifyCoupon()">Aplicar cupón</button>
+                </div>
+
+                <div class="coupon-check hide" id="coupon-display">
+                    <div (click)="cartCheckboxEvent()"><input id="checked" type="checkbox"></div> <label>¿Tienes un cupón?</label>
+                </div>
+            </div>
+
+            <div id="total-price"></div>
+
+        </div>
 
         <div class="button-row">
-            <button (click)="purchase()">Realizar compra</button> 
+            <button routerLink="/product" class="show" id="cart-empty">Ir de compras</button> 
+            <button (click)="purchase()" class="hide" id="cart-full">Realizar compra</button> 
             <button (click)="removeCart()">Vaciar carrito</button>
         </div>
     </section>
