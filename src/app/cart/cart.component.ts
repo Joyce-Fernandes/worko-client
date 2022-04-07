@@ -6,8 +6,6 @@ import { OrderService } from '../order.service';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
-
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -19,13 +17,22 @@ export class CartComponent implements OnInit {
 
   objetos: Cart[] = [];
   objeto: Cart=  {
-
+    
     id: 0,
     orderId: 0,
     productId:0,
   }
-
-  constructor(public CartService: CartService, public ProductService: ProductService) { }
+  order: Order={
+    id: 0,
+    date: new Date(Date.now ()),
+    shippingDate: new Date(Date.now ()+1),
+    orderFinishDate: new Date(Date.now ()+3),
+    totalPrice: 0,
+    paymentState: 0,
+    userId: JSON.parse(JSON.stringify(localStorage.getItem("userId"))),
+    couponId: 1 };
+ 
+  constructor(public CartService: CartService, public ProductService: ProductService, public OrderService: OrderService) { }
 
   ngOnInit(): void {
     this.takeCartItems();
@@ -34,12 +41,10 @@ export class CartComponent implements OnInit {
     this.CartService.getCart().subscribe(
       (Cart) => {
     this.objetos = Cart;
-    console.log(this.objetos);
     });
   }
 
   postCart(): void {
-    console.log(this.objeto);
     this.CartService.postCart(this.objeto).subscribe();
   }
 
@@ -47,7 +52,6 @@ export class CartComponent implements OnInit {
     this.CartService.updateCart(this.objeto).subscribe(
       (Cart) => {
     this.objeto = Cart;
-    console.log(this.objetos);
     });
   }
 
@@ -55,7 +59,16 @@ export class CartComponent implements OnInit {
     this.CartService.deleteCart(id).subscribe();
   }
 
-  objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
+  objectP:Product={
+    id:0, name:"",
+    price:0,
+    stock:0,
+    description:"",
+    color:"",
+    size:"",
+    categoryId:0,
+    featuredPhoto:""
+  };
   getDataProductId(id:number):void{
     this.ProductService.getProductId(id).subscribe(data=>
     {
@@ -64,14 +77,14 @@ export class CartComponent implements OnInit {
   }
 
   takeCartItems(){
+    let totalPrice = 0;
     let keys = Object.keys(localStorage);
     let i = keys.length;
     for (let index = 0; index < keys.length; index++) {
       if (keys[index].includes("Producto")){
         let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
-        console.log(aux);
+        
         let product = JSON.parse(aux);
-        console.log(product);
         let table = document.getElementById('cart-table') as HTMLTableElement;
         table.innerHTML += `
         <tr>
@@ -84,6 +97,9 @@ export class CartComponent implements OnInit {
           <td class="cerrar"><img onclick="localStorage.removeItem('${keys[index]}'); window.location.reload();" src="../../assets/img/cerrar.svg"></td>
         </tr>
         `;
+        totalPrice += product.price
+        let price = document.getElementById('total-price') as HTMLElement;
+        price.innerHTML = `<p>PVP total del pedido: ${totalPrice} </p>`;
       }
     }
   }
@@ -101,38 +117,57 @@ export class CartComponent implements OnInit {
     }
   }
 
-  // purchase(){
-  //   let order: Order={
-  //     id: 0,
-  //     date: new Date(Date.now ()),
-  //     shippingDate: new Date(Date.now ()+1),
-  //     orderFinishDate: new Date(Date.now ()+3),
-  //     totalPrice: 0,
-  //     paymentState: 0,
-  //     userId: 0,
-  //     couponId: 0 };
+  purchase(){
+  
+    let userId=JSON.parse(JSON.stringify(localStorage.getItem("userId")));
+    let dateOrder= this.order.date.toISOString();
+    let keepDate =dateOrder;
+    //console.log(keepDate);
+    //console.log(this.order.date);
+    //crear un pedido con userID y Date, y mandarlo a la bbdd
+    this.postOrder(userId, keepDate); //envía el pedido a la BBDD y recoge ese mismo con el id adjudicado por la BBDD
+    
+  }
+    postOrder(usId: number, keepDate: string): void {
+      //console.log(this.order);
+      
+      this.OrderService.postOrder(this.order).subscribe(data =>{
+        this.getOrderUserDate(usId, keepDate);
+      });
+    }
 
-  //   let keys = Object.keys(localStorage);
-  //   let i = keys.length;
-  //   for (let index = 0; index < keys.length; index++) {
-  //     if (keys[index].includes("Producto")){
-  //       let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
-  //       console.log(aux);
-  //       let product = JSON.parse(aux);
-  //       console.log(product);
-  //       let table = document.getElementById('cart-table') as HTMLTableElement;
-  //       table.innerHTML += `
-  //       <tr>
-  //         <td><img src=${product.img}></td>
-  //         <td>${product.name}</td>
-  //         <td>${product.quant} ud.</td>
-  //         <td>${product.price}€</td>
-  //         <td>${product.size}</td>
-  //         <td></td>
-  //         <td class="cerrar"><img onclick="localStorage.removeItem('${keys[index]}'); window.location.reload();" src="../../assets/img/cerrar.svg"></td>
-  //       </tr>
-  //       `;
-  //     }
-  //   }
-  // }
-}
+    getOrderUserDate(userId:number, date: string):void{
+      this.OrderService.getOrderUserDate(userId, date).subscribe(data=>
+      {
+        this.order = data;
+        localStorage.setItem('order', JSON.stringify(data));
+        let keys = Object.keys(localStorage);
+        let i = keys.length;
+        for (let index = 0; index < keys.length; index++) {
+          if (keys[index].includes("Producto")){
+            let aux = JSON.parse(JSON.stringify(localStorage.getItem(keys[index])));
+            let product = JSON.parse(aux);
+            let auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
+            let order = JSON.parse(auxOrder);
+            //para cada producto crear un CART, y mandarlo a la bbdd
+            this.objeto ={
+              id: 0,
+              orderId: order.id,
+              productId:product.id};
+              // y sumar el precio de cada producto al pedido
+            auxOrder = JSON.parse(JSON.stringify(localStorage.getItem("order")));
+            order = JSON.parse(auxOrder);
+            order.totalPrice += product.price;
+            localStorage.setItem('order', JSON.stringify(order))
+            this.putOrder(order.id, order)
+              this.postCart();
+              localStorage.removeItem("order");
+              this.removeCart();
+          }
+        }        
+      });
+    };
+    putOrder(orderId: number, order: Order): void {
+            this.OrderService.updateOrder(orderId, order).subscribe();
+    }
+  }
