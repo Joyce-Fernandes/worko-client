@@ -53,6 +53,9 @@ h3{
     font-family: var(--secondary-font);
     margin: 1em 0;
 }
+.buttons button{
+    margin-left: 0;
+}
 
 
 @media (max-width: 834px) {
