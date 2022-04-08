@@ -68,32 +68,29 @@ export class UserdetailsComponent implements OnInit {
   putUserData(id:number): void {
     this.UserService.putUser(id, this.user).subscribe((user) => {
       this.user = user;
-
-      let infoPopup = document.querySelector("#popup-info") as HTMLElement;
-      let buttonUser = document.querySelector("#button-user") as HTMLElement;
-      let buttonIndex = document.querySelector("#button-index") as HTMLElement;
-      let saddey = document.querySelector("#saddey") as HTMLElement;
-      let smiley = document.querySelector("#smiley") as HTMLElement;
-      
-      smiley.classList.add('show');
-      saddey.classList.add('hide');
-      smiley.classList.remove('hide');
-      saddey.classList.remove('show');
-  
-      buttonUser.classList.add('show');
-      buttonUser.classList.remove('hide');
-      buttonIndex.classList.add('hide');
-      buttonIndex.classList.remove('show');
-  
-      infoPopup.innerHTML = "¡Usuarix modificado con éxito!"
-  
-      this.popup();
-
     });
   }
   
   refresh(){
-    window.location.reload();
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    let buttonUser = document.querySelector("#button-user") as HTMLElement;
+    let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+    let saddey = document.querySelector("#saddey") as HTMLElement;
+    let smiley = document.querySelector("#smiley") as HTMLElement;
+    
+    smiley.classList.add('show');
+    saddey.classList.add('hide');
+    smiley.classList.remove('hide');
+    saddey.classList.remove('show');
+
+    buttonUser.classList.add('show');
+    buttonUser.classList.remove('hide');
+    buttonIndex.classList.add('hide');
+    buttonIndex.classList.remove('show');
+
+    infoPopup.innerHTML = "¡Usuarix modificado con éxito!"
+
+    this.popup();
   }
 
   showUserOrder(){   
