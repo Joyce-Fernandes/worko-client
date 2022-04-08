@@ -47,6 +47,10 @@ export class UserdetailsComponent implements OnInit {
 
   order:[] = [];
 
+  refreshAndGoToIndex(){
+    window.location.href=('http://localhost:4200');
+  }
+
   getUserIdData(id:number):void{
     this.UserService.getUserId(id).subscribe(data =>
     {
@@ -58,20 +62,38 @@ export class UserdetailsComponent implements OnInit {
     {
       this.userinfo = data;
       console.log(this.userinfo);
-      // this.order = this.userinfo.order;
-      // console.log(this.order);
     })
   }
 
   putUserData(id:number): void {
     this.UserService.putUser(id, this.user).subscribe((user) => {
       this.user = user;
+
+      let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+      let buttonUser = document.querySelector("#button-user") as HTMLElement;
+      let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+      let saddey = document.querySelector("#saddey") as HTMLElement;
+      let smiley = document.querySelector("#smiley") as HTMLElement;
+      
+      smiley.classList.add('show');
+      saddey.classList.add('hide');
+      smiley.classList.remove('hide');
+      saddey.classList.remove('show');
+  
+      buttonUser.classList.add('show');
+      buttonUser.classList.remove('hide');
+      buttonIndex.classList.add('hide');
+      buttonIndex.classList.remove('show');
+  
+      infoPopup.innerHTML = "¡Usuarix modificado con éxito!"
+  
+      this.popup();
+
     });
   }
   
   refresh(){
     window.location.reload();
-    alert("Usuarix modificado con éxito.");
   }
 
   showUserOrder(){   
@@ -85,25 +107,44 @@ export class UserdetailsComponent implements OnInit {
 
   deleteUserData(id: number): void {
     this.UserService.deleteUser(id).subscribe();
-    alert("¡Agur! Te echaremos de menos :(");
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    let buttonUser = document.querySelector("#button-user") as HTMLElement;
+    let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+    let saddey = document.querySelector("#saddey") as HTMLElement;
+    let smiley = document.querySelector("#smiley") as HTMLElement;
+    
+    smiley.classList.add('hide');
+    saddey.classList.add('show');
+    smiley.classList.remove('show');
+    saddey.classList.remove('hide');
+
+    buttonUser.classList.add('hide');
+    buttonUser.classList.remove('show');
+    buttonIndex.classList.add('show');
+    buttonIndex.classList.remove('hide');
+
+    infoPopup.innerHTML = "Agur! Te echaremos de menos."
+
     localStorage.removeItem('a');
     localStorage.removeItem('rol');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     localStorage.removeItem('tokenUser');
-    window.location.href=('http://localhost:4200');
+
+    this.popup();
   }
 
-  // popup() {
-  //   const popup = document.querySelector(".popup"); 
-  //   if(popup?.classList.contains("hideP")){
-  //     popup?.classList.add("showP");
-  //     popup?.classList.remove("hideP");
-  //   }else{
-  //     popup?.classList.add("hideP");
-  //     popup?.classList.remove("showP");
-  //   }
-  // }
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
+  }
 
   showUserProfile(){   
     const userProfile= document.getElementById('user-details');
