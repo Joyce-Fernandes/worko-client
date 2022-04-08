@@ -13,7 +13,7 @@ import { Userinfo } from '../userinfo';
   styleUrls: ['./userdetails.component.css'],
 })
 export class UserdetailsComponent implements OnInit {
-  constructor(public UserService: UserService, public route: ActivatedRoute, public UserinfoService: UserinfoService) { }
+  constructor(public userService: UserService, public route: ActivatedRoute, public userinfoService: UserinfoService) { }
 
   public routeSub?:Subscription;
 
@@ -48,25 +48,25 @@ export class UserdetailsComponent implements OnInit {
   order:[] = [];
 
   getUserIdData(id:number):void{
-    this.UserService.getUserId(id).subscribe(data =>
-    {
-      this.user = data;
-    })
+    this.userService.getUserId(id);
+    let aux = localStorage.getItem('userPerId'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
   }
+
   getUserIdInfo(id:number):void{
-    this.UserinfoService.getUserId(id).subscribe(data =>
-    {
-      this.userinfo = data;
-      console.log(this.userinfo);
-      // this.order = this.userinfo.order;
-      // console.log(this.order);
-    })
+    this.userService.getUserId(id);
+    let aux = localStorage.getItem('userPerId'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.userinfo=auxTxt;
+    console.log(this.userinfo);
   }
 
   putUserData(id:number): void {
-    this.UserService.putUser(id, this.user).subscribe((user) => {
-      this.user = user;
-    });
+    this.userService.putUser(this.user);
+    let aux = localStorage.getItem('updatedUser'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
   }
   
   refresh(){
@@ -84,7 +84,7 @@ export class UserdetailsComponent implements OnInit {
   }
 
   deleteUserData(id: number): void {
-    this.UserService.deleteUser(id).subscribe();
+    this.userService.deleteUser(id);
     alert("¡Agur! Te echaremos de menos :(");
     localStorage.removeItem('a');
     localStorage.removeItem('rol');
@@ -93,18 +93,6 @@ export class UserdetailsComponent implements OnInit {
     localStorage.removeItem('tokenUser');
     window.location.href=('http://localhost:4200');
   }
-
-  // popup() {
-  //   const popup = document.querySelector(".popup"); 
-  //   if(popup?.classList.contains("hideP")){
-  //     popup?.classList.add("showP");
-  //     popup?.classList.remove("hideP");
-  //   }else{
-  //     popup?.classList.add("hideP");
-  //     popup?.classList.remove("showP");
-  //   }
-  // }
-
   showUserProfile(){   
     const userProfile= document.getElementById('user-details');
     const userOrders = document.getElementById('user-orders');

@@ -9,7 +9,7 @@ import { CategoryService } from '../category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(public CategoryService: CategoryService,) { }
+  constructor(public categoryService: CategoryService,) { }
 
   ngOnInit(): void {
     this.getCategoryData();
@@ -19,27 +19,30 @@ export class CategoryComponent implements OnInit {
   ca: Category=  { id: 0, name: ''}
 
   getCategoryData():void{
-    this.CategoryService.getCategory().subscribe(data =>
-    {
-      this.objectCat = data;
-      console.log(this.objectCat);
-    })
+    this.categoryService.getCategory();
+    let aux = localStorage.getItem('categoryList'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.objectCat=auxTxt;
   }
 
-  postCategoryData(): void {
-    console.log(this.ca);
-    this.CategoryService.postCategory(this.ca).subscribe();
+  postCategory(object:Category): void {
+    this.categoryService.postCategory(object);
+    let aux = localStorage.getItem('postedCategory'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.ca=auxTxt;
   }
 
-  putCategory(): void {
-    this.CategoryService.putCategory(this.ca).subscribe(
-      (Category) => {
-    this.ca = Category;
-    console.log(this.ca);
-    });
+  putCategory(object:Category): void {
+    this.categoryService.putCategory(object);
+    let aux = localStorage.getItem('updatedCategory'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.ca=auxTxt;
   }
 
   deleteCategory(id:number): void {
-    this.CategoryService.deleteCategory(id).subscribe();
-  }
+    this.categoryService.deleteCategory(id);
+    let aux = localStorage.getItem('deletedCategory'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.ca=auxTxt;
+  };
 }

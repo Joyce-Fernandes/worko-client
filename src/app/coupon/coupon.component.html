@@ -17,8 +17,8 @@
             <input placeholder="Fecha Fin" [ngModel]="object.endDate | date:'yyyy-MM-dd'" (ngModelChange)="object.endDate = $event" class="form-control" #fecha  type="date">
             <input placeholder="Discount" [(ngModel)]="object.discount" type="number" >
          
-            <button (click)="putCoupon()">Modificar Coupon</button>
-            <button (click)="postCoupon()">Registrar Coupon</button>
+            <button (click)="putCoupon(object)">Modificar Coupon</button>
+            <button (click)="postCoupon(object)">Registrar Coupon</button>
             <button (click)="deleteCoupon(couponIdNum)">Eliminar Coupon</button>
         </div> 
     </section>

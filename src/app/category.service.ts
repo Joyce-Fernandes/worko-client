@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from './category';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +10,94 @@ import { Category } from './category';
 export class CategoryService {
 
   constructor(public http: HttpClient) { }
-
-  httpOptions: Object = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
+    
+  getCategory(): void {
+    let requestOptions: RequestInit = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      redirect: 'follow'
+    };
+    fetch('https://localhost:44316/api/Categorys', requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let categoryList=stringify(result);
+    localStorage.setItem("categoryList", categoryList)
+  })
+  .catch(error => console.log('error', error));
+  }
+  
+  getCategoryId(id:number):void{
+    let requestOptions: RequestInit = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      redirect: 'follow'
+    };
+    fetch(`https://localhost:44316/api/categorys/${id}`, requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let categoryPerId=stringify(result);
+    localStorage.setItem("categoryPerId", categoryPerId)
+  })
+  .catch(error => console.log('error', error));
+  }
+  postCategory(Category: Category): void {
+    let requestOptions: RequestInit = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      body: JSON.stringify(Category),
+      redirect: 'follow'
+    };
+    fetch(`https://localhost:44316/api/categorys`, requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let postedCategory=stringify(result);
+    localStorage.setItem("postedCategory", postedCategory)
+  })
+  .catch(error => console.log('error', error));
   };
 
-  getCategory(): Observable<Category[]>{
-    return this.http.get<Category[]>
-    ('https://localhost:44316/api/categories');
-
-  }
-
-  postCategory(Category: Category): Observable<Category> {
-  return this.http.post<Category>(
-    'https://localhost:44316/api/categories',
-    Category,
-    this.httpOptions
-    );
-  }
-
-  getCategoryId(id:number):Observable<Category>{
-    return this.http.get<Category>('https://localhost:44316/api/categories/' + id);
+  updateCategory(Category: Category): void {
+  let requestOptions: RequestInit = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${this.tokenUser}`},
+    body: JSON.stringify(Category),
+    redirect: 'follow'
   };
-
-  putCategory(Category: Category): Observable<Category> {
-    return this.http.put<Category>
-    ('https://localhost:44316/api/categories', 
-    Category, this.httpOptions)
+  fetch(`https://localhost:44316/api/categorys/${Category.id}`, requestOptions)
+.then(response => response.text())
+.then(result => {
+  let updatedCategory=stringify(result);
+  localStorage.setItem("updatedCategory", updatedCategory)
+})
+.catch(error => console.log('error', error));
+};
+  putCategory(Category:Category): void{
+    this.updateCategory(Category);
   }
-  deleteCategory(id: number): Observable<unknown> {
-    const url = 'https://localhost:44316/api/categories'+id; 
-    return this.http.delete(url, this.httpOptions)
-     
+ 
+  deleteCategory(id: number): void {
+    let requestOptions: RequestInit = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${this.tokenUser}`},
+       redirect: 'follow'
+  };
+  fetch(`https://localhost:44316/api/categorys/${id}`, requestOptions)
+.then(response => response.text())
+.then(result => {
+  let deletedCategory=stringify(result);
+  localStorage.setItem("deletedCategory", deletedCategory)
+})
+.catch(error => console.log('error', error));
+};  
 }
-}
-

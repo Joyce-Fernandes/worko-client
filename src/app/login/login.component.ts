@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     rol: ''
   };
  
-  constructor(public UserService: UserService) { };
+  constructor(public userService: UserService) { };
 
   ngOnInit(): void {
     
@@ -39,11 +39,13 @@ export class LoginComponent implements OnInit {
     rol: "User"
   }
 
-  postUser(): void {
-    this.UserService.postUser(this.user).subscribe(data =>{
+  postUser(object:User): void {
+    this.userService.postUser(object);
+    let aux = localStorage.getItem('postedUser'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
       alert("¡Usuarix añadido con éxito!");
-      this.refresh();
-    });
+      this.refresh();    
   }
 
   Login(): void {
@@ -68,9 +70,7 @@ export class LoginComponent implements OnInit {
           this.tokenUser.rol="Admin"
         } else {
           this.tokenUser.rol="User"
-        };
-        
-        
+        };        
         if (vari.status == '401') {
           alert('Error al logear');
           this.tokenUser.rol="Error";
@@ -88,22 +88,16 @@ export class LoginComponent implements OnInit {
           window.location.href=('http://localhost:4200');
          // window.location.reload();
         };
-          
-        
-
         localStorage.removeItem('tokenUser');
         localStorage.removeItem('a');
-        
       })
       .catch(error => console.log('error', error))
   };
+  
   getUserMail(email:string):void{
-    this.UserService.getUserMail(email).subscribe(data =>
-    {
-      this.user = data;
-      //localStorage.setItem('loggedUser', JSON.stringify(data));
-      localStorage.setItem('userId', JSON.stringify(data.id));
-      // localStorage.setItem('rol', JSON.stringify(data.rol));
-    })
+    this.userService.getUserMail(email)       
+    let aux = localStorage.getItem('userPerEmail'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
   } 
 };
