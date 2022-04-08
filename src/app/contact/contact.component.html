@@ -1,4 +1,13 @@
 <main>
+    <div class="popup hideP">
+        <div>
+            <div><p id="popup-info">¿Formulario enviado con éxito!</p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/contact" (click)="popup()">Vale</button>
+            </div>
+        </div>
+    </div>
     <section class="fixed-width">
 
         <h2>Contacto</h2>
@@ -8,7 +17,7 @@
             <div class="contact">
                 <h3>Contacta con nosotros</h3>
 
-                <p>Si tienes alguna duda sobre alguno de nuestros envíos, forma de pago o envío, puedes enviarnos un
+                <p>Si tienes alguna duda sobre alguno de nuestros envíos o forma de pago, puedes enviarnos un
                     email a
                     helloshop@workoshop.es y te respondremos en un breve espacio de tiempo para que tu compra sea
                     satisfactoria.</p>
@@ -28,7 +37,7 @@
                 <div id="privacy-subscribe" class="privacy-policy">
                     <input type="checkbox"> <label>Acepto la <a href="">política de privacidad</a>.</label>
                 </div>
-                <button>Enviar mensaje</button>
+                <button (click)="popup()">Enviar mensaje</button>
             </div>
         </div>
     </section>

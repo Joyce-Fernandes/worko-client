@@ -21,6 +21,9 @@ h3{
     font-family: var(--secondary-font);
     margin-bottom: 1em;
 }
+.buttons button{
+    margin-left: 0;
+}
 
 @media (max-width: 834px) {
     .contact-block{
