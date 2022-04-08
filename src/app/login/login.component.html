@@ -1,4 +1,18 @@
 <main class="square-bg">
+
+    <div class="popup hideP">
+        <div>
+            <div><p id="popup-info"></p></div>
+            <div class="popup-smiley" class="hide" id="smiley"><img src="../../assets/img/smiley-black-worko.svg"></div>
+            <div class="popup-smiley" class="hide" id="saddey"><img src="../../assets/img/saddey-black-worko.svg"></div>
+
+            <div class="buttons">
+                <button id="button-admin" routerLink="/login" class="hide" (click)="popup();">¡Vale!</button>
+                <button id="button-index" class="hide" (click)="popup(); refreshAndGoToIndex();">¡Vale!</button>
+            </div>
+        </div>
+    </div>
+
     <section class="fixed-width login-form">
         <div class="form">
             <h2>Registro</h2>
@@ -10,7 +24,7 @@
             <div id="privacy-subscribe" class="privacy-policy">
                 <input type="checkbox"> <label>Acepta la <a href="">política de privacidad</a>.</label>
             </div>
-            <button (click)="postUser()">Registrarme</button>
+            <button (click)="postDataUser()">Registrarme</button>
         </div>
         
 

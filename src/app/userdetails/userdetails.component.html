@@ -1,13 +1,15 @@
 <main>
-    <!-- <div class="popup hideP">
+    <div class="popup hideP">
         <div>
             <div><p id="popup-info"></p></div>
-            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="popup-smiley" id="smiley" class="hide"><img src="../../assets/img/smiley-black-worko.svg"></div>
+            <div class="popup-smiley" id="saddey" class="hide"><img src="../../assets/img/saddey-black-worko.svg"></div>
             <div class="buttons">
-                <button routerLink="/" (click)="popup()">Ir al inicio</button>
+                <button id="button-user" class="hide" (click)="popup();">¡Vale!</button>
+                <button id="button-index" class="hide" (click)="popup(); refreshAndGoToIndex()">Salir</button>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <section class="fixed-width">
 
@@ -28,7 +30,7 @@
                         <input placeholder="Password*"[(ngModel)]="user.password" type="password"/>
                         <input placeholder="Address*"[(ngModel)]="user.adress" type="text"/>
                     </div>
-                <button (click)="putUserData(user.id); refresh();">Modificar datos</button>
+                <button (click)="putUserData(user.id); refresh()">Modificar datos</button>
                 <button (click)="deleteUserData(user.id);">Borrar cuenta</button>
             </div>
             <div class="user-form hide" id="user-orders">

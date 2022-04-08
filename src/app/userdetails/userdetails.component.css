@@ -13,6 +13,10 @@
     width: 100%;
 }
 
+.buttons button{
+    margin-left: 0;
+}
+
 #user-orders{
     cursor: pointer;
 }

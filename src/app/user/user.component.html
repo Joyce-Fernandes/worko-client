@@ -2,9 +2,9 @@
     <div class="popup hideP">
         <div>
             <div><p id="popup-info"></p></div>
-            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="popup-smiley"><img src="../../assets/img/smiley-black-worko.svg"></div>
             <div class="buttons">
-                <button routerLink="/admin" (click)="popup()">Vale</button>
+                <button routerLink="/admin" (click)="popup(); refresh()">¡Vale!</button>
             </div>
         </div>
     </div>
@@ -127,12 +127,12 @@
 
                         <div class="foto-product">
                             <input id="foto" type="text" [(ngModel)]="pr.featuredPhoto" >
-                            <input id="file-name" (change)="getImageRoute()" type="file" accept="image/*">
+                            <input #file id="file-name" (change)="getImageRoute();" type="file" accept="image/*">
                         </div>
 
                         <label>Descripción:</label>
                         <textarea [(ngModel)]="pr.description"></textarea>
-                        <button (click)="postProductData()">Añadir Producto</button>
+                        <button (click)="postProductData(); uploadFile(file.files)">Añadir Producto</button>
                     </div>
             </div>
 
