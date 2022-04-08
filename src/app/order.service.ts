@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from './order';
-import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class OrderService {
     fetch(`https://localhost:44316/api/orders/date/${id}?Date=${date}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let orderUserDate=stringify(result);
+    let orderUserDate=JSON.stringify(result);
     localStorage.setItem("orderUserDate", orderUserDate)
   })
   .catch(error => console.log('error', error));
@@ -42,7 +41,7 @@ export class OrderService {
     fetch('https://localhost:44316/api/Orders', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let orderList=stringify(result);
+    let orderList=JSON.stringify(result);
     localStorage.setItem("orderList", orderList)
   })
   .catch(error => console.log('error', error));
@@ -59,7 +58,7 @@ export class OrderService {
     fetch(`https://localhost:44316/api/orders/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let orderPerId=stringify(result);
+    let orderPerId=JSON.stringify(result);
     localStorage.setItem("orderPerId", orderPerId)
   })
   .catch(error => console.log('error', error));
@@ -76,7 +75,7 @@ export class OrderService {
     fetch(`https://localhost:44316/api/orders`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedOrder=stringify(result);
+    let postedOrder=JSON.stringify(result);
     localStorage.setItem("postedOrder", postedOrder)
   })
   .catch(error => console.log('error', error));
@@ -94,7 +93,7 @@ export class OrderService {
   fetch(`https://localhost:44316/api/orders/${Order.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedOrder=stringify(result);
+  let updatedOrder=JSON.stringify(result);
   localStorage.setItem("updatedOrder", updatedOrder)
 })
 .catch(error => console.log('error', error));
@@ -114,7 +113,7 @@ export class OrderService {
   fetch(`https://localhost:44316/api/orders/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedOrder=stringify(result);
+  let deletedOrder=JSON.stringify(result);
   localStorage.setItem("deletedOrder", deletedOrder)
 })
 .catch(error => console.log('error', error));

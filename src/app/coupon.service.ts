@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
 import { Coupon } from './coupon';
-import { stringify } from '@angular/compiler/src/util';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class CouponService {
     fetch('https://localhost:44316/api/Coupons', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let couponList=stringify(result);
+    let couponList=JSON.stringify(result);
     localStorage.setItem("couponList", couponList)
   })
   .catch(error => console.log('error', error));
@@ -43,7 +43,7 @@ export class CouponService {
     fetch(`https://localhost:44316/api/coupons/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let couponPerId=stringify(result);
+    let couponPerId=JSON.stringify(result);
     localStorage.setItem("couponPerId", couponPerId)
   })
   .catch(error => console.log('error', error));
@@ -60,7 +60,7 @@ export class CouponService {
     fetch(`https://localhost:44316/api/coupons`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedCoupon=stringify(result);
+    let postedCoupon=JSON.stringify(result);
     localStorage.setItem("postedCoupon", postedCoupon)
   })
   .catch(error => console.log('error', error));
@@ -78,7 +78,7 @@ export class CouponService {
     fetch(`https://localhost:44316/api/coupons/${Coupon.id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let updatedCoupon=stringify(result);
+    let updatedCoupon=JSON.stringify(result);
     localStorage.setItem("updatedCoupon", updatedCoupon)
   })
   .catch(error => console.log('error', error));
@@ -96,7 +96,7 @@ export class CouponService {
   fetch(`https://localhost:44316/api/coupons/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedCoupon=stringify(result);
+  let deletedCoupon=JSON.stringify(result);
   localStorage.setItem("deletedCoupon", deletedCoupon)
 })
 .catch(error => console.log('error', error));

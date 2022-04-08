@@ -9,7 +9,7 @@ import { ProductService } from '../product.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public ProductService:ProductService) { }
+  constructor(public productService:ProductService) { }
 
   ngOnInit(): void {
 
@@ -18,10 +18,10 @@ export class IndexComponent implements OnInit {
   objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
   
   getDataProductId(id:number):void{
-    this.ProductService.getProductId(id).subscribe(data=>
-    {
-      this.objectP = data;
-    })
+    this.productService.getProductId(id);
+    let aux = localStorage.getItem('productPerId'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.objectP=auxTxt;
   }
 
 }

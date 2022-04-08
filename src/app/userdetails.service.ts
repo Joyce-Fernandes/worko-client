@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Userdetails } from './userdetails';
-import { stringify } from '@angular/compiler/src/util';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class UserdetailsService {
     fetch('https://localhost:44316/api/user', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userdetailsList=stringify(result);
+    let userdetailsList=JSON.stringify(result);
     localStorage.setItem("userdetailsList", userdetailsList)
   })
   .catch(error => console.log('error', error));
@@ -40,7 +40,7 @@ export class UserdetailsService {
     fetch(`https://localhost:44316/api/user/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userdetailsPerId=stringify(result);
+    let userdetailsPerId=JSON.stringify(result);
     localStorage.setItem("userdetailsPerId", userdetailsPerId)
   })
   .catch(error => console.log('error', error));
@@ -57,7 +57,7 @@ export class UserdetailsService {
     fetch(`https://localhost:44316/api/user`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedUserdetails=stringify(result);
+    let postedUserdetails=JSON.stringify(result);
     localStorage.setItem("postedUserdetails", postedUserdetails)
   })
   .catch(error => console.log('error', error));
@@ -75,7 +75,7 @@ export class UserdetailsService {
   fetch(`https://localhost:44316/api/user/${Userdetails.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedUserdetails=stringify(result);
+  let updatedUserdetails=JSON.stringify(result);
   localStorage.setItem("updatedUserdetails", updatedUserdetails)
 })
 .catch(error => console.log('error', error));
@@ -95,7 +95,7 @@ export class UserdetailsService {
   fetch(`https://localhost:44316/api/user/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedUserdetails=stringify(result);
+  let deletedUserdetails=JSON.stringify(result);
   localStorage.setItem("deletedUserdetails", deletedUserdetails)
 })
 .catch(error => console.log('error', error));

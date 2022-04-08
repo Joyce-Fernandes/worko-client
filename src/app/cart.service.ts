@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Cart } from './cart';
-import { stringify } from '@angular/compiler/src/util';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class CartService {
     fetch('https://localhost:44316/api/Carts', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let cartList=stringify(result);
+    let cartList=JSON.stringify(result);
     localStorage.setItem("cartList", cartList)
   })
   .catch(error => console.log('error', error));
@@ -41,7 +40,7 @@ export class CartService {
     fetch(`https://localhost:44316/api/carts/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let cartPerId=stringify(result);
+    let cartPerId=JSON.stringify(result);
     localStorage.setItem("cartPerId", cartPerId)
   })
   .catch(error => console.log('error', error));
@@ -58,7 +57,7 @@ export class CartService {
     fetch(`https://localhost:44316/api/carts`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedCart=stringify(result);
+    let postedCart=JSON.stringify(result);
     localStorage.setItem("postedCart", postedCart)
   })
   .catch(error => console.log('error', error));
@@ -76,7 +75,7 @@ export class CartService {
   fetch(`https://localhost:44316/api/carts/${Cart.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedCart=stringify(result);
+  let updatedCart=JSON.stringify(result);
   localStorage.setItem("updatedCart", updatedCart)
 })
 .catch(error => console.log('error', error));
@@ -96,7 +95,7 @@ export class CartService {
   fetch(`https://localhost:44316/api/carts/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedCart=stringify(result);
+  let deletedCart=JSON.stringify(result);
   localStorage.setItem("deletedCart", deletedCart)
 })
 .catch(error => console.log('error', error));

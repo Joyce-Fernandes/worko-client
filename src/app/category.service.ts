@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Category } from './category';
-import { stringify } from '@angular/compiler/src/util';
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class CategoryService {
     fetch('https://localhost:44316/api/Categorys', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let categoryList=stringify(result);
+    let categoryList=JSON.stringify(result);
     localStorage.setItem("categoryList", categoryList)
   })
   .catch(error => console.log('error', error));
@@ -40,7 +39,7 @@ export class CategoryService {
     fetch(`https://localhost:44316/api/categorys/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let categoryPerId=stringify(result);
+    let categoryPerId=JSON.stringify(result);
     localStorage.setItem("categoryPerId", categoryPerId)
   })
   .catch(error => console.log('error', error));
@@ -57,7 +56,7 @@ export class CategoryService {
     fetch(`https://localhost:44316/api/categorys`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedCategory=stringify(result);
+    let postedCategory=JSON.stringify(result);
     localStorage.setItem("postedCategory", postedCategory)
   })
   .catch(error => console.log('error', error));
@@ -75,7 +74,7 @@ export class CategoryService {
   fetch(`https://localhost:44316/api/categorys/${Category.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedCategory=stringify(result);
+  let updatedCategory=JSON.stringify(result);
   localStorage.setItem("updatedCategory", updatedCategory)
 })
 .catch(error => console.log('error', error));
@@ -95,7 +94,7 @@ export class CategoryService {
   fetch(`https://localhost:44316/api/categorys/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedCategory=stringify(result);
+  let deletedCategory=JSON.stringify(result);
   localStorage.setItem("deletedCategory", deletedCategory)
 })
 .catch(error => console.log('error', error));

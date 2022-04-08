@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -23,7 +21,7 @@ export class ProductService {
     fetch('https://localhost:44316/api/Products', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let productList=stringify(result);
+    let productList=JSON.stringify(result);
     localStorage.setItem("productList", productList)
   })
   .catch(error => console.log('error', error));
@@ -40,7 +38,7 @@ export class ProductService {
     fetch(`https://localhost:44316/api/products/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let productPerId=stringify(result);
+    let productPerId=JSON.stringify(result);
     localStorage.setItem("productPerId", productPerId)
   })
   .catch(error => console.log('error', error));
@@ -57,7 +55,7 @@ export class ProductService {
     fetch(`https://localhost:44316/api/products`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedProduct=stringify(result);
+    let postedProduct=JSON.stringify(result);
     localStorage.setItem("postedProduct", postedProduct)
   })
   .catch(error => console.log('error', error));
@@ -75,7 +73,7 @@ export class ProductService {
   fetch(`https://localhost:44316/api/products/${Product.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedProduct=stringify(result);
+  let updatedProduct=JSON.stringify(result);
   localStorage.setItem("updatedProduct", updatedProduct)
 })
 .catch(error => console.log('error', error));
@@ -95,7 +93,7 @@ export class ProductService {
   fetch(`https://localhost:44316/api/products/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedProduct=stringify(result);
+  let deletedProduct=JSON.stringify(result);
   localStorage.setItem("deletedProduct", deletedProduct)
 })
 .catch(error => console.log('error', error));

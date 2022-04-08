@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Userinfo } from './userinfo';
 
 @Injectable({
@@ -23,7 +21,7 @@ export class UserinfoService {
     fetch('https://localhost:44316/api/user', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userinfoList=stringify(result);
+    let userinfoList=JSON.stringify(result);
     localStorage.setItem("userinfoList", userinfoList)
   })
   .catch(error => console.log('error', error));
@@ -40,7 +38,7 @@ export class UserinfoService {
     fetch(`https://localhost:44316/api/user/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userinfoPerId=stringify(result);
+    let userinfoPerId=JSON.stringify(result);
     localStorage.setItem("userinfoPerId", userinfoPerId)
   })
   .catch(error => console.log('error', error));
@@ -57,7 +55,7 @@ export class UserinfoService {
     fetch(`https://localhost:44316/api/user`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedUserinfo=stringify(result);
+    let postedUserinfo=JSON.stringify(result);
     localStorage.setItem("postedUserinfo", postedUserinfo)
   })
   .catch(error => console.log('error', error));
@@ -75,7 +73,7 @@ export class UserinfoService {
   fetch(`https://localhost:44316/api/user/${Userinfo.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedUserinfo=stringify(result);
+  let updatedUserinfo=JSON.stringify(result);
   localStorage.setItem("updatedUserinfo", updatedUserinfo)
 })
 .catch(error => console.log('error', error));
@@ -95,7 +93,7 @@ export class UserinfoService {
   fetch(`https://localhost:44316/api/user/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedUserinfo=stringify(result);
+  let deletedUserinfo=JSON.stringify(result);
   localStorage.setItem("deletedUserinfo", deletedUserinfo)
 })
 .catch(error => console.log('error', error));

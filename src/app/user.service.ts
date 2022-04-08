@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { User } from './user';
-import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +21,7 @@ export class UserService {
       fetch(`https://localhost:44316/api/users/mail/${email}`, requestOptions)
     .then(response => response.text())
     .then(result => {
-      let userPerEmail=stringify(result);
+      let userPerEmail=JSON.stringify(result);
       localStorage.setItem("userPerEmail", userPerEmail)
     })
     .catch(error => console.log('error', error));
@@ -40,7 +38,7 @@ export class UserService {
     fetch('https://localhost:44316/api/Users', requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userList=stringify(result);
+    let userList=JSON.stringify(result);
     localStorage.setItem("userList", userList)
   })
   .catch(error => console.log('error', error));
@@ -57,7 +55,7 @@ export class UserService {
     fetch(`https://localhost:44316/api/users/${id}`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let userPerId=stringify(result);
+    let userPerId=JSON.stringify(result);
     localStorage.setItem("userPerId", userPerId)
   })
   .catch(error => console.log('error', error));
@@ -74,7 +72,7 @@ export class UserService {
     fetch(`https://localhost:44316/api/users`, requestOptions)
   .then(response => response.text())
   .then(result => {
-    let postedUser=stringify(result);
+    let postedUser=JSON.stringify(result);
     localStorage.setItem("postedUser", postedUser)
   })
   .catch(error => console.log('error', error));
@@ -92,7 +90,7 @@ export class UserService {
   fetch(`https://localhost:44316/api/users/${User.id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let updatedUser=stringify(result);
+  let updatedUser=JSON.stringify(result);
   localStorage.setItem("updatedUser", updatedUser)
 })
 .catch(error => console.log('error', error));
@@ -112,7 +110,7 @@ export class UserService {
   fetch(`https://localhost:44316/api/users/${id}`, requestOptions)
 .then(response => response.text())
 .then(result => {
-  let deletedUser=stringify(result);
+  let deletedUser=JSON.stringify(result);
   localStorage.setItem("deletedUser", deletedUser)
 })
 .catch(error => console.log('error', error));
