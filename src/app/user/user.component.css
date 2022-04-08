@@ -47,7 +47,7 @@ img{
     flex-direction: column;
 }
 
-.popup .buttons button:last-child{
+.buttons button{
     margin-left: 0;
 }
 

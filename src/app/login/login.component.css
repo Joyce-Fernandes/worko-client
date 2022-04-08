@@ -1,3 +1,15 @@
+.hide{
+    display: none;
+}
+
+.show{
+    display: flex;
+}
+
+.buttons button{
+    margin-left: 0;
+}
+
 @media (max-width: 834px) {
     .login-form{
         flex-direction: column;

@@ -39,12 +39,47 @@ export class LoginComponent implements OnInit {
     rol: "User"
   }
 
-  postUser(): void {
-    this.UserService.postUser(this.user).subscribe(data =>{
-      alert("¡Usuarix añadido con éxito!");
-      this.refresh();
-    });
+  postDataUser(): void {
+    this.UserService.postUser(this.user).subscribe();
+    // alert("¡Usuarix añadido con éxito!");
+    // this.refresh();
+
+    let smiley = document.querySelector("#smiley") as HTMLElement;
+    let saddey = document.querySelector("#saddey") as HTMLElement;
+    smiley.classList.add('show');
+    smiley.classList.remove('hide');
+    saddey.classList.remove('show');
+    saddey.classList.add('hide');
+
+
+    let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+    let buttonAdmin = document.querySelector("#button-admin") as HTMLElement;
+    let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+    
+    buttonAdmin.classList.add('show');
+    buttonAdmin.classList.remove('hide');
+    buttonIndex.classList.add('hide');
+    buttonIndex.classList.remove('show');
+
+    infoPopup.innerHTML = "¡Usuarix añadido con éxito!";
+    this.popup();
   }
+
+  refreshAndGoToIndex(){
+    window.location.href=('http://localhost:4200');
+  }
+  // postDataUser():void{
+  //   this.UserService.postUser(this.ue).subscribe();
+  //   alert("Usuario registrado con éxito.");
+  //   window.location.href=('http://localhost:4200/login');
+  // }
+
+  // postUser(): void {
+  //   this.UserService.postUser(this.user).subscribe(data =>{
+  //     alert("¡Usuarix añadido con éxito!");
+  //     this.refresh();
+  //   });
+  // }
 
   Login(): void {
     var myHeaders = new Headers();
@@ -72,7 +107,25 @@ export class LoginComponent implements OnInit {
         
         
         if (vari.status == '401') {
-          alert('Error al logear');
+          // alert('Error al logear');
+          let smiley = document.querySelector("#smiley") as HTMLElement;
+          let saddey = document.querySelector("#saddey") as HTMLElement;
+          smiley.classList.add('hide');
+          smiley.classList.remove('show');
+          saddey.classList.remove('hide');
+          saddey.classList.add('show');
+
+          let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+          let buttonAdmin = document.querySelector("#button-admin") as HTMLElement;
+          buttonAdmin.classList.add('show');
+          buttonAdmin.classList.remove('hide');
+          buttonIndex.classList.add('hide');
+          buttonIndex.classList.remove('show');
+
+          let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+          infoPopup.innerHTML = "Error al logear.";
+          this.popup();
+
           this.tokenUser.rol="Error";
           localStorage.removeItem('email');
         } else {
@@ -84,12 +137,25 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('rol', this.tokenUser.rol);
           localStorage.removeItem('tokenUser');
           localStorage.removeItem('a');      
-          alert('Bienvenido');
-          window.location.href=('http://localhost:4200');
-         // window.location.reload();
+          // alert('Bienvenido');
+            let smiley = document.querySelector("#smiley") as HTMLElement;
+            let saddey = document.querySelector("#saddey") as HTMLElement;
+            smiley.classList.add('show');
+            smiley.classList.remove('hide');
+            saddey.classList.remove('show');
+            saddey.classList.add('hide');
+
+            let buttonIndex = document.querySelector("#button-index") as HTMLElement;
+            let buttonAdmin = document.querySelector("#button-admin") as HTMLElement;
+            let infoPopup = document.querySelector("#popup-info") as HTMLElement;
+              
+            buttonAdmin.classList.add('hide');
+            buttonAdmin.classList.remove('show');
+            buttonIndex.classList.add('show');
+            buttonIndex.classList.remove('hide');
+            infoPopup.innerHTML = "¡Bienvenidx!";
+            this.popup();
         };
-          
-        
 
         localStorage.removeItem('tokenUser');
         localStorage.removeItem('a');
@@ -106,4 +172,16 @@ export class LoginComponent implements OnInit {
       // localStorage.setItem('rol', JSON.stringify(data.rol));
     })
   } 
-};
+
+  popup() {
+    const popup = document.querySelector(".popup"); 
+    if(popup?.classList.contains("hideP")){
+      popup?.classList.add("showP");
+      popup?.classList.remove("hideP");
+    }else{
+      popup?.classList.add("hideP");
+      popup?.classList.remove("showP");
+    }
+  }
+
+}

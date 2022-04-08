@@ -39,6 +39,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.takeCartItems();
     this.getCoupon();
+    this.checkUser();
   }
   getCart(): void {
     this.CartService.getCart().subscribe(
@@ -154,6 +155,25 @@ export class CartComponent implements OnInit {
       this.totalPrice -= this.couponDis;
       console.log(this.couponDis);
       price.innerHTML = `<div><p style="color: var(--pink); font-size: 0.6em;" class="discount">Descuento -${this.couponDis}€</p><p>Precio total: ${this.totalPrice} €</p></div>`;
+    }
+  }
+
+  checkUser(){
+    let rol = localStorage.getItem("rol");
+    let rolBuyer = document.getElementById('cart-full') as HTMLElement;
+    let notRol = document.getElementById('not-logged') as HTMLElement;
+
+    if(rol === "User" || rol === "Admin"){
+      rolBuyer.classList.add('show');
+      rolBuyer.classList.remove('hide');
+      notRol.classList.add('hide');
+      notRol.classList.remove('show');
+    }
+    else{
+      rolBuyer.classList.add('hide');
+      rolBuyer.classList.remove('show');
+      notRol.classList.add('show');
+      notRol.classList.remove('hide');
     }
   }
 
