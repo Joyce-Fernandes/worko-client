@@ -66,6 +66,7 @@ export class HeaderComponent implements OnInit {
     if(menu?.classList.contains('hide')){
       menu?.classList.add('show');
       menu?.classList.remove('hide');
+      window.scrollTo(0, 0);
     }else if(menu?.classList.contains('show')){
       menu?.classList.add('hide');
       menu?.classList.remove('show');

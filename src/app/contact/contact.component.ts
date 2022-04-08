@@ -9,7 +9,20 @@ export class ContactComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
+
   }
 
+
+    popup() {
+     const popup = document.querySelector(".popup"); 
+     if(popup?.classList.contains("hideP")){
+       popup?.classList.add("showP");
+       popup?.classList.remove("hideP");
+     }else{
+       popup?.classList.add("hideP");
+       popup?.classList.remove("showP");
+     }
+   }
 }
