@@ -30,7 +30,7 @@
                         <input placeholder="Password*"[(ngModel)]="user.password" type="password"/>
                         <input placeholder="Address*"[(ngModel)]="user.adress" type="text"/>
                     </div>
-                <button (click)="putUserData(user.id)">Modificar datos</button>
+                <button (click)="putUserData(user.id); refresh()">Modificar datos</button>
                 <button (click)="deleteUserData(user.id);">Borrar cuenta</button>
             </div>
             <div class="user-form hide" id="user-orders">

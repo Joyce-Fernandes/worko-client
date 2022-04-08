@@ -66,10 +66,15 @@ export class UserdetailsComponent implements OnInit {
   }
 
   putUserData(id:number): void {
-    this.UserService.putUser(id, this.user).subscribe((user) => {
-      this.user = user;
-    });
+    this.UserService.putUser(id, this.user).subscribe();
   }
+  
+
+  // putUserData(id:number): void {
+  //   this.UserService.putUser(id, this.user).subscribe((user) => {
+  //     this.user = user;
+  //   });
+  // }
   
   refresh(){
     let infoPopup = document.querySelector("#popup-info") as HTMLElement;
