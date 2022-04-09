@@ -3,6 +3,9 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { UserinfoService } from '../userinfo.service';
+import { Userdetails } from '../userdetails';
+import { Userinfo } from '../userinfo';
 
 @Component({
   selector: 'app-userdetails',
@@ -10,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./userdetails.component.css'],
 })
 export class UserdetailsComponent implements OnInit {
-  constructor(public UserService: UserService, public route: ActivatedRoute) { }
+  constructor(public userService: UserService, public route: ActivatedRoute, public userinfoService: UserinfoService) { }
 
   public routeSub?:Subscription;
 
@@ -18,6 +21,7 @@ export class UserdetailsComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id'];
       this.getUserIdData(id);
+      this.getUserIdInfo(id);
     })
   }
   user: User={
@@ -30,22 +34,71 @@ export class UserdetailsComponent implements OnInit {
     rol: ""
   }
 
-  getUserIdData(id:number):void{
-    this.UserService.getUserId(id).subscribe(data =>
-    {
-      this.user = data;
-    })
+  userinfo: Userinfo={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "",
+    orders:[]
   }
-  
-  /* Necesitamos la localstorage con el rol para hacer el PUT */
+
+  order:[] = [];
+
+  getUserIdData(id:number):void{
+    this.userService.getUserId(id);
+    let aux = localStorage.getItem('userPerId'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
+  }
+
+  getUserIdInfo(id:number):void{
+    this.userService.getUserId(id);
+    let aux = localStorage.getItem('userPerId'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.userinfo=auxTxt;
+    console.log(this.userinfo);
+  }
+
   putUserData(id:number): void {
-    this.UserService.putUser(id, this.user).subscribe((user) => {
-      this.user = user;
-    });
+    this.userService.putUser(this.user);
+    let aux = localStorage.getItem('updatedUser'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.user=auxTxt;
   }
   
   refresh(){
     window.location.reload();
     alert("Usuarix modificado con éxito.");
+  }
+
+  showUserOrder(){   
+    const userProfile= document.getElementById('user-details');
+    const userOrders = document.getElementById('user-orders');
+    userProfile?.classList.add('hide');
+    userProfile?.classList.remove('show');
+    userOrders?.classList.add('show');
+    userOrders?.classList.remove('hide');
+  }
+
+  deleteUserData(id: number): void {
+    this.userService.deleteUser(id);
+    alert("¡Agur! Te echaremos de menos :(");
+    localStorage.removeItem('a');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenUser');
+    window.location.href=('http://localhost:4200');
+  }
+  showUserProfile(){   
+    const userProfile= document.getElementById('user-details');
+    const userOrders = document.getElementById('user-orders');
+    userProfile?.classList.add('show');
+    userProfile?.classList.remove('hide');
+    userOrders?.classList.add('hide');
+    userOrders?.classList.remove('show');
   }
 }

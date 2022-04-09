@@ -11,48 +11,37 @@ import { Category } from '../category';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
 
-  constructor(public ProductService:ProductService, public CategoryService:CategoryService) { }
+  constructor(public productService:ProductService, public categoryService:CategoryService) { }
 
   ngOnInit(): void {
     this.getDataProducts();
     this.getCategoryData();
   }
 
-  objetcPr?: Product[];
-
-  tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
-
-  getProduct() {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);//añade token al header
-
-    var requestOptions: RequestInit = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-    fetch("https://localhost:44316/api/Products", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-  };
+  objetcPr?: Product[];  
+  getProduct(): void {
+    this.productService.getProduct();
+    let aux = localStorage.getItem('productList'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.objetcPr=auxTxt;
+  }
 
 
   getDataProducts():void{
-    this.ProductService.getProduct().subscribe(data =>{
-      this.objetcPr = data;
-    })
+    this.productService.getProduct();
+    let aux = localStorage.getItem('productList'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.objetcPr=auxTxt;
   }
 
   objectCat?:Category[];
   getCategoryData():void{
-    this.CategoryService.getCategory().subscribe(data =>
-    {
-      this.objectCat = data;
-    })
+    this.categoryService.getCategory();
+    let aux = localStorage.getItem('categoryList'); //recupera dato con comillas
+    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+    this.objectCat=auxTxt;
   }
   objectP: Product={
     id:0, name:"",
@@ -66,9 +55,9 @@ export class ProductComponent implements OnInit {
     };
     
     getDataProductId(id:number):void{
-      this.ProductService.getProductId(id).subscribe(data=>
-      {
-        this.objectP = data;
-      });
+      this.productService.getProductId(id);
+      let aux = localStorage.getItem('productPerId'); //recupera dato con comillas
+      let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
+      this.objectP=auxTxt;
     };
-    };
+};

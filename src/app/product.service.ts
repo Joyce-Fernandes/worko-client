@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -9,31 +8,95 @@ import { Product } from './product';
 export class ProductService {
   
   constructor(public http: HttpClient) { }
-  httpOptions: Object = {
-    headers: new HttpHeaders({'Content-Type': 'applications/json'})
-  };
   tokenUser = JSON.parse(JSON.stringify(localStorage.getItem('token'))); //recoge el token y lo deja 'limpio'
-
-  getProduct():Observable<Product[]>{
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${this.tokenUser}`);//añade token al header
-    return this.http.get<Product[]>('https://localhost:44316/api/products');
+    
+  getProduct(): void {
+    let requestOptions: RequestInit = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      redirect: 'follow'
+    };
+    fetch('https://localhost:44316/api/Products', requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let productList=JSON.stringify(result);
+    localStorage.setItem("productList", productList)
+  })
+  .catch(error => console.log('error', error));
+  }
+  
+  getProductId(id:number):void{
+    let requestOptions: RequestInit = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      redirect: 'follow'
+    };
+    fetch(`https://localhost:44316/api/products/${id}`, requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let productPerId=JSON.stringify(result);
+    localStorage.setItem("productPerId", productPerId)
+  })
+  .catch(error => console.log('error', error));
+  }
+  postProduct(Product: Product): void {
+    let requestOptions: RequestInit = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.tokenUser}`},
+      body: JSON.stringify(Product),
+      redirect: 'follow'
+    };
+    fetch(`https://localhost:44316/api/products`, requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let postedProduct=JSON.stringify(result);
+    localStorage.setItem("postedProduct", postedProduct)
+  })
+  .catch(error => console.log('error', error));
   };
 
-  getProductId(id:number):Observable<Product>{
-    return this.http.get<Product>('https://localhost:44316/api/products/' + id);
+  updateProduct(Product: Product): void {
+  let requestOptions: RequestInit = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${this.tokenUser}`},
+    body: JSON.stringify(Product),
+    redirect: 'follow'
   };
-  putProduct(id:number, product:Product): Observable<Product> {
-    return this.http.put<Product>('https://localhost:44316/api/products/' + id, product, this.httpOptions)
+  fetch(`https://localhost:44316/api/products/${Product.id}`, requestOptions)
+.then(response => response.text())
+.then(result => {
+  let updatedProduct=JSON.stringify(result);
+  localStorage.setItem("updatedProduct", updatedProduct)
+})
+.catch(error => console.log('error', error));
+};
+  putProduct(Product:Product): void{
+    this.updateProduct(Product);
   }
-  postProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>('https://localhost:44316/api/products',
-      product,
-      this.httpOptions
-    ); 
-  }
-  deleteProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>('https://localhost:44316/api/products/' + id);  
-  }
+ 
+  deleteProduct(id: number): void {
+    let requestOptions: RequestInit = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${this.tokenUser}`},
+       redirect: 'follow'
+  };
+  fetch(`https://localhost:44316/api/products/${id}`, requestOptions)
+.then(response => response.text())
+.then(result => {
+  let deletedProduct=JSON.stringify(result);
+  localStorage.setItem("deletedProduct", deletedProduct)
+})
+.catch(error => console.log('error', error));
+};  
 }
 
