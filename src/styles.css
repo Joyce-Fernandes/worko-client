@@ -526,12 +526,12 @@ table img{
 }
 
 .popup img{
-    width: 5em;
+    width: 50px;
 }
 
-.popup-smiley img{
+/* .popup-smiley img{
     width: 4em;
-}
+} */
 
 .popup .buttons{
     display: flex;

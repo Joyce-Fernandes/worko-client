@@ -25,6 +25,7 @@
     "@angular/router": "~13.3.0",
     "@nguniversal/express-engine": "^13.1.0",
     "express": "^4.15.2",
+    "localstorage-polyfill": "^1.0.1",
     "node-localstorage": "^2.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

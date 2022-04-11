@@ -29,6 +29,16 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
+  us: User={
+    id:0,
+    name:"",
+    surname:"",
+    email: "",
+    password:"",
+    adress:"",
+    rol: "User"
+  }
+
   user: User={
     id:0,
     name:"",
@@ -40,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   postDataUser(): void {
-    this.UserService.postUser(this.user).subscribe();
+    this.UserService.postUser(this.us).subscribe();
     // alert("¡Usuarix añadido con éxito!");
     // this.refresh();
 
