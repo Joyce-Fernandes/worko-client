@@ -75,6 +75,10 @@ input[type="email"]{
     align-items: center;
 }
 
+#empty-cart{
+    margin: 2.5em 0;
+}
+
 @media (max-width: 834px) {
     .coupon-row{
         width: 100%;

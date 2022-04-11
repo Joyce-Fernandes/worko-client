@@ -9,6 +9,11 @@ article img{
     width: 60%;
 }
 
+
+.popup img{
+    width: 105px;
+}
+
 .breadcrumbs{
     align-self: flex-start;
 }
