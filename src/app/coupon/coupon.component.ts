@@ -9,52 +9,45 @@ import { CouponService } from '../coupon.service';
 })
 export class CouponComponent implements OnInit {
 
-
-  constructor(public couponService:CouponService) { }
-
-  ngOnInit(): void {
-    //this.getCoupon();
-  }
-
-  objects: Coupon[] = [];
-  object: Coupon=  {
+  objetos: Coupon[] = [];
+  objeto: Coupon=  {
 
     id: 0,
     name: '',
     startDate: new Date(Date.now ()),
     endDate: new Date(Date.now ()),
-    discount:2,
+    discount:0,
 
   }
-  couponIdNum:number = 0;
 
-  getDataCouponId(id: number): void {
-    this.couponService.getCouponId(id);
-  }
+  constructor(public CouponService:CouponService) { }
 
-  getId(couponId:string){
-    this.couponIdNum = parseInt(couponId);
-    return this.couponIdNum;
+  ngOnInit(): void {
   }
 
   getCoupon(): void {
-    this.couponService.getCoupon()
+    this.CouponService.getCoupon().subscribe(
+      (Coupon) => {
+    this.objetos = Coupon;
+    console.log(this.objetos);
+    });
   }
 
-  postCoupon(object:Coupon): void {
-    this.couponService.postCoupon(object);
+  postCoupon(): void {
+    console.log(this.objeto);
+    this.CouponService.postCoupon(this.objeto).subscribe();
   }
 
-  putCoupon(object:Coupon): void {
-    this.couponService.putCoupon(object)
-  }
-
-  updateCoupon(object:Coupon): void {
-    this.couponService.putCoupon(object)
+  putCoupon(): void {
+    this.CouponService.updateCoupon(this.objeto).subscribe(
+      (Coupon) => {
+    this.objeto = Coupon;
+    console.log(this.objetos);
+    });
   }
 
   deleteCoupon(id:number): void {
-    this.couponService.deleteCoupon(id);
+    this.CouponService.deleteCoupon(id).subscribe();
   }
 }
 

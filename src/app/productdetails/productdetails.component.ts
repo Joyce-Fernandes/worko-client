@@ -12,7 +12,7 @@ import { Category } from '../category';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent implements OnInit {
-  constructor(public productService:ProductService, public categoryService:CategoryService, public route: ActivatedRoute) { }
+  constructor(public ProductService:ProductService, public CategoryService:CategoryService, public route: ActivatedRoute) { }
 
   public routeSub?:Subscription;
 
@@ -28,21 +28,20 @@ export class ProductdetailsComponent implements OnInit {
   productStock?:number;
   objectP:Product={id:0, name:"", price:0, stock:0, description:"", color:"", size:"", categoryId:0, featuredPhoto:""};
   getDataProductId(id:number):void{
-    this.productService.getProductId(id);
-    let aux = localStorage.getItem('productPerId'); //recupera dato con comillas
-    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
-    this.objectP=auxTxt;
+    this.ProductService.getProductId(id).subscribe(data=>
+    {
+      this.objectP = data;
       this.productStock = this.objectP.stock;
       this.calculateStock(this.productStock);
-    
+    })
   }
-  
+
   objectCat?:Category[];
   getCategoryData():void{
-    this.categoryService.getCategory()
-    let aux = localStorage.getItem('categoryList'); //recupera dato con comillas
-    let auxTxt = JSON.parse(JSON.stringify(aux)); //para que no de problemas de tipo
-    this.objectCat=auxTxt;
+    this.CategoryService.getCategory().subscribe(data =>
+    {
+      this.objectCat = data;
+    })
   }
 
   calculateStock(stock:number){
@@ -74,7 +73,6 @@ export class ProductdetailsComponent implements OnInit {
       size: size,
       quant: quant}
     localStorage.setItem("Producto" + id, JSON.stringify(lclStg));
-     alert("Producto/s añadido/s al carrito.");
-     
+    alert("Producto/s añadido/s al carrito.");
   }
 }
