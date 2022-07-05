@@ -1,4 +1,9 @@
-# Client
+<embed width="80%" align="center" src="/workoshop-tienda-online.mp4" alt="video" /> <br/>
+
+
+<img align="left" src="/angular.png" height="50" alt="angular icon"/>
+
+<h2>E-Commerce Workoshop</h2>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
