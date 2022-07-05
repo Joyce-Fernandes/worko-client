@@ -1,7 +1,5 @@
-
-<video width="80%" align="center" controls>
-  <source src="/web-responsive.mp4" type="video/mp4">
-</video> <br/>
+<video width="80%" align="center" controls> 
+<source src="/web-responsive.mp4" alt="video/mp4"></video> <br/>
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
 
