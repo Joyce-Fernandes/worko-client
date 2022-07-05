@@ -1,0 +1,59 @@
+<header class="header-load">
+    <a routerLink=""><img id="logo" src="../../assets/img/logo-workoholics-rosa.svg" alt=""></a>
+    <nav class="main">
+        <ul>
+            <li><a routerLink="/product">Productos</a></li>
+            <li><a routerLink="/about">Nosotrxs</a></li>
+            <li><a routerLink="/contact">Contacto</a></li>
+            <li><a target="blank" href="https://workoholics.es/">Worköholics</a></li>
+        </ul>
+    </nav>
+
+    <div class="icons-header">
+        <a routerLink="/login" id="basic">
+            <i class="user-details">
+                <img src="../../assets/img/user-rosa.svg" alt="">
+            </i>
+        </a>
+        <!-- CAMBIAR ENLACE A USERDETAILS CUANDO ESTÉ -->
+        <a [routerLink]="['/user/' + userId]" id="logged">
+            <i class="user-details">
+                <img src="../../assets/img/user-rosa.svg" alt="">
+            </i>
+        </a>
+
+        <a routerLink="/admin" id="admin">
+            <i class="user-details">
+                <img src="../../assets/img/user-rosa.svg" alt="">
+            </i>
+        </a>
+            
+        <a routerLink="/cart">
+        <div class="cart">
+            <img src="../../assets/img/carrito-compra-rosa.svg" alt="">
+        </div></a>
+
+
+        <a href="" (click)="logOut()">
+            <i class="user-logout" id="logout">
+                <img src="../../assets/img/user-logout.svg" alt="">
+            </i>
+        </a>
+
+        <i class="menu-icon" (click)="responsiveMenu()">
+            <img src="../../assets/img/menu.svg" alt="">
+        </i>
+    </div>
+</header>
+<nav class="responsive-menu hide">
+    <i (click)="responsiveMenu()">
+        <img src="../../assets/img/cerrar.svg"> 
+    </i>
+    <ul>
+        <li><a routerLink="/product" (click)="responsiveMenu()">Productos</a></li>
+        <li><a routerLink="/about" (click)="responsiveMenu()">Sobre nosotrxs</a></li>
+        <li><a routerLink="/contact" (click)="responsiveMenu()">Contacto</a></li>
+        <li><a target="blank" href="https://workoholics.es/" (click)="responsiveMenu()">Worköholics</a></li>
+        <li id="logout-mov"><a (click)="responsiveMenu()">Cerrar sesión</a></li>
+    </ul>
+</nav>

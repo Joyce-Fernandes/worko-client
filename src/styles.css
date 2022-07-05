@@ -1,1 +1,670 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@font-face {
+    font-family: "Stringer";
+    src: url("../src/assets/fonts/StingerWideRegular.ttf");
+}
+
+:root{
+    --black: #212222;
+    --pink: #FB088C;
+    --light-grey: #E2E2E2;
+    --soft-white: #E5E5E5;
+    --white: #ffffff; 
+    --primary-font: 'DM Sans', sans-serif;
+    --secondary-font: 'Stringer';
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: var(--primary-font);
+}
+
+::-moz-selection {
+    color: var(--white);
+    background: var(--pink);
+    border: none;
+}
+
+::selection {
+    color: var(--white);
+    background: var(--pink);
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+body{
+    position: relative;
+    overflow-x: hidden;
+}
+
+.white-bg{
+    background: var(--white);
+}
+
+.black-bg{
+    background: var(--black);
+}
+
+.black-bg #logo, .black-bg #logout, .black-bg .cart, .black-bg nav a, .black-bg .user-details, .black-bg .menu-icon{
+    filter: brightness(0%) invert(1)!important;
+}
+
+.black-bg #logo:hover, .black-bg #logout:hover, .black-bg .cart:hover, .black-bg nav a:hover, .black-bg .user-details:hover, .black-bg .menu-icon:hover{
+    filter: none!important;
+}
+
+.black-bg header{
+    background-color: var(--black)!important;
+}
+
+.black-bg .header-load{
+    height: 15vh;
+    background-color: none;
+}
+
+.black-bg .header-top{
+    background-color: none;
+    height: 15vh;
+    animation: changeHeaderTopBlack 0.5s forwards!important;
+}    
+
+.black-bg .header-scroll{
+    animation: changeHeaderScrollBlack 0.5s forwards!important;
+}
+
+@keyframes changeHeaderScrollBlack {
+    from{height: 15vh;}
+    to{height: 10vh;}   
+}
+
+@keyframes changeHeaderTopBlack {
+    from{height: 10vh;}
+    to{height: 15vh;}   
+}
+
+.black-bg h2, .black-bg p{
+    color: var(--white);
+}
+
+h2{
+    margin: 1em 0;
+    font-size: 2.5em;
+    font-family: var(--secondary-font);
+}
+
+main{
+    padding: 7em 0;
+}
+
+main h2{
+    text-align: center;
+}
+
+.fixed-width{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85vw;
+    margin: 0 7.5vw;
+}
+
+/* CHECKBOX */
+
+input[type="checkbox"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: var(--black) 1pt solid;
+    background-color: none;
+    margin: 0 1em 0 0;
+    width: 16px;
+    cursor: pointer;
+    height: 16px;
+}
+
+input[type="checkbox"] {
+    display: grid;
+    place-content: center;
+}
+  
+input[type="checkbox"]::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+}
+  
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]::before {
+    background-color: var(--pink);
+}
+
+/* FORMS */
+
+
+.form{
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-self: center;
+    align-content: center;
+}
+
+select{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    padding: 0.5em;
+    border: 1px solid var(--black);
+    border-radius: 0px;
+    font-size: 1.2em;
+    width: 80%;
+    font-size: 1.5em;
+    margin: 0 0 1em 0;
+}
+.form input[type="date"],
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"],
+.form input[type="email"]{
+    color: var(--black);
+    font-size: 1.5em;
+    padding: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
+    border-radius: none;
+    border-bottom: 1px solid var(--black);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+textarea {
+    resize: none;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.privacy-policy{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+.privacy-policy a, .privacy-policy a:hover, .privacy-policy a:active{
+    color: var(--black);
+}
+
+
+.form input::placeholder{
+    color: var(--black);
+    /* font-size: 1.8em; */
+}
+
+/* BUTTONS */
+input[type="file"]::file-selector-button,
+input[type="button"],
+button {
+    display: inline-block;
+    transition: background-color 0.5s;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0.5em 0;
+    text-decoration: none;
+    background: var(--black);
+    color: var(--white);
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.black-bg button{
+    background-color: var(--pink);
+    color: var(--black);
+}
+
+.black-bg button:hover{
+    background-color: var(--whi);
+    color: var(--black);
+}
+
+.about, .black-bg .about p{
+    color: var(--black);
+}
+
+button:hover{
+    background-color: var(--pink);
+}
+
+.arrow-button{
+    overflow-x:visible;
+    text-align: left;
+    color: var(--black);
+    width: fit-content;
+    display: flex; 
+    flex-direction: row;
+    justify-content: center; 
+    margin: 3em 0;
+    
+}
+.arrow-button a, .arrow-button a:visited{
+    color: var(--black);
+    text-decoration: none;
+    overflow-x:visible;
+}
+
+.arrow-button img{
+    margin-left: 1.2em;
+    width: 1.8em;
+    transition: transform 0.5s;
+}
+
+.arrow-button span{
+    vertical-align: top;
+    line-height: 0.6em;
+    font-size: 1.4em;
+}
+
+.arrow-button:hover img{
+    transform: translate(1.1em);
+}
+
+.arrow-button:hover{
+    filter: opacity(0.75);
+}
+
+/* FORM */
+
+.login-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form{
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="password"],
+.form input[type="email"]{
+    color: var(--black);
+    font-size: 1.5em;
+    padding: 0 0 0.5em 0;
+    margin: 0 0 1em 0;
+    border-radius: none;
+    border-bottom: 1px solid var(--black);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.black-bg .form input[type="text"],
+.black-bg .form input[type="number"],
+.black-bg .form input[type="password"],
+.black-bg .form input[type="email"]{
+    color: var(--white);
+    background-color: var(--black);
+    border-bottom: 1px solid var(--white);
+}
+
+.black-bg .form input::placeholder{
+    color: var(--white);
+}
+
+.black-bg .privacy-policy, .black-bg h3{
+    color: var(--white);
+}
+
+.privacy-policy{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+.privacy-policy a, .privacy-policy a:hover, .privacy-policy a:active{
+    color: var(--black);
+}
+
+.form input::placeholder{
+    color: var(--black);
+    /* font-size: 1.8em; */
+}
+textarea{
+    border: 1px solid var(--black);
+}
+
+/* SQUAR BACKGROUND */
+.square-bg{
+    height: auto;
+    position: relative;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.01) 100%);
+}
+.square-bg::after{
+    height: auto;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+} 
+.square-bg::after{
+    z-index: -2;   
+    opacity: 0.2;
+    background-color:#ffffff;
+    background-image: linear-gradient(white 0px, transparent 1px),
+    linear-gradient(90deg, white 0px, transparent 1px),
+    linear-gradient(rgba(0,0,0,.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.2) 1px, transparent 1px);
+    background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px;
+    background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* PRODUCTS */
+
+.products{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product{
+    width: 48%;
+    height: 100%;
+    margin: 4em 0;
+}
+.product button{
+    opacity: 0;
+    transition: opacity 0.5s;
+    width: 100%;
+}
+.product:hover button{
+    opacity: 1;
+}
+
+.product:hover{
+    cursor: pointer;
+}
+
+
+/* .slider img{
+    object-fit: cover;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+} */
+
+
+.product img{
+    transition: transform 0.5s;
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+}
+
+.product:nth-child(even):hover img{
+    transform: rotate(-1deg);
+}
+.product:nth-child(odd):hover img{
+    transform: rotate(1deg);
+} 
+
+.product-category{
+    margin: 0.5em 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+footer hr,
+.product-category hr{
+    height: 0.5px;
+    width: 3em;
+    margin-right: 1em;
+    border: 0.5px solid var(--pink);
+}
+
+.info-product{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    flex-direction: row;
+}
+
+/* TABLES */
+
+table{
+    width: 60%;
+    text-align: left;
+    border-top:1px solid var(--black);
+    border-collapse: collapse; 
+}
+
+tr{
+    height: 3em;
+    border-bottom: 1px solid var(--black);
+}
+
+table img{
+    width: 8em;
+    margin-top: 0.2em;
+}
+.cerrar img{
+    display: block;
+    margin: 0 auto;
+    width: 2em;
+    cursor: pointer;
+}
+
+.button-row{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    justify-content: space-between;
+}
+
+.button-row button{
+    margin-right: 1em;
+}
+
+.button-row button:last-child{
+    margin-right: none;
+}
+
+/* POPUP */
+
+.popup{
+    overflow-y: hidden;
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 23456789;
+    align-items: center;
+    top:0;
+    padding: 1em;
+}
+
+.popup div{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    background-color: var(--white);
+}
+
+.popup img{
+    width: 50px;
+}
+
+/* .popup-smiley img{
+    width: 4em;
+} */
+
+.popup .buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.popup .buttons button:last-child{
+    margin-left: 1em;
+}
+
+.showP div{
+    visibility: visible;
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.hideP{
+   visibility: hidden;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2022-4-4 13:19:45
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation scale-in-center
+ * ----------------------------------------
+ */
+ @-webkit-keyframes scale-in-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes scale-in-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+
+@media (max-width: 834px) {
+    /* PRODUCTS */
+    .products{
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .product{
+        width: 100%;
+        height: 100%;
+        margin: 2em 0;
+    }
+    
+    .product button{
+        opacity: 1;
+        transition: none;
+        width: 100%;
+    }
+
+    .product img{
+        width: 100%;
+        height: auto;
+    }
+
+    .black-bg .header-load{
+        height: 8vh;
+    }
+
+    .black-bg .header-scroll,
+    .black-bg .header-top{
+        background-color: var(--black);
+        height: 8vh;
+        animation: none!important;
+    }  
+    .black-bg .responsive-menu ul a, .black-bg #logout-mov{
+        color: var(--black)!important;
+    }
+
+    table{
+        width: 100%;
+    }
+    .popup div{
+        width: 80vw;
+        height: 30vh;
+    }
+    
+}
+
+@media (max-width: 500px) {
+    .fixed-width{
+        width: 95vw;
+        margin: 0 2.5vw;
+    }
+    main{
+        padding: 3em 0;
+    }
+    table img{
+        width: 4em;
+        margin-top: 0.2em;
+    }
+
+    .button-row{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .button-row button{
+        width: 100%;
+        justify-content: center;
+        margin: none;
+    }
+    .popup div{
+        width: 100vw;
+        height: 50vw;
+    }
+}

@@ -1,0 +1,19 @@
+<main class="square-bg">
+    <section class="fixed-width">
+        <h2>Productos</h2>
+            <div class="products">
+                <div *ngFor="let product of objetcPr; let i = index" class="product"> 
+                    <div [routerLink]="['/product/' + product.id]">
+                    <img src="{{product.featuredPhoto}}" />
+                    <div *ngFor="let category of objectCat; let i = index">
+                        <div *ngIf="category.id === product.categoryId" class="product-category">
+                            <hr><p>{{ category.name }}</p>
+                        </div>
+                    </div> 
+                    <div class="info-product">
+                        <h3>{{ product.name }}</h3><p>{{ product.price }}€</p>
+                    </div>
+                    <button [routerLink]="['/product/' + product.id]">Ver producto</button>              
+                </div></div></div> 
+    </section>
+</main>

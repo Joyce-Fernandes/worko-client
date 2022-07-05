@@ -1,0 +1,69 @@
+<main>
+    <div class="popup hideP">
+        <div>
+            <div><p id="popup-info">¡Compra realizada con éxito!</p></div>
+            <img src="../../assets/img/smiley-black-worko.svg">
+            <div class="buttons">
+                <button routerLink="/contact" (click)="popup()">Vale</button>
+            </div>
+        </div>
+    </div>
+    <section class="fixed-width">
+
+        <h2>Métodos de pago y envío</h2>
+
+            <div class="metodos">
+
+                <div>
+                    <img src="../../assets/img/checkout-worko.svg" alt="">
+                </div>
+
+                <div class="form">
+                    <table>
+                        <th><img src="../../assets/img/cash-icon.svg"><h3>Método de pago</h3> </th>
+                        <tr>
+                            <td> <input type="radio" name="cash"><label>Paypal</label> </td>  
+                            <td> <input type="radio" name="cash"><label>Tarjeta de crédito</label> </td>
+                        </tr>
+
+                        <th><img src="../../assets/img/delivery-icon.svg"><h3>Método de envío</h3> </th>
+                        <tr>
+                            <td> <input type="radio" name="delivery"><label>Recoger en tienda</label> </td>  
+                            <td> <input type="radio" name="delivery"><label>Correos</label> </td>
+                        </tr>
+                    </table>
+
+                    <label class="margin-label">Observaciones:</label><br><textarea class="msg" cols="35" rows="5"></textarea>
+                    <div id="privacy-subscribe" class="privacy-policy">
+                    <input type="checkbox"> <label>Acepto la <a href="">política de privacidad</a>.</label>
+                    </div>
+                    <button (click)="popup()">Finalizar compra</button>
+                </div>
+            </div>
+    
+        
+
+            <div class="conditions">
+                <div class="info-conditions">
+                <h3>Términos y condiciones</h3>
+
+                <p> <b>Pago y Envío: </b></p> <br>
+
+                <p> En Made in Tarifa aceptamos las siguientes formas de pago:</p> <br>
+
+                <p> <b>- Tarjeta de crédito:</b></p> <br>
+                <p> - Transferencia bancaria : Pídenos los datos bancarios</p>
+                <p> - PayPal: Es uno de los métodos más seguros para el comercio electrónico. A través de la plataforma
+                    de pago de PayPal podrás hacer el pago cómodamente con tu propia cuenta o en caso de que no la tengas
+                    con una de las tarjetas aceptadas.</p> <br>
+                <p> <b> Gastos de envío: </b></p> <br>
+                <p>En Made in Tarifa se ofrece la siguiente forma de envío:</p>
+                <p> - Los envíos son 6,5€ a Península y 25€ Internacionales, Los concentramos todos en dos días a la Semana.
+                Lunes y Jueves, siempre que no hay festivos durante el envio. No enviamos a las Islas Canarias o
+                Baleares</p>
+                <p> Recogida gratis de tus pedidos en el Worköshop.</p>
+            </div>
+             
+            </div>
+    </section>
+</main>

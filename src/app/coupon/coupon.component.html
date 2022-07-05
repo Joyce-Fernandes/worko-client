@@ -1,0 +1,29 @@
+
+<main>    
+    <section class="fixed-width">
+    
+    
+       <div class="form">
+           <h2>Gestión de cupones</h2>
+            <select #selCoupon (change)="getId(selCoupon.value); getDataCouponId(couponIdNum)">
+                <option selected>Seleccionar cupón</option>
+                <option *ngFor="let Coupon of objects; let i = index" value="{{ Coupon.id }}">
+                {{Coupon.name }}
+                </option>
+            </select>
+   
+            <label>Nombre de cupón:</label>
+            <input placeholder="Nombre de cupón" [(ngModel)]="object.name" type="text" >
+            <label>Fecha inicio:</label>
+            <input placeholder="Fecha inicio" [ngModel]="object.startDate | date:'yyyy-MM-dd'" (ngModelChange)="object.startDate = $event" type="date">
+            <label>Fecha fin:</label>
+            <input placeholder="Fecha fin" [ngModel]="object.endDate | date:'yyyy-MM-dd'" (ngModelChange)="object.endDate = $event" class="form-control" #fecha  type="date">
+            <label>Descuento (€):</label>
+            <input placeholder="Descuento" [(ngModel)]="object.discount" type="text" >
+         
+            <button (click)="putCoupon()">Modificar cupón</button>
+            <button (click)="postCoupon()">Añadir cupón</button>
+            <button (click)="deleteCoupon(couponIdNum)">Eliminar cupón</button>
+        </div> 
+    </section>
+    </main>

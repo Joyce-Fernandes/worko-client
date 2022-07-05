@@ -1,0 +1,75 @@
+.metodos{
+    width: 100%; 
+    flex-direction: row;  
+    display: flex;
+    justify-content: space-between;
+}
+
+.metodos div{
+    width: 45%;
+}
+
+th{
+    display: flex;
+}
+
+th img{
+    width: 1.8em;
+    margin-right: 0.8em;
+}
+
+table{
+    border: none;
+}
+.metodos .privacy-policy,
+textarea,
+table{
+    width: 100%;
+}
+
+.conditions{
+    width: 100%;
+    display: flex;
+}
+
+.info-conditions{
+    width: 75%;
+}
+
+.conditions,
+.margin-label{
+    margin-top: 2em;
+}
+
+input[type="radio"]{
+    margin-right: 0.8em;
+}
+
+textarea{
+    margin-bottom: 2em;
+}
+
+h3{
+    font-family: var(--secondary-font);
+    margin: 1em 0;
+}
+.buttons button{
+    margin-left: 0;
+}
+
+.popup img{
+    width: 105px;
+}
+
+
+@media (max-width: 834px) {
+    .metodos div{
+        width: 100%;
+    }
+    .metodos div:first-child{
+       display: none;
+    }
+    .info-conditions{
+        width: 100%;
+    }
+}
