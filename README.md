@@ -11,11 +11,7 @@
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 4db430dc6c307e4af0856139093c8d975f51d02a
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 
