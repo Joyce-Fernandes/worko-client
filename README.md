@@ -3,7 +3,7 @@
 
 <img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="portfolio template mockup" /> <br/>
 
-<img height="350px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="portfolio mobile demo gif"/> <br/>
+<img height="500px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="portfolio mobile demo gif"/> <br/>
 
 
 
