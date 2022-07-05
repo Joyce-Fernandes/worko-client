@@ -1,5 +1,6 @@
-<video width="80%" align="center" controls> 
-<source src="/web-responsive.mp4" alt="video/mp4"></video> <br/>
+<img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="portfolio template mockup" /> <br/>
+
+<img height="350px" align="right" src="/src/assets/img/web-responsive_Moment.jpg" alt="portfolio mobile demo gif"/>
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
 
