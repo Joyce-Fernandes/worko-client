@@ -3,7 +3,7 @@
 
 <img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="web" /> <br/>
 
-<img height="515px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="responsive"/> <br/>
+<img width="70%" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="responsive"/> <br/>
 
 
 
@@ -11,7 +11,16 @@
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4db430dc6c307e4af0856139093c8d975f51d02a
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+
+
+#
+
 
 ## Development server
 
