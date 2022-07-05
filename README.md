@@ -3,7 +3,7 @@
 
 <img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="web" /> <br/>
 
-<img height="515px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="responsive"/> <br/>
+<img width="70%" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="responsive"/> <br/>
 
 
 
