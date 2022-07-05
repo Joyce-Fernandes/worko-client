@@ -1,5 +1,7 @@
-<embed width="80%" align="center" src="/workoshop-tienda-online.mp4" alt="video" /> <br/>
 
+<video width="80%" align="center" controls>
+  <source src="workoshop-tienda-online.mp4" type="video/mp4">
+</video> <br/>
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
 
