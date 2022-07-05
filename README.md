@@ -1,10 +1,15 @@
-<img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="portfolio template mockup" /> <br/>
+<h1 >⭐E-Commerce Workoshop⭐</h1>
 
-<img height="350px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="portfolio mobile demo gif"/>
+
+<img width="70%" align="center" src="/src/assets/img/workoshop-tienda-online%20(1)_Moment.jpg" alt="web" /> <br/>
+
+<img height="515px" align="center" src="/src/assets/img/web-responsive_Moment.jpg" alt="responsive"/> <br/>
+
+
+
+#
 
 <img align="left" src="/angular.png" height="50" alt="angular icon"/>
-
-<h2>E-Commerce Workoshop</h2>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
